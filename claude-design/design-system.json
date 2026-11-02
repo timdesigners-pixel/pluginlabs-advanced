@@ -1,0 +1,25 @@
+{
+ "v": 3,
+ "layout": "files",
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-11-02T12:15:53Z"
+ },
+ "title": "PluginLabs Advanced",
+ "namespace": "PluginLabs",
+ "libraries": [],
+ "sections": {},
+ "groups": [],
+ "assetGroups": {},
+ "blobs": {},
+ "docs": {
+  "readme": "project/README.md",
+  "sections": []
+ },
+ "lastChange": {
+  "by": "Muhammed",
+  "at": "2026-11-02T12:15:53Z",
+  "via": "Claude (Cowork)",
+  "note": "PluginLabs Advanced v2.0.0 ilk kurulum: tokenlar, 181 komponent, kapak"
+ }
+}

@@ -1,0 +1,9 @@
+<!-- PLUGINLABS-ADVANCED-VARSAYILAN -->
+## Varsayılan tasarım sistemi: PluginLabs Advanced
+
+- Herhangi bir arayüz, ekran, komponent, HTML/CSS, React/Vue/Svelte, pano, eklenti popup'ı, masaüstü uygulama veya stil işinde — proje kendi tasarım sistemini açıkça tanımlamadıkça — `pluginlabs-advanced` skill'ini kullan (`~/.claude/skills/pluginlabs-advanced/SKILL.md`). İşe başlamadan önce SKILL.md'yi ve `references/TASARIM-PRENSIPLERI.md`'yi oku.
+- Tokenlar ve stiller: `assets/pl-tokens.css` → `assets/pl-components.css` → `assets/pl-advanced.css`. Yalnız `[data-pl]` kapsayıcısı, `--pl-` tokenları ve `pl-` sınıfları; global seçici ve sabit renk yazma.
+- Tam ekranlarda önce Ekran Şablonları (PLA-091…102) ve `assets/pl-pin-ekranlari.html` içindeki pin ekranlarından en yakını temel alınır; yüzey `data-pl-surface` ile seçilir.
+- Mevcut tasarıma dokunma: taşıma opt-in'dir, önce kullanıcıya hangi ekranın taşınacağını sor. Silme yok, `_arsiv/GG.AA.YYYY/`.
+- Aynı sistem Claude Design'da "PluginLabs Advanced" tasarım sistemi olarak da tanımlıdır: https://claude.ai/artifact/J9knwk3VLaYFpVC4u22cxC
+<!-- /PLUGINLABS-ADVANCED-VARSAYILAN -->

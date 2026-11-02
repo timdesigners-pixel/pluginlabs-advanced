@@ -1,0 +1,6 @@
+## PluginLabs Advanced Tasarım Sistemi (Claude Code)
+
+- UI/stil işlerinde `pluginlabs-advanced` skill'ini kullan (`.claude/skills/pluginlabs-advanced/SKILL.md`).
+- Codex aynı skill'i `.agents/skills/pluginlabs-advanced/` altından okur; kanonik kaynak `design-system/pluginlabs-advanced/`. Değişiklikten sonra `bash kurulum/kur.sh` çalıştır.
+- Tam ekranlarda önce Ekran Şablonları (PLA-091…102) incelenir; yüzey `data-pl-surface` ile seçilir.
+- Mevcut tasarıma dokunma: yalnız `[data-pl]`, `--pl-` tokenları, `pl-` sınıfları. Silme yok, `_arsiv/GG.AA.YYYY/`.

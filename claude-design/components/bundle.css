@@ -1,0 +1,1640 @@
+/* ==========================================================================
+   PluginLabs Advanced — Tokenlar (pl-tokens.css)  v2.0.0 · 01.11.2026
+   --------------------------------------------------------------------------
+   KAPSÜL KURALI: Bu dosya mevcut uygulamalara DOKUNMAZ.
+   - Global reset yok, element seçici yok, :root'a yazılmaz.
+   - Tüm değişkenler --pl- önekli, yalnız [data-pl] kapsayıcısı içinde geçerli.
+   - @layer pl içinde; uygulamanın kendi CSS'i her zaman önceliklidir.
+   Kullanım:  <div data-pl data-pl-theme="dark" data-pl-product="leo"> … </div>
+   ========================================================================== */
+
+@layer pl {
+
+/* ---------- 1. TEMEL (KARANLIK — VARSAYILAN) ---------- */
+:where([data-pl]) {
+  /* Zemin katmanları (elevation = renk, gölge değil) */
+  --pl-bg-0: #090d18;          /* uygulama zemini          */
+  --pl-bg-1: #0e1322;          /* ana yüzey / panel        */
+  --pl-bg-2: #141a2c;          /* kart                     */
+  --pl-bg-3: #1b2238;          /* hover / input zemini     */
+  --pl-bg-4: #232b45;          /* aktif / seçili           */
+  --pl-overlay: rgb(4 7 15 / .72);
+
+  /* Çizgiler */
+  --pl-line: #232c44;
+  --pl-line-strong: #323d5c;
+  --pl-line-focus: var(--pl-accent);
+
+  /* Metin */
+  --pl-fg-1: #f2f5fb;          /* başlık / birincil        */
+  --pl-fg-2: #b6c0d4;          /* gövde                    */
+  --pl-fg-3: #7b869c;          /* yardımcı / etiket        */
+  --pl-fg-4: #566078;          /* pasif                    */
+  --pl-fg-on-accent: #0a0e1a;
+
+  /* Marka */
+  --pl-brand: #7c6cff;         /* PL Iris                  */
+  --pl-brand-2: #22d3ee;       /* PL Cyan                  */
+  --pl-gold: #f0b429;          /* Pro / premium / tutar    */
+  --pl-brand-gradient: linear-gradient(135deg, #7c6cff 0%, #4f8bff 50%, #22d3ee 100%);
+
+  /* Anlamsal */
+  --pl-success: #34d399;  --pl-success-soft: rgb(52 211 153 / .14);
+  --pl-warning: #fbbf24;  --pl-warning-soft: rgb(251 191 36 / .14);
+  --pl-danger:  #f87171;  --pl-danger-soft:  rgb(248 113 113 / .14);
+  --pl-info:    #60a5fa;  --pl-info-soft:    rgb(96 165 250 / .14);
+
+  /* Ürün aksanı (varsayılan = Hub) */
+  --pl-accent: var(--pl-brand);
+  --pl-accent-soft: color-mix(in srgb, var(--pl-accent) 16%, transparent);
+  --pl-accent-line: color-mix(in srgb, var(--pl-accent) 45%, transparent);
+
+  /* Tipografi */
+  --pl-font-sans: "Inter", "Segoe UI Variable", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --pl-font-mono: "JetBrains Mono", "Cascadia Code", ui-monospace, "SFMono-Regular", monospace;
+  --pl-text-2xs: 11px;  --pl-text-xs: 12px;  --pl-text-sm: 13px;  --pl-text-md: 14px;
+  --pl-text-lg: 16px;   --pl-text-xl: 18px;  --pl-text-2xl: 22px; --pl-text-3xl: 28px;
+  --pl-text-4xl: 36px;  --pl-text-5xl: 48px;
+  --pl-leading-tight: 1.2; --pl-leading: 1.5; --pl-leading-loose: 1.7;
+  --pl-tracking-label: .08em;
+  --pl-weight-regular: 400; --pl-weight-medium: 500; --pl-weight-semibold: 600; --pl-weight-bold: 700;
+
+  /* Boşluk (4px ızgara) */
+  --pl-space-0: 0;    --pl-space-0_5: 2px; --pl-space-1: 4px;  --pl-space-2: 8px;
+  --pl-space-3: 12px; --pl-space-4: 16px;  --pl-space-5: 20px; --pl-space-6: 24px;
+  --pl-space-8: 32px; --pl-space-10: 40px; --pl-space-12: 48px; --pl-space-16: 64px;
+
+  /* Köşe */
+  --pl-radius-xs: 4px; --pl-radius-sm: 6px; --pl-radius-md: 10px;
+  --pl-radius-lg: 14px; --pl-radius-xl: 20px; --pl-radius-full: 999px;
+
+  /* Kontrol boyutları */
+  --pl-control-sm: 28px; --pl-control-md: 34px; --pl-control-lg: 42px;
+
+  /* Gölge (yalnız yüzen öğeler) */
+  --pl-shadow-sm: 0 1px 2px rgb(0 0 0 / .35);
+  --pl-shadow-md: 0 8px 24px rgb(0 0 0 / .40), 0 0 0 1px var(--pl-line);
+  --pl-shadow-lg: 0 24px 64px rgb(0 0 0 / .55), 0 0 0 1px var(--pl-line);
+  --pl-glow: 0 0 0 3px var(--pl-accent-soft);
+
+  /* Hareket */
+  --pl-ease: cubic-bezier(.2, .8, .2, 1);
+  --pl-ease-out: cubic-bezier(.16, 1, .3, 1);
+  --pl-dur-fast: 120ms; --pl-dur: 180ms; --pl-dur-slow: 280ms;
+
+  /* Katman sırası */
+  --pl-z-base: 0; --pl-z-sticky: 10; --pl-z-dropdown: 100; --pl-z-drawer: 200;
+  --pl-z-modal: 300; --pl-z-toast: 400; --pl-z-tooltip: 500;
+
+  /* Yerleşim */
+  --pl-sidebar-w: 248px; --pl-titlebar-h: 40px; --pl-popup-w: 380px; --pl-popup-h: 560px;
+  --pl-sidepanel-w: 400px; --pl-content-max: 1200px;
+
+  color-scheme: dark;
+}
+
+/* ---------- 2. AÇIK TEMA ---------- */
+:where([data-pl][data-pl-theme="light"]), :where([data-pl-theme="light"] [data-pl]) {
+  --pl-bg-0: #f4f6fb; --pl-bg-1: #ffffff; --pl-bg-2: #ffffff; --pl-bg-3: #eef1f7; --pl-bg-4: #e3e8f2;
+  --pl-overlay: rgb(15 20 36 / .45);
+  --pl-line: #e2e6ef; --pl-line-strong: #cdd3e0;
+  --pl-fg-1: #0e1424; --pl-fg-2: #3b4458; --pl-fg-3: #67718a; --pl-fg-4: #9aa3b8;
+  --pl-fg-on-accent: #0a0e1a;   /* ürün aksanları parlak: açık temada da koyu metin */
+  --pl-brand: #5b4bff; --pl-brand-2: #0891b2; --pl-gold: #c48a06;
+  --pl-success: #059669; --pl-warning: #b45309; --pl-danger: #dc2626; --pl-info: #2563eb;
+  --pl-shadow-md: 0 8px 24px rgb(15 20 36 / .10), 0 0 0 1px var(--pl-line);
+  --pl-shadow-lg: 0 24px 64px rgb(15 20 36 / .18), 0 0 0 1px var(--pl-line);
+  color-scheme: light;
+}
+
+/* ---------- 3. ÜRÜN AKSANLARI ---------- */
+:where([data-pl-product="hub"])        { --pl-accent: #7c6cff; }
+:where([data-pl-product="leo"])        { --pl-accent: #22d3ee; }  /* Leo Helper          */
+:where([data-pl-product="mindpalace"]) { --pl-accent: #a78bfa; }  /* Mind Palace         */
+:where([data-pl-product="replicator"]) { --pl-accent: #f472b6; }  /* Design Replicator   */
+:where([data-pl-product="mutfak"])     { --pl-accent: #fb923c; }  /* Mutfak Atölyesi     */
+:where([data-pl-product="flowdock"])   { --pl-accent: #2dd4bf; }  /* Flow Dock           */
+:where([data-pl-product="tweakster"])  { --pl-accent: #a3e635; }  /* Tweakster           */
+:where([data-pl-product="extman"])     { --pl-accent: #60a5fa; }  /* Extension Manager   */
+:where([data-pl-product="mymind"])     { --pl-accent: #f0b429; }  /* MyMind (AI)         */
+:where([data-pl-product="scrapper"])   { --pl-accent: #f87171; }  /* The Ultimate Scrapper */
+:where([data-pl-product="wishlist"])   { --pl-accent: #fb7185; }  /* MyWishlist (PL-054) */
+
+/* ---------- 4. YOĞUNLUK ---------- */
+:where([data-pl-density="compact"]) {   /* eklenti popup / yan panel */
+  --pl-control-sm: 24px; --pl-control-md: 30px; --pl-control-lg: 36px;
+  --pl-text-md: 13px; --pl-space-4: 12px; --pl-space-6: 18px;
+}
+
+/* ---------- 5. ERİŞİLEBİLİRLİK ---------- */
+@media (prefers-reduced-motion: reduce) {
+  :where([data-pl]) { --pl-dur-fast: 0ms; --pl-dur: 0ms; --pl-dur-slow: 0ms; }
+}
+@media (prefers-contrast: more) {
+  :where([data-pl]) { --pl-line: #46526f; --pl-fg-2: #d8deea; --pl-fg-3: #a9b2c6; }
+}
+
+
+/* ==========================================================================
+   6. ADVANCED KATMANI — masaüstü uygulama dili (v2.0.0)
+   Cam yüzey, HUD, neon, medya, veri görselleştirme, cihaz/kokpit tokenları.
+   ========================================================================== */
+:where([data-pl]) {
+  /* Ölçek genişletme */
+  --pl-text-6xl: 64px; --pl-text-7xl: 88px;
+  --pl-radius-2xl: 28px; --pl-radius-3xl: 36px;
+  --pl-space-7: 28px; --pl-space-20: 80px;
+  --pl-font-hud: "Rajdhani", "Inter", system-ui, sans-serif;
+  --pl-font-display: "Inter", "Segoe UI Variable", system-ui, sans-serif;
+  --pl-tracking-display: -.035em;
+
+  /* Yerleşim (masaüstü) */
+  --pl-rail-w: 72px; --pl-inspector-w: 288px; --pl-statusbar-h: 26px;
+  --pl-window-radius: 22px; --pl-window-pad: 14px;
+
+  /* Cam yüzey */
+  --pl-glass-bg: rgb(22 28 46 / .58);
+  --pl-glass-bg-strong: rgb(16 21 36 / .82);
+  --pl-glass-line: rgb(255 255 255 / .09);
+  --pl-glass-highlight: inset 0 1px 0 rgb(255 255 255 / .07);
+  --pl-glass-blur: 22px;
+
+  /* Işıma ve derin gölge */
+  --pl-glow-accent: 0 0 24px color-mix(in srgb, var(--pl-accent) 45%, transparent);
+  --pl-glow-strong: 0 0 0 1px color-mix(in srgb, var(--pl-accent) 60%, transparent), 0 0 32px color-mix(in srgb, var(--pl-accent) 55%, transparent);
+  --pl-shadow-xl: 0 40px 100px rgb(0 0 0 / .55), 0 0 0 1px var(--pl-line);
+  --pl-shadow-float: 0 18px 40px rgb(0 0 0 / .45);
+
+  /* Gradyanlar */
+  --pl-grad-iris: linear-gradient(135deg, #7c6cff 0%, #b06cff 100%);
+  --pl-grad-aurora: linear-gradient(135deg, #7c6cff 0%, #22d3ee 55%, #34d399 100%);
+  --pl-grad-sunset: linear-gradient(135deg, #f472b6 0%, #fb923c 100%);
+  --pl-grad-ocean: linear-gradient(135deg, #2dd4bf 0%, #0ea5e9 100%);
+  --pl-grad-ember: linear-gradient(135deg, #f87171 0%, #e11d48 100%);
+  --pl-grad-lime: linear-gradient(135deg, #d9f99d 0%, #a3e635 100%);
+  --pl-grad-gold: linear-gradient(135deg, #fde68a 0%, #f0b429 100%);
+  --pl-grad-accent: linear-gradient(135deg, var(--pl-accent) 0%, color-mix(in srgb, var(--pl-accent) 55%, #ffffff) 100%);
+  --pl-on-media: #ffffff; --pl-on-media-2: rgb(255 255 255 / .78);   /* görsel/karartma üstü metin, temadan bağımsız */
+  --pl-scrim-bottom: linear-gradient(180deg, transparent 30%, rgb(5 8 16 / .92) 100%);
+  --pl-scrim-left: linear-gradient(90deg, rgb(5 8 16 / .95) 0%, rgb(5 8 16 / .55) 45%, transparent 80%);
+
+  /* Medya yer tutucu (görsel yokken poster/sahne) */
+  --pl-media-1: radial-gradient(120% 90% at 30% 20%, #3b2a6b 0%, #141a2c 60%);
+  --pl-media-2: radial-gradient(120% 90% at 70% 30%, #0e4a5c 0%, #0e1322 65%);
+  --pl-media-3: radial-gradient(120% 90% at 40% 70%, #6b2a3a 0%, #141a2c 65%);
+  --pl-media-4: radial-gradient(120% 90% at 60% 40%, #4a5c0e 0%, #10160a 70%);
+  --pl-media-5: radial-gradient(120% 90% at 50% 20%, #6b4a1e 0%, #1b1408 70%);
+  --pl-media-6: radial-gradient(120% 90% at 20% 80%, #1e3a8a 0%, #0b1020 70%);
+
+  /* Veri görselleştirme paleti (sıra sabittir) */
+  --pl-viz-1: #7c6cff; --pl-viz-2: #22d3ee; --pl-viz-3: #f472b6; --pl-viz-4: #fbbf24;
+  --pl-viz-5: #34d399; --pl-viz-6: #fb923c; --pl-viz-7: #60a5fa; --pl-viz-8: #a3e635;
+  --pl-viz-grid: rgb(255 255 255 / .06);
+
+  /* HUD (komuta / endüstri ekranları) */
+  --pl-hud: #38e1ff; --pl-hud-soft: rgb(56 225 255 / .12); --pl-hud-line: rgb(56 225 255 / .28);
+  --pl-hud-amber: #ffb547; --pl-hud-red: #ff5d6c; --pl-hud-green: #3dffa8;
+  --pl-hud-grid: rgb(56 225 255 / .07);
+  --pl-hud-bg: #050b14; --pl-hud-panel: rgb(8 20 36 / .78);
+
+  /* Neon (canlı skor / oyun) */
+  --pl-neon: #c6ff3d; --pl-neon-ink: #0b0f05; --pl-neon-soft: rgb(198 255 61 / .14);
+  --pl-live: #ff3b5c;
+
+  /* Kurgu zaman çizelgesi izleri */
+  --pl-track-video: #8b5cf6; --pl-track-audio: #22d3ee; --pl-track-text: #38bdf8;
+  --pl-track-fx: #f472b6; --pl-playhead: #fb923c;
+
+  /* Kokpit / HMI */
+  --pl-hmi-bg: #05070d; --pl-hmi-arc: #3b82f6; --pl-hmi-arc-2: #22d3ee;
+
+  /* Hareket (genişletme) */
+  --pl-dur-xslow: 420ms;
+  --pl-ease-spring: cubic-bezier(.34, 1.56, .64, 1);
+}
+
+/* ---------- 7. YÜZEY TEMALARI (data-pl-surface) ---------- */
+/* glass: buzlu cam katmanlar, renkli arka plan üstünde */
+:where([data-pl-surface="glass"]) {
+  --pl-bg-1: var(--pl-glass-bg-strong); --pl-bg-2: var(--pl-glass-bg); --pl-bg-3: rgb(255 255 255 / .06); --pl-bg-4: rgb(255 255 255 / .1);
+  --pl-line: var(--pl-glass-line); --pl-line-strong: rgb(255 255 255 / .16);
+  --pl-fg-1: #f2f5fb; --pl-fg-2: #b6c0d4; --pl-fg-3: #8691a8; --pl-fg-4: #566078; --pl-overlay: rgb(4 7 15 / .72);
+  color-scheme: dark;
+}
+/* hud: komuta merkezi, siyah-mavi zemin, camgöbeği çizgiler */
+:where([data-pl-surface="hud"]) {
+  --pl-bg-0: var(--pl-hud-bg); --pl-bg-1: #07111f; --pl-bg-2: var(--pl-hud-panel); --pl-bg-3: rgb(56 225 255 / .08); --pl-bg-4: rgb(56 225 255 / .16);
+  --pl-line: var(--pl-hud-line); --pl-line-strong: rgb(56 225 255 / .45);
+  --pl-fg-1: #e8fbff; --pl-fg-2: #a8cfe0; --pl-fg-3: #6d93a8;
+  --pl-accent: var(--pl-hud); --pl-fg-on-accent: #031018; --pl-fg-4: #45657a;
+  color-scheme: dark;
+}
+/* neon: yüksek kontrastlı oyun/spor yüzeyi */
+:where([data-pl-surface="neon"]) {
+  --pl-bg-0: #07080a; --pl-bg-1: #0d0f12; --pl-bg-2: #15181d; --pl-bg-3: #1d2128; --pl-bg-4: #262b34;
+  --pl-line: #22262e; --pl-line-strong: #333944;
+  --pl-accent: var(--pl-neon); --pl-fg-on-accent: var(--pl-neon-ink);
+  --pl-fg-1: #f2f5fb; --pl-fg-2: #b6c0d4; --pl-fg-3: #8691a8; --pl-fg-4: #566078; --pl-overlay: rgb(4 7 15 / .72);
+  color-scheme: dark;
+}
+/* soft: açık, pastel, büyük köşeli SaaS paneli (light tema ile) */
+:where([data-pl-surface="soft"]) {
+  --pl-bg-0: #eef0f8; --pl-bg-1: #ffffff; --pl-bg-2: #ffffff; --pl-bg-3: #f3f4fb; --pl-bg-4: #e8eaf6;
+  --pl-line: #e6e8f2; --pl-line-strong: #d5d9e8;
+  --pl-fg-1: #151a2d; --pl-fg-2: #434b63; --pl-fg-3: #69718a; --pl-fg-4: #a0a7ba;
+  --pl-radius-lg: 18px; --pl-radius-xl: 24px;
+  --pl-shadow-md: 0 10px 30px rgb(44 52 99 / .08), 0 0 0 1px var(--pl-line);
+  --pl-glass-bg: rgb(255 255 255 / .6); --pl-glass-bg-strong: rgb(255 255 255 / .82); --pl-glass-line: rgb(255 255 255 / .7);
+  --pl-viz-grid: rgb(21 26 45 / .06);
+  color-scheme: light;
+}
+/* cockpit: araç / drone HMI — saf siyah, mavi yaylar */
+:where([data-pl-surface="cockpit"]) {
+  --pl-bg-0: var(--pl-hmi-bg); --pl-bg-1: #0a0d15; --pl-bg-2: #10141f; --pl-bg-3: #171c2a; --pl-bg-4: #1f2536;
+  --pl-line: #1b2133; --pl-line-strong: #2a3350; --pl-accent: var(--pl-hmi-arc); --pl-fg-on-accent: #ffffff;
+  --pl-fg-1: #f2f5fb; --pl-fg-2: #b6c0d4; --pl-fg-3: #8691a8; --pl-fg-4: #566078; --pl-overlay: rgb(4 7 15 / .72);
+  color-scheme: dark;
+}
+@media (prefers-reduced-motion: reduce) {
+  :where([data-pl]) { --pl-dur-xslow: 0ms; }
+}
+
+/* ---------- 8. TÜRETİLMİŞ AKSAN TOKENLARI ----------
+   Aksanı değiştiren her kapsayıcıda (ürün, yüzey) türetilmiş değerler yeniden hesaplanır. */
+:where([data-pl], [data-pl-product], [data-pl-surface]) {
+  --pl-accent-soft: color-mix(in srgb, var(--pl-accent) 16%, transparent);
+  --pl-accent-line: color-mix(in srgb, var(--pl-accent) 45%, transparent);
+  --pl-glow: 0 0 0 3px var(--pl-accent-soft);
+  --pl-glow-accent: 0 0 24px color-mix(in srgb, var(--pl-accent) 45%, transparent);
+  --pl-glow-strong: 0 0 0 1px color-mix(in srgb, var(--pl-accent) 60%, transparent), 0 0 32px color-mix(in srgb, var(--pl-accent) 55%, transparent);
+  --pl-grad-accent: linear-gradient(135deg, var(--pl-accent) 0%, color-mix(in srgb, var(--pl-accent) 55%, #ffffff) 100%);
+}
+
+
+} /* @layer pl */
+
+/* ==========================================================================
+   PluginLabs Advanced — Temel Komponentler (pl-components.css) v2.0.0
+   Önce pl-tokens.css yüklenmelidir. Tüm sınıflar pl- önekli, @layer pl içinde.
+   Sabit renk/boşluk YOK — yalnız var(--pl-…).
+   ========================================================================== */
+@layer pl {
+
+/* ---------- Kök ---------- */
+[data-pl] { font-family: var(--pl-font-sans); color: var(--pl-fg-2); font-size: var(--pl-text-md); line-height: var(--pl-leading); -webkit-font-smoothing: antialiased; }
+[data-pl] :where(*, *::before, *::after) { box-sizing: border-box; }
+.pl-ico { width: 16px; height: 16px; flex: none; stroke: currentColor; fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+.pl-ico--20 { width: 20px; height: 20px; } .pl-ico--24 { width: 24px; height: 24px; }
+.pl-label { font-family: var(--pl-font-mono); font-size: var(--pl-text-2xs); letter-spacing: var(--pl-tracking-label); text-transform: uppercase; color: var(--pl-fg-3); font-weight: var(--pl-weight-medium); }
+.pl-num { font-family: var(--pl-font-mono); font-variant-numeric: tabular-nums; }
+.pl-h1 { font-size: var(--pl-text-3xl); font-weight: 700; color: var(--pl-fg-1); line-height: var(--pl-leading-tight); margin: 0; letter-spacing: -.01em; }
+.pl-h2 { font-size: var(--pl-text-2xl); font-weight: 600; color: var(--pl-fg-1); margin: 0; }
+.pl-h3 { font-size: var(--pl-text-lg); font-weight: 600; color: var(--pl-fg-1); margin: 0; }
+.pl-muted { color: var(--pl-fg-3); font-size: var(--pl-text-sm); }
+.pl-row { display: flex; align-items: center; gap: var(--pl-space-2); flex-wrap: wrap; }
+.pl-stack { display: flex; flex-direction: column; gap: var(--pl-space-3); }
+:where([data-pl]) :focus-visible { outline: 2px solid var(--pl-line-focus); outline-offset: 2px; }
+
+/* ---------- PLC-001 Buton ---------- */
+.pl-btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--pl-space-2); height: var(--pl-control-md); padding: 0 var(--pl-space-4); border-radius: var(--pl-radius-sm); border: 1px solid transparent; font: inherit; font-size: var(--pl-text-sm); font-weight: var(--pl-weight-semibold); cursor: pointer; white-space: nowrap; transition: background var(--pl-dur-fast) var(--pl-ease), border-color var(--pl-dur-fast), color var(--pl-dur-fast), transform var(--pl-dur-fast); }
+.pl-btn:active { transform: translateY(1px); }
+.pl-btn--primary { background: var(--pl-accent); color: var(--pl-fg-on-accent); }
+.pl-btn--primary:hover { background: color-mix(in srgb, var(--pl-accent) 86%, white); }
+.pl-btn--secondary { background: var(--pl-bg-3); color: var(--pl-fg-1); border-color: var(--pl-line); }
+.pl-btn--secondary:hover { background: var(--pl-bg-4); border-color: var(--pl-line-strong); }
+.pl-btn--ghost { background: transparent; color: var(--pl-fg-2); }
+.pl-btn--ghost:hover { background: var(--pl-bg-3); color: var(--pl-fg-1); }
+.pl-btn--danger { background: var(--pl-danger-soft); color: var(--pl-danger); border-color: color-mix(in srgb, var(--pl-danger) 35%, transparent); }
+.pl-btn--danger:hover { background: color-mix(in srgb, var(--pl-danger) 24%, transparent); }
+.pl-btn--gradient { background: var(--pl-brand-gradient); color: #fff; }
+.pl-btn--sm { height: var(--pl-control-sm); padding: 0 var(--pl-space-3); font-size: var(--pl-text-xs); }
+.pl-btn--lg { height: var(--pl-control-lg); padding: 0 var(--pl-space-5); font-size: var(--pl-text-md); }
+.pl-btn--block { width: 100%; }
+.pl-btn:disabled, .pl-btn.is-disabled { opacity: .45; cursor: not-allowed; transform: none; }
+.pl-btn.is-loading { color: transparent; position: relative; pointer-events: none; }
+.pl-btn.is-loading::after { content: ""; position: absolute; width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--pl-fg-on-accent); border-right-color: transparent; animation: pl-spin .7s linear infinite; }
+
+/* ---------- PLC-002 İkon buton ---------- */
+.pl-iconbtn { display: inline-grid; place-items: center; width: var(--pl-control-md); height: var(--pl-control-md); border-radius: var(--pl-radius-sm); border: 1px solid transparent; background: transparent; color: var(--pl-fg-2); cursor: pointer; transition: background var(--pl-dur-fast), color var(--pl-dur-fast); }
+.pl-iconbtn:hover { background: var(--pl-bg-3); color: var(--pl-fg-1); }
+.pl-iconbtn--outline { border-color: var(--pl-line); background: var(--pl-bg-2); }
+.pl-iconbtn--sm { width: var(--pl-control-sm); height: var(--pl-control-sm); }
+.pl-iconbtn.is-active { background: var(--pl-accent-soft); color: var(--pl-accent); }
+
+/* ---------- PLC-003 Segment kontrol ---------- */
+.pl-segment { display: inline-flex; padding: 3px; gap: 2px; background: var(--pl-bg-3); border: 1px solid var(--pl-line); border-radius: var(--pl-radius-md); }
+.pl-segment button { height: calc(var(--pl-control-md) - 8px); padding: 0 var(--pl-space-3); border: 0; border-radius: calc(var(--pl-radius-md) - 3px); background: transparent; color: var(--pl-fg-3); font: inherit; font-size: var(--pl-text-sm); font-weight: 500; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+.pl-segment button:hover { color: var(--pl-fg-1); }
+.pl-segment button.is-active { background: var(--pl-bg-1); color: var(--pl-fg-1); box-shadow: var(--pl-shadow-sm), 0 0 0 1px var(--pl-line); }
+
+/* ---------- PLC-004 Bölünmüş buton ---------- */
+.pl-split { display: inline-flex; }
+.pl-split .pl-btn:first-child { border-radius: var(--pl-radius-sm) 0 0 var(--pl-radius-sm); }
+.pl-split .pl-btn:last-child { border-radius: 0 var(--pl-radius-sm) var(--pl-radius-sm) 0; padding: 0 var(--pl-space-2); border-left: 1px solid color-mix(in srgb, var(--pl-fg-on-accent) 25%, transparent); }
+
+/* ---------- PLC-005 Bağlantı ---------- */
+.pl-link { color: var(--pl-accent); text-decoration: none; font-weight: 500; display: inline-flex; align-items: center; gap: 4px; border-bottom: 1px solid transparent; }
+.pl-link:hover { border-bottom-color: currentColor; }
+
+/* ---------- PLC-006 Rozet / PLC-007 Durum pili / PLC-008 Etiket ---------- */
+.pl-badge { display: inline-flex; align-items: center; gap: 4px; height: 20px; padding: 0 7px; border-radius: var(--pl-radius-xs); font-family: var(--pl-font-mono); font-size: 10.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; background: var(--pl-bg-4); color: var(--pl-fg-2); }
+.pl-badge--accent { background: var(--pl-accent-soft); color: var(--pl-accent); }
+.pl-badge--success { background: var(--pl-success-soft); color: var(--pl-success); }
+.pl-badge--warning { background: var(--pl-warning-soft); color: var(--pl-warning); }
+.pl-badge--danger { background: var(--pl-danger-soft); color: var(--pl-danger); }
+.pl-badge--info { background: var(--pl-info-soft); color: var(--pl-info); }
+.pl-badge--pro { background: linear-gradient(135deg, color-mix(in srgb, var(--pl-gold) 22%, transparent), color-mix(in srgb, var(--pl-gold) 8%, transparent)); color: var(--pl-gold); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--pl-gold) 40%, transparent); }
+.pl-badge--count { min-width: 18px; height: 18px; padding: 0 5px; border-radius: var(--pl-radius-full); justify-content: center; background: var(--pl-danger); color: #fff; letter-spacing: 0; }
+.pl-status { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px 0 8px; border-radius: var(--pl-radius-full); border: 1px solid var(--pl-line); background: var(--pl-bg-2); font-size: var(--pl-text-xs); font-weight: 500; color: var(--pl-fg-2); }
+.pl-status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--pl-fg-4); }
+.pl-status--online::before { background: var(--pl-success); box-shadow: 0 0 0 3px var(--pl-success-soft); }
+.pl-status--syncing::before { background: var(--pl-info); animation: pl-pulse 1.4s var(--pl-ease) infinite; }
+.pl-status--warning::before { background: var(--pl-warning); }
+.pl-status--error::before { background: var(--pl-danger); }
+.pl-tag { display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 6px 0 10px; border-radius: var(--pl-radius-full); background: var(--pl-bg-3); border: 1px solid var(--pl-line); color: var(--pl-fg-2); font-size: var(--pl-text-xs); }
+.pl-tag button { width: 18px; height: 18px; border-radius: 50%; border: 0; background: transparent; color: var(--pl-fg-3); display: grid; place-items: center; cursor: pointer; padding: 0; }
+.pl-tag button:hover { background: var(--pl-bg-4); color: var(--pl-fg-1); }
+.pl-tag.is-selected { background: var(--pl-accent-soft); border-color: var(--pl-accent-line); color: var(--pl-accent); }
+
+/* ---------- PLC-009 Avatar / PLC-010 Avatar grubu ---------- */
+.pl-avatar { width: 32px; height: 32px; border-radius: 50%; display: inline-grid; place-items: center; background: var(--pl-bg-4); color: var(--pl-fg-1); font-size: var(--pl-text-xs); font-weight: 600; flex: none; position: relative; }
+.pl-avatar--sm { width: 24px; height: 24px; font-size: 10px; } .pl-avatar--lg { width: 44px; height: 44px; font-size: var(--pl-text-md); }
+.pl-avatar--accent { background: var(--pl-accent-soft); color: var(--pl-accent); }
+.pl-avatar.is-online::after { content: ""; position: absolute; right: -1px; bottom: -1px; width: 10px; height: 10px; border-radius: 50%; background: var(--pl-success); border: 2px solid var(--pl-bg-1); }
+.pl-avatars { display: inline-flex; } .pl-avatars .pl-avatar { box-shadow: 0 0 0 2px var(--pl-bg-1); } .pl-avatars .pl-avatar + .pl-avatar { margin-left: -8px; }
+
+/* ---------- PLC-011 Kbd / PLC-012 Ayraç ---------- */
+.pl-kbd { display: inline-grid; place-items: center; min-width: 20px; height: 20px; padding: 0 5px; border-radius: var(--pl-radius-xs); border: 1px solid var(--pl-line-strong); border-bottom-width: 2px; background: var(--pl-bg-2); font-family: var(--pl-font-mono); font-size: 10.5px; color: var(--pl-fg-2); }
+.pl-divider { height: 1px; background: var(--pl-line); border: 0; margin: var(--pl-space-3) 0; width: 100%; }
+.pl-divider--label { display: flex; align-items: center; gap: var(--pl-space-3); height: auto; background: none; }
+.pl-divider--label::before, .pl-divider--label::after { content: ""; flex: 1; height: 1px; background: var(--pl-line); }
+
+/* ---------- PLC-013 Spinner / PLC-014 İskelet ---------- */
+.pl-spinner { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--pl-bg-4); border-top-color: var(--pl-accent); animation: pl-spin .8s linear infinite; display: inline-block; }
+.pl-spinner--lg { width: 28px; height: 28px; border-width: 3px; }
+.pl-skeleton { border-radius: var(--pl-radius-sm); background: linear-gradient(90deg, var(--pl-bg-3) 0%, var(--pl-bg-4) 50%, var(--pl-bg-3) 100%); background-size: 200% 100%; animation: pl-shimmer 1.4s linear infinite; }
+
+/* ---------- PLC-015 Tooltip ---------- */
+.pl-tooltip { display: inline-block; padding: 6px 9px; border-radius: var(--pl-radius-sm); background: var(--pl-fg-1); color: var(--pl-bg-0); font-size: var(--pl-text-xs); font-weight: 500; box-shadow: var(--pl-shadow-md); position: relative; }
+.pl-tooltip::after { content: ""; position: absolute; left: 50%; bottom: -4px; width: 8px; height: 8px; background: inherit; transform: translateX(-50%) rotate(45deg); }
+
+/* ---------- Form temel ---------- */
+.pl-field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.pl-field__label { font-size: var(--pl-text-sm); font-weight: 500; color: var(--pl-fg-1); display: flex; justify-content: space-between; }
+.pl-field__help { font-size: var(--pl-text-xs); color: var(--pl-fg-3); }
+.pl-field.is-error .pl-field__help { color: var(--pl-danger); }
+.pl-field.is-error .pl-input { border-color: var(--pl-danger); box-shadow: 0 0 0 3px var(--pl-danger-soft); }
+.pl-input, .pl-select, .pl-textarea { width: 100%; height: var(--pl-control-md); padding: 0 var(--pl-space-3); border-radius: var(--pl-radius-sm); border: 1px solid var(--pl-line); background: var(--pl-bg-3); color: var(--pl-fg-1); font: inherit; font-size: var(--pl-text-sm); transition: border-color var(--pl-dur-fast), box-shadow var(--pl-dur-fast); }
+.pl-input::placeholder, .pl-textarea::placeholder { color: var(--pl-fg-4); }
+.pl-input:hover, .pl-select:hover, .pl-textarea:hover { border-color: var(--pl-line-strong); }
+.pl-input:focus, .pl-select:focus, .pl-textarea:focus { outline: none; border-color: var(--pl-accent); box-shadow: var(--pl-glow); }
+.pl-textarea { height: auto; min-height: 84px; padding: var(--pl-space-2) var(--pl-space-3); resize: vertical; line-height: var(--pl-leading); }
+.pl-select { appearance: none; padding-right: 32px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%237b869c' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='m4 6 4 4 4-4'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; }
+.pl-inputwrap { position: relative; display: flex; align-items: center; }
+.pl-inputwrap > .pl-ico { position: absolute; left: 10px; color: var(--pl-fg-3); pointer-events: none; }
+.pl-inputwrap > .pl-input { padding-left: 34px; }
+.pl-inputwrap > .pl-kbd { position: absolute; right: 8px; }
+.pl-inputwrap > .pl-input:has(~ .pl-kbd) { padding-right: 48px; }
+
+/* ---------- PLC-020 Onay kutusu / PLC-021 Radyo ---------- */
+.pl-check, .pl-radio { display: inline-flex; align-items: center; gap: var(--pl-space-2); cursor: pointer; color: var(--pl-fg-1); font-size: var(--pl-text-sm); }
+.pl-check input, .pl-radio input { appearance: none; margin: 0; width: 18px; height: 18px; border: 1.5px solid var(--pl-line-strong); background: var(--pl-bg-3); display: grid; place-items: center; cursor: pointer; transition: all var(--pl-dur-fast); flex: none; }
+.pl-check input { border-radius: var(--pl-radius-xs); }
+.pl-radio input { border-radius: 50%; }
+.pl-check input:checked { background: var(--pl-accent); border-color: var(--pl-accent); }
+.pl-check input:checked::after { content: ""; width: 9px; height: 5px; border-left: 2px solid var(--pl-fg-on-accent); border-bottom: 2px solid var(--pl-fg-on-accent); transform: rotate(-45deg) translate(1px, -1px); }
+.pl-check input:indeterminate { background: var(--pl-accent); border-color: var(--pl-accent); }
+.pl-check input:indeterminate::after { content: ""; width: 8px; height: 2px; background: var(--pl-fg-on-accent); }
+.pl-radio input:checked { border-color: var(--pl-accent); border-width: 5px; background: var(--pl-fg-on-accent); }
+
+/* ---------- PLC-022 Anahtar (toggle) ---------- */
+.pl-switch { display: inline-flex; align-items: center; gap: var(--pl-space-2); cursor: pointer; font-size: var(--pl-text-sm); color: var(--pl-fg-1); }
+.pl-switch input { appearance: none; margin: 0; width: 34px; height: 20px; border-radius: var(--pl-radius-full); background: var(--pl-bg-4); border: 1px solid var(--pl-line-strong); position: relative; cursor: pointer; transition: background var(--pl-dur) var(--pl-ease); flex: none; }
+.pl-switch input::after { content: ""; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%; background: var(--pl-fg-2); transition: transform var(--pl-dur) var(--pl-ease-out), background var(--pl-dur); }
+.pl-switch input:checked { background: var(--pl-accent); border-color: var(--pl-accent); }
+.pl-switch input:checked::after { transform: translateX(14px); background: var(--pl-fg-on-accent); }
+
+/* ---------- PLC-023 Kaydırıcı ---------- */
+.pl-slider { width: 100%; appearance: none; height: 4px; border-radius: 4px; background: linear-gradient(to right, var(--pl-accent) var(--pl-val, 50%), var(--pl-bg-4) var(--pl-val, 50%)); cursor: pointer; }
+.pl-slider::-webkit-slider-thumb { appearance: none; width: 16px; height: 16px; border-radius: 50%; background: var(--pl-fg-1); border: 3px solid var(--pl-accent); box-shadow: var(--pl-shadow-sm); }
+.pl-slider::-moz-range-thumb { width: 12px; height: 12px; border-radius: 50%; background: var(--pl-fg-1); border: 3px solid var(--pl-accent); }
+
+/* ---------- PLC-024 Sayı adımlayıcı ---------- */
+.pl-numstep { display: inline-flex; align-items: center; height: var(--pl-control-md); border: 1px solid var(--pl-line); border-radius: var(--pl-radius-sm); background: var(--pl-bg-3); overflow: hidden; }
+.pl-numstep button { width: 32px; height: 100%; border: 0; background: transparent; color: var(--pl-fg-2); cursor: pointer; font-size: 16px; }
+.pl-numstep button:hover { background: var(--pl-bg-4); color: var(--pl-fg-1); }
+.pl-numstep input { width: 48px; height: 100%; border: 0; border-left: 1px solid var(--pl-line); border-right: 1px solid var(--pl-line); background: transparent; text-align: center; color: var(--pl-fg-1); font-family: var(--pl-font-mono); font-size: var(--pl-text-sm); }
+
+/* ---------- PLC-025 Dosya bırakma alanı ---------- */
+.pl-dropzone { border: 1.5px dashed var(--pl-line-strong); border-radius: var(--pl-radius-lg); padding: var(--pl-space-6); display: flex; flex-direction: column; align-items: center; gap: var(--pl-space-2); text-align: center; background: var(--pl-bg-1); transition: all var(--pl-dur); color: var(--pl-fg-3); font-size: var(--pl-text-sm); }
+.pl-dropzone__icon { width: 40px; height: 40px; border-radius: var(--pl-radius-md); background: var(--pl-accent-soft); color: var(--pl-accent); display: grid; place-items: center; }
+.pl-dropzone.is-dragover { border-color: var(--pl-accent); background: var(--pl-accent-soft); }
+
+/* ---------- PLC-026 Renk seçici ---------- */
+.pl-swatches { display: flex; gap: 8px; flex-wrap: wrap; }
+.pl-swatch { width: 26px; height: 26px; border-radius: 50%; border: 0; cursor: pointer; box-shadow: inset 0 0 0 1px rgb(255 255 255 / .12); }
+.pl-swatch.is-selected { box-shadow: 0 0 0 2px var(--pl-bg-1), 0 0 0 4px var(--pl-fg-1); }
+
+/* ---------- Kart / yüzey ---------- */
+.pl-card { background: var(--pl-bg-2); border: 1px solid var(--pl-line); border-radius: var(--pl-radius-lg); padding: var(--pl-space-4); }
+.pl-card--interactive { transition: border-color var(--pl-dur), transform var(--pl-dur) var(--pl-ease), background var(--pl-dur); cursor: pointer; }
+.pl-card--interactive:hover { border-color: var(--pl-line-strong); background: color-mix(in srgb, var(--pl-bg-2) 70%, var(--pl-bg-3)); transform: translateY(-2px); }
+.pl-surface { background: var(--pl-bg-1); border: 1px solid var(--pl-line); border-radius: var(--pl-radius-lg); overflow: hidden; }
+
+/* ---------- PLC-028 Hub kenar çubuğu ---------- */
+.pl-sidebar { width: var(--pl-sidebar-w); max-width: 100%; background: var(--pl-bg-1); border-right: 1px solid var(--pl-line); padding: var(--pl-space-3); display: flex; flex-direction: column; gap: 2px; }
+.pl-sidebar__brand { display: flex; align-items: center; gap: 10px; padding: var(--pl-space-2) var(--pl-space-2) var(--pl-space-4); color: var(--pl-fg-1); font-weight: 700; }
+.pl-sidebar__section { padding: var(--pl-space-4) var(--pl-space-2) var(--pl-space-1); }
+.pl-navitem { display: flex; align-items: center; gap: 10px; height: 34px; padding: 0 10px; border-radius: var(--pl-radius-sm); color: var(--pl-fg-2); font-size: var(--pl-text-sm); font-weight: 500; text-decoration: none; cursor: pointer; position: relative; }
+.pl-navitem:hover { background: var(--pl-bg-3); color: var(--pl-fg-1); }
+.pl-navitem.is-active { background: var(--pl-bg-3); color: var(--pl-fg-1); }
+.pl-navitem.is-active::before { content: ""; position: absolute; left: -12px; top: 8px; bottom: 8px; width: 3px; border-radius: 0 3px 3px 0; background: var(--pl-accent); }
+.pl-navitem .pl-badge, .pl-navitem .pl-kbd { margin-left: auto; }
+.pl-navitem__dot { width: 18px; height: 18px; border-radius: 5px; flex: none; }
+
+/* ---------- PLC-029 Pencere başlık çubuğu ---------- */
+.pl-titlebar { height: var(--pl-titlebar-h); display: flex; align-items: center; gap: var(--pl-space-3); padding: 0 0 0 var(--pl-space-3); background: var(--pl-bg-0); border-bottom: 1px solid var(--pl-line); font-size: var(--pl-text-xs); color: var(--pl-fg-3); user-select: none; }
+.pl-titlebar__title { color: var(--pl-fg-2); font-weight: 500; }
+.pl-titlebar__center { flex: 1; display: flex; justify-content: center; }
+.pl-titlebar__search { width: min(420px, 100%); height: 26px; border-radius: var(--pl-radius-sm); background: var(--pl-bg-2); border: 1px solid var(--pl-line); display: flex; align-items: center; gap: 8px; padding: 0 8px; color: var(--pl-fg-4); }
+.pl-titlebar__search .pl-kbd { margin-left: auto; height: 18px; }
+.pl-winctl { display: flex; height: 100%; }
+.pl-winctl button { width: 44px; height: 100%; border: 0; background: transparent; color: var(--pl-fg-3); cursor: pointer; display: grid; place-items: center; }
+.pl-winctl button:hover { background: var(--pl-bg-3); color: var(--pl-fg-1); }
+.pl-winctl button:last-child:hover { background: var(--pl-winclose, #e81123); color: #fff; } /* Windows kapat düğmesi OS kuralı */
+
+/* ---------- PLC-030 Sekmeler ---------- */
+.pl-tabs { display: flex; gap: var(--pl-space-5); border-bottom: 1px solid var(--pl-line); }
+.pl-tab { position: relative; height: 38px; padding: 0 2px; border: 0; background: none; color: var(--pl-fg-3); font: inherit; font-size: var(--pl-text-sm); font-weight: 500; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+.pl-tab:hover { color: var(--pl-fg-1); }
+.pl-tab.is-active { color: var(--pl-fg-1); }
+.pl-tab.is-active::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; border-radius: 2px; background: var(--pl-accent); }
+
+/* ---------- PLC-031 Yol izi / PLC-032 Sayfalama ---------- */
+.pl-breadcrumb { display: flex; align-items: center; gap: 6px; font-size: var(--pl-text-sm); color: var(--pl-fg-3); flex-wrap: wrap; }
+.pl-breadcrumb a { color: var(--pl-fg-3); text-decoration: none; } .pl-breadcrumb a:hover { color: var(--pl-fg-1); }
+.pl-breadcrumb [aria-current] { color: var(--pl-fg-1); font-weight: 500; }
+.pl-pagination { display: flex; gap: 4px; align-items: center; }
+.pl-pagination button { min-width: 30px; height: 30px; padding: 0 8px; border-radius: var(--pl-radius-sm); border: 1px solid transparent; background: transparent; color: var(--pl-fg-2); font-family: var(--pl-font-mono); font-size: var(--pl-text-xs); cursor: pointer; display: grid; place-items: center; }
+.pl-pagination button:hover { background: var(--pl-bg-3); }
+.pl-pagination button.is-active { background: var(--pl-accent-soft); color: var(--pl-accent); border-color: var(--pl-accent-line); }
+
+/* ---------- PLC-033 Komut paleti ---------- */
+.pl-cmdk { width: 100%; max-width: 560px; background: var(--pl-bg-1); border: 1px solid var(--pl-line-strong); border-radius: var(--pl-radius-xl); box-shadow: var(--pl-shadow-lg); overflow: hidden; }
+.pl-cmdk__input { display: flex; align-items: center; gap: 10px; padding: 0 var(--pl-space-4); height: 52px; border-bottom: 1px solid var(--pl-line); color: var(--pl-fg-3); }
+.pl-cmdk__input input { flex: 1; border: 0; background: transparent; color: var(--pl-fg-1); font: inherit; font-size: var(--pl-text-lg); outline: none; min-width: 0; }
+.pl-cmdk__list { padding: var(--pl-space-2); max-height: 320px; overflow: auto; }
+.pl-cmdk__group { padding: var(--pl-space-2) var(--pl-space-2) 4px; }
+.pl-cmdk__foot { display: flex; gap: var(--pl-space-4); padding: 8px var(--pl-space-4); border-top: 1px solid var(--pl-line); font-size: var(--pl-text-2xs); color: var(--pl-fg-3); background: var(--pl-bg-0); }
+.pl-cmdk__foot span { display: inline-flex; align-items: center; gap: 4px; }
+
+/* ---------- PLC-034 Menü ---------- */
+.pl-menu { min-width: 220px; padding: 6px; background: var(--pl-bg-1); border: 1px solid var(--pl-line-strong); border-radius: var(--pl-radius-md); box-shadow: var(--pl-shadow-md); }
+.pl-menuitem { display: flex; align-items: center; gap: 10px; height: 32px; padding: 0 8px; border-radius: var(--pl-radius-sm); color: var(--pl-fg-2); font-size: var(--pl-text-sm); cursor: pointer; }
+.pl-menuitem:hover, .pl-menuitem.is-active { background: var(--pl-bg-3); color: var(--pl-fg-1); }
+.pl-menuitem .pl-kbd, .pl-menuitem__meta { margin-left: auto; }
+.pl-menuitem__meta { font-size: var(--pl-text-2xs); color: var(--pl-fg-3); font-family: var(--pl-font-mono); }
+.pl-menuitem--danger { color: var(--pl-danger); } .pl-menuitem--danger:hover { background: var(--pl-danger-soft); color: var(--pl-danger); }
+.pl-menu hr { border: 0; height: 1px; background: var(--pl-line); margin: 6px 0; }
+
+/* ---------- PLC-035 Sihirbaz adımları ---------- */
+.pl-steps { display: flex; align-items: center; gap: var(--pl-space-2); }
+.pl-step { display: flex; align-items: center; gap: 8px; font-size: var(--pl-text-sm); color: var(--pl-fg-3); white-space: nowrap; }
+.pl-step__num { width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; border: 1.5px solid var(--pl-line-strong); font-family: var(--pl-font-mono); font-size: var(--pl-text-2xs); font-weight: 600; }
+.pl-step.is-done .pl-step__num { background: var(--pl-accent); border-color: var(--pl-accent); color: var(--pl-fg-on-accent); }
+.pl-step.is-current { color: var(--pl-fg-1); font-weight: 500; } .pl-step.is-current .pl-step__num { border-color: var(--pl-accent); color: var(--pl-accent); box-shadow: var(--pl-glow); }
+.pl-steps__line { flex: 1; min-width: 16px; height: 1.5px; background: var(--pl-line-strong); } .pl-steps__line.is-done { background: var(--pl-accent); }
+
+/* ---------- PLC-036 KPI kartı ---------- */
+.pl-kpi { background: var(--pl-bg-2); border: 1px solid var(--pl-line); border-radius: var(--pl-radius-lg); padding: var(--pl-space-4); display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.pl-kpi__value { font-family: var(--pl-font-mono); font-variant-numeric: tabular-nums; font-size: var(--pl-text-3xl); font-weight: 600; color: var(--pl-fg-1); line-height: 1.1; letter-spacing: -.02em; }
+.pl-kpi__delta { font-size: var(--pl-text-xs); font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
+.pl-kpi__delta.is-up { color: var(--pl-success); } .pl-kpi__delta.is-down { color: var(--pl-danger); }
+.pl-kpi--highlight { border-color: var(--pl-accent-line); background: linear-gradient(160deg, var(--pl-accent-soft), transparent 60%), var(--pl-bg-2); }
+
+/* ---------- PLC-037 Veri tablosu ---------- */
+.pl-table { width: 100%; border-collapse: collapse; font-size: var(--pl-text-sm); }
+.pl-table th { text-align: left; font-family: var(--pl-font-mono); font-size: var(--pl-text-2xs); letter-spacing: var(--pl-tracking-label); text-transform: uppercase; color: var(--pl-fg-3); font-weight: 500; padding: 10px 12px; border-bottom: 1px solid var(--pl-line); white-space: nowrap; }
+.pl-table td { padding: 10px 12px; border-bottom: 1px solid var(--pl-line); color: var(--pl-fg-2); }
+.pl-table tbody tr:hover td { background: var(--pl-bg-3); }
+.pl-table tr.is-selected td { background: var(--pl-accent-soft); }
+.pl-table .is-num { text-align: right; font-family: var(--pl-font-mono); font-variant-numeric: tabular-nums; }
+.pl-table td.is-strong { color: var(--pl-fg-1); font-weight: 500; }
+
+/* ---------- PLC-038 İlerleme çubuğu / PLC-039 Halka ---------- */
+.pl-progress { height: 6px; border-radius: var(--pl-radius-full); background: var(--pl-bg-4); overflow: hidden; }
+.pl-progress > span { display: block; height: 100%; width: var(--pl-val, 40%); border-radius: inherit; background: var(--pl-accent); transition: width var(--pl-dur-slow) var(--pl-ease-out); }
+.pl-progress--indeterminate > span { width: 35%; animation: pl-indeterminate 1.3s var(--pl-ease) infinite; }
+.pl-progress--sm { height: 3px; }
+.pl-ring { --pl-val: 64; width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; background: conic-gradient(var(--pl-accent) calc(var(--pl-val) * 1%), var(--pl-bg-4) 0); position: relative; flex: none; }
+.pl-ring::before { content: ""; position: absolute; inset: 6px; border-radius: 50%; background: var(--pl-bg-2); }
+.pl-ring > span { position: relative; font-family: var(--pl-font-mono); font-size: var(--pl-text-sm); font-weight: 600; color: var(--pl-fg-1); }
+.pl-ring--lg { width: 96px; height: 96px; } .pl-ring--lg::before { inset: 8px; } .pl-ring--lg > span { font-size: var(--pl-text-xl); }
+
+/* ---------- PLC-041 Dağılım çubuğu ---------- */
+.pl-distbar { display: flex; height: 8px; border-radius: var(--pl-radius-full); overflow: hidden; gap: 2px; }
+.pl-distbar > span { height: 100%; }
+.pl-legend { display: flex; flex-wrap: wrap; gap: var(--pl-space-3); font-size: var(--pl-text-xs); color: var(--pl-fg-2); }
+.pl-legend i { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 6px; }
+
+/* ---------- PLC-042 Zaman çizelgesi ---------- */
+.pl-timeline { list-style: none; margin: 0; padding: 0; }
+.pl-timeline li { position: relative; padding: 0 0 var(--pl-space-4) 26px; }
+.pl-timeline li::before { content: ""; position: absolute; left: 6px; top: 16px; bottom: 0; width: 1.5px; background: var(--pl-line); }
+.pl-timeline li:last-child::before { display: none; }
+.pl-timeline__dot { position: absolute; left: 0; top: 3px; width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--pl-bg-2); background: var(--pl-fg-4); box-shadow: 0 0 0 1.5px var(--pl-line-strong); }
+.pl-timeline__dot.is-accent { background: var(--pl-accent); box-shadow: 0 0 0 1.5px var(--pl-accent); }
+.pl-timeline__dot.is-success { background: var(--pl-success); box-shadow: 0 0 0 1.5px var(--pl-success); }
+.pl-timeline__dot.is-danger { background: var(--pl-danger); box-shadow: 0 0 0 1.5px var(--pl-danger); }
+.pl-timeline__title { color: var(--pl-fg-1); font-size: var(--pl-text-sm); font-weight: 500; }
+.pl-timeline__meta { color: var(--pl-fg-3); font-size: var(--pl-text-xs); font-family: var(--pl-font-mono); }
+
+/* ---------- PLC-043 Anahtar–değer listesi ---------- */
+.pl-kv { display: grid; grid-template-columns: auto 1fr; gap: 8px var(--pl-space-4); font-size: var(--pl-text-sm); margin: 0; }
+.pl-kv dt { color: var(--pl-fg-3); } .pl-kv dd { margin: 0; color: var(--pl-fg-1); text-align: right; font-weight: 500; }
+
+/* ---------- PLC-044 Boş durum ---------- */
+.pl-empty { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--pl-space-2); padding: var(--pl-space-8) var(--pl-space-4); }
+.pl-empty__art { width: 56px; height: 56px; border-radius: var(--pl-radius-lg); display: grid; place-items: center; background: var(--pl-bg-3); border: 1px solid var(--pl-line); color: var(--pl-accent); margin-bottom: var(--pl-space-2); }
+
+/* ---------- PLC-045 Kod bloğu ---------- */
+.pl-code { background: var(--pl-bg-0); border: 1px solid var(--pl-line); border-radius: var(--pl-radius-md); overflow: hidden; }
+.pl-code__head { display: flex; align-items: center; justify-content: space-between; padding: 6px 8px 6px 12px; border-bottom: 1px solid var(--pl-line); background: var(--pl-bg-1); }
+.pl-code pre { margin: 0; padding: var(--pl-space-3); font-family: var(--pl-font-mono); font-size: var(--pl-text-xs); line-height: 1.7; color: var(--pl-fg-2); overflow: auto; }
+.pl-code .t-k { color: var(--pl-brand); } .pl-code .t-s { color: var(--pl-success); } .pl-code .t-c { color: var(--pl-fg-4); } .pl-code .t-n { color: var(--pl-gold); }
+
+/* ---------- PLC-046 Akordeon ---------- */
+.pl-accordion { border: 1px solid var(--pl-line); border-radius: var(--pl-radius-md); overflow: hidden; }
+.pl-accordion details + details { border-top: 1px solid var(--pl-line); }
+.pl-accordion summary { list-style: none; display: flex; align-items: center; justify-content: space-between; padding: 12px var(--pl-space-4); cursor: pointer; color: var(--pl-fg-1); font-weight: 500; font-size: var(--pl-text-sm); background: var(--pl-bg-2); }
+.pl-accordion summary::-webkit-details-marker { display: none; }
+.pl-accordion summary .pl-ico { transition: transform var(--pl-dur) var(--pl-ease); color: var(--pl-fg-3); }
+.pl-accordion details[open] summary .pl-ico { transform: rotate(180deg); }
+.pl-accordion details > div { padding: 0 var(--pl-space-4) var(--pl-space-4); background: var(--pl-bg-2); font-size: var(--pl-text-sm); }
+
+/* ---------- PLC-047 Uyarı kutusu ---------- */
+.pl-callout { display: flex; gap: var(--pl-space-3); padding: var(--pl-space-3) var(--pl-space-4); border-radius: var(--pl-radius-md); background: var(--pl-bg-2); border: 1px solid var(--pl-line); border-left: 3px solid var(--pl-c, var(--pl-info)); font-size: var(--pl-text-sm); }
+.pl-callout > .pl-ico { color: var(--pl-c, var(--pl-info)); margin-top: 2px; }
+.pl-callout__title { color: var(--pl-fg-1); font-weight: 600; margin-bottom: 2px; }
+.pl-callout--success { --pl-c: var(--pl-success); } .pl-callout--warning { --pl-c: var(--pl-warning); } .pl-callout--danger { --pl-c: var(--pl-danger); } .pl-callout--accent { --pl-c: var(--pl-accent); }
+
+/* ---------- PLC-048 Toast ---------- */
+.pl-toast { display: flex; align-items: center; gap: var(--pl-space-3); width: 100%; max-width: 380px; padding: 12px 12px 12px 14px; border-radius: var(--pl-radius-md); background: var(--pl-bg-1); border: 1px solid var(--pl-line-strong); box-shadow: var(--pl-shadow-lg); font-size: var(--pl-text-sm); color: var(--pl-fg-1); animation: pl-toast-in var(--pl-dur-slow) var(--pl-ease-out); }
+.pl-toast > .pl-ico { color: var(--pl-c, var(--pl-success)); }
+.pl-toast__body { flex: 1; min-width: 0; } .pl-toast__body small { display: block; color: var(--pl-fg-3); font-size: var(--pl-text-xs); }
+.pl-toast__action { background: none; border: 0; color: var(--pl-accent); font: inherit; font-weight: 600; font-size: var(--pl-text-sm); cursor: pointer; }
+
+/* ---------- PLC-049 Banner ---------- */
+.pl-banner { display: flex; align-items: center; gap: var(--pl-space-3); padding: 10px var(--pl-space-4); background: linear-gradient(90deg, var(--pl-accent-soft), transparent 70%), var(--pl-bg-1); border: 1px solid var(--pl-accent-line); border-radius: var(--pl-radius-md); font-size: var(--pl-text-sm); color: var(--pl-fg-1); flex-wrap: wrap; }
+.pl-banner > .pl-ico { color: var(--pl-accent); }
+.pl-banner__text { flex: 1; min-width: 180px; }
+
+/* ---------- PLC-050 Modal / PLC-051 Arşiv onayı / PLC-052 Çekmece ---------- */
+.pl-modal { width: 100%; max-width: 440px; background: var(--pl-bg-1); border: 1px solid var(--pl-line-strong); border-radius: var(--pl-radius-xl); box-shadow: var(--pl-shadow-lg); padding: 0; color: var(--pl-fg-2); }
+.pl-modal::backdrop { background: var(--pl-overlay); backdrop-filter: blur(4px); }
+.pl-modal__head { display: flex; align-items: flex-start; gap: var(--pl-space-3); padding: var(--pl-space-5) var(--pl-space-5) var(--pl-space-2); }
+.pl-modal__icon { width: 40px; height: 40px; border-radius: var(--pl-radius-md); display: grid; place-items: center; flex: none; background: var(--pl-accent-soft); color: var(--pl-accent); }
+.pl-modal__icon.is-warning { background: var(--pl-warning-soft); color: var(--pl-warning); }
+.pl-modal__body { padding: 0 var(--pl-space-5) var(--pl-space-4); font-size: var(--pl-text-sm); }
+.pl-modal__foot { display: flex; justify-content: flex-end; gap: var(--pl-space-2); padding: var(--pl-space-3) var(--pl-space-5); border-top: 1px solid var(--pl-line); background: var(--pl-bg-0); border-radius: 0 0 var(--pl-radius-xl) var(--pl-radius-xl); }
+.pl-drawer { width: 100%; max-width: 360px; height: 100%; background: var(--pl-bg-1); border-left: 1px solid var(--pl-line-strong); box-shadow: var(--pl-shadow-lg); display: flex; flex-direction: column; }
+.pl-drawer__head { display: flex; align-items: center; justify-content: space-between; padding: var(--pl-space-4); border-bottom: 1px solid var(--pl-line); }
+.pl-drawer__body { flex: 1; padding: var(--pl-space-4); overflow: auto; }
+.pl-drawer__foot { padding: var(--pl-space-3) var(--pl-space-4); border-top: 1px solid var(--pl-line); display: flex; gap: var(--pl-space-2); justify-content: flex-end; }
+
+/* ---------- Ürün: logo karosu ---------- */
+.pl-applogo { width: 40px; height: 40px; border-radius: var(--pl-radius-md); display: grid; place-items: center; flex: none; background: linear-gradient(140deg, var(--pl-accent), color-mix(in srgb, var(--pl-accent) 45%, var(--pl-bg-0))); color: var(--pl-fg-on-accent); font-weight: 800; font-size: 15px; letter-spacing: -.02em; box-shadow: inset 0 1px 0 rgb(255 255 255 / .25); }
+.pl-applogo--sm { width: 28px; height: 28px; border-radius: 8px; font-size: 11px; } .pl-applogo--lg { width: 56px; height: 56px; border-radius: var(--pl-radius-lg); font-size: 20px; }
+
+/* ---------- PLC-053 Uygulama kartı (Hub katalog) ---------- */
+.pl-appcard { display: flex; flex-direction: column; gap: var(--pl-space-3); background: var(--pl-bg-2); border: 1px solid var(--pl-line); border-radius: var(--pl-radius-lg); padding: var(--pl-space-4); transition: border-color var(--pl-dur), transform var(--pl-dur) var(--pl-ease); min-width: 0; }
+.pl-appcard:hover { border-color: var(--pl-accent-line); transform: translateY(-2px); }
+.pl-appcard__head { display: flex; gap: var(--pl-space-3); align-items: center; }
+.pl-appcard__name { color: var(--pl-fg-1); font-weight: 600; font-size: var(--pl-text-md); }
+.pl-appcard__desc { font-size: var(--pl-text-sm); color: var(--pl-fg-3); margin: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.pl-appcard__foot { display: flex; align-items: center; justify-content: space-between; gap: var(--pl-space-2); margin-top: auto; }
+
+/* ---------- PLC-054 Kurulum satırı ---------- */
+.pl-installrow { display: flex; align-items: center; gap: var(--pl-space-3); padding: var(--pl-space-3); border-radius: var(--pl-radius-md); background: var(--pl-bg-2); border: 1px solid var(--pl-line); }
+.pl-installrow__main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+.pl-installrow__top { display: flex; justify-content: space-between; gap: 8px; font-size: var(--pl-text-sm); color: var(--pl-fg-1); font-weight: 500; }
+
+/* ---------- PLC-055 Eklenti popup ---------- */
+.pl-popup { width: var(--pl-popup-w); max-width: 100%; background: var(--pl-bg-1); border: 1px solid var(--pl-line); border-radius: var(--pl-radius-lg); overflow: hidden; display: flex; flex-direction: column; }
+.pl-popup__head { display: flex; align-items: center; gap: 10px; padding: 12px; border-bottom: 1px solid var(--pl-line); }
+.pl-popup__title { flex: 1; min-width: 0; } .pl-popup__title b { display: block; color: var(--pl-fg-1); font-size: var(--pl-text-sm); }
+.pl-popup__body { padding: 12px; display: flex; flex-direction: column; gap: 10px; }
+.pl-popup__foot { display: flex; gap: 8px; padding: 10px 12px; border-top: 1px solid var(--pl-line); background: var(--pl-bg-0); }
+
+/* ---------- PLC-056 İzin isteği ---------- */
+.pl-perm { display: flex; flex-direction: column; gap: var(--pl-space-3); padding: var(--pl-space-4); border-radius: var(--pl-radius-lg); background: var(--pl-bg-2); border: 1px solid var(--pl-line); }
+.pl-perm ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.pl-perm li { display: flex; gap: 10px; font-size: var(--pl-text-sm); color: var(--pl-fg-2); align-items: flex-start; }
+.pl-perm li .pl-ico { color: var(--pl-accent); margin-top: 2px; }
+
+/* ---------- PLC-057 Liste satırı (genel) ---------- */
+.pl-listrow { display: flex; align-items: center; gap: var(--pl-space-3); padding: 10px var(--pl-space-3); border-radius: var(--pl-radius-md); transition: background var(--pl-dur-fast); }
+.pl-listrow:hover { background: var(--pl-bg-3); }
+.pl-listrow + .pl-listrow { border-top: 1px solid var(--pl-line); border-radius: 0; }
+.pl-listrow__main { flex: 1; min-width: 0; }
+.pl-listrow__title { color: var(--pl-fg-1); font-size: var(--pl-text-sm); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pl-listrow__sub { color: var(--pl-fg-3); font-size: var(--pl-text-xs); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pl-listrow.is-disabled .pl-listrow__title { color: var(--pl-fg-3); }
+
+/* ---------- PLC-058 Ürün kartı (fiyat) ---------- */
+.pl-product { display: flex; flex-direction: column; background: var(--pl-bg-2); border: 1px solid var(--pl-line); border-radius: var(--pl-radius-lg); overflow: hidden; min-width: 0; }
+.pl-product__img { aspect-ratio: 4 / 3; background: radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--pl-accent) 30%, var(--pl-bg-3)), var(--pl-bg-3) 70%); position: relative; display: grid; place-items: center; color: var(--pl-fg-3); }
+.pl-product__img .pl-iconbtn { position: absolute; top: 8px; right: 8px; background: color-mix(in srgb, var(--pl-bg-0) 70%, transparent); backdrop-filter: blur(6px); }
+.pl-product__body { padding: 12px; display: flex; flex-direction: column; gap: 6px; }
+.pl-product__title { color: var(--pl-fg-1); font-size: var(--pl-text-sm); font-weight: 500; }
+.pl-price { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.pl-price__now { font-family: var(--pl-font-mono); font-size: var(--pl-text-xl); font-weight: 700; color: var(--pl-gold); }
+.pl-price__old { font-family: var(--pl-font-mono); font-size: var(--pl-text-xs); color: var(--pl-fg-4); text-decoration: line-through; }
+
+/* ---------- PLC-059 AI mesaj balonu / PLC-060 Kompozitör ---------- */
+.pl-msg { display: flex; gap: 10px; align-items: flex-start; }
+.pl-msg__bubble { padding: 10px 14px; border-radius: 14px; font-size: var(--pl-text-sm); line-height: 1.55; max-width: 85%; }
+.pl-msg--user { flex-direction: row-reverse; } .pl-msg--user .pl-msg__bubble { background: var(--pl-bg-4); color: var(--pl-fg-1); border-top-right-radius: 4px; }
+.pl-msg--ai .pl-msg__bubble { background: var(--pl-bg-2); border: 1px solid var(--pl-line); color: var(--pl-fg-2); border-top-left-radius: 4px; }
+.pl-msg__meta { display: flex; gap: 6px; margin-top: 8px; align-items: center; }
+.pl-typing { display: inline-flex; gap: 4px; } .pl-typing i { width: 6px; height: 6px; border-radius: 50%; background: var(--pl-fg-3); animation: pl-bounce 1.2s infinite; } .pl-typing i:nth-child(2) { animation-delay: .15s; } .pl-typing i:nth-child(3) { animation-delay: .3s; }
+.pl-composer { border: 1px solid var(--pl-line-strong); border-radius: var(--pl-radius-lg); background: var(--pl-bg-2); padding: 10px; display: flex; flex-direction: column; gap: 8px; transition: border-color var(--pl-dur), box-shadow var(--pl-dur); }
+.pl-composer:focus-within { border-color: var(--pl-accent); box-shadow: var(--pl-glow); }
+.pl-composer textarea { border: 0; background: transparent; resize: none; color: var(--pl-fg-1); font: inherit; font-size: var(--pl-text-sm); min-height: 44px; outline: none; }
+.pl-composer__bar { display: flex; align-items: center; gap: 4px; }
+.pl-composer__send { margin-left: auto; width: 32px; height: 32px; border-radius: 50%; border: 0; background: var(--pl-accent); color: var(--pl-fg-on-accent); display: grid; place-items: center; cursor: pointer; }
+
+/* ---------- PLC-061 Dock (Flow Dock) ---------- */
+.pl-dock { display: inline-flex; align-items: flex-end; gap: 6px; padding: 8px; border-radius: 20px; background: color-mix(in srgb, var(--pl-bg-1) 80%, transparent); border: 1px solid var(--pl-line-strong); backdrop-filter: blur(16px); box-shadow: var(--pl-shadow-lg); }
+.pl-dock__item { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: var(--pl-bg-3); color: var(--pl-fg-1); position: relative; transition: transform var(--pl-dur) var(--pl-ease-out); cursor: pointer; }
+.pl-dock__item:hover { transform: translateY(-6px) scale(1.12); }
+.pl-dock__item.is-running::after { content: ""; position: absolute; bottom: -5px; width: 4px; height: 4px; border-radius: 50%; background: var(--pl-accent); }
+.pl-dock__sep { width: 1px; height: 32px; background: var(--pl-line-strong); margin: 0 4px 6px; }
+
+/* ---------- PLC-062 Sistem metrik karosu (Tweakster) ---------- */
+.pl-metric { display: flex; align-items: center; gap: var(--pl-space-4); padding: var(--pl-space-4); background: var(--pl-bg-2); border: 1px solid var(--pl-line); border-radius: var(--pl-radius-lg); }
+.pl-metric__info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+
+/* ---------- PLC-063 Tarif kartı ---------- */
+.pl-recipe { display: grid; grid-template-columns: 96px 1fr; gap: var(--pl-space-3); padding: 10px; background: var(--pl-bg-2); border: 1px solid var(--pl-line); border-radius: var(--pl-radius-lg); }
+.pl-recipe__img { border-radius: var(--pl-radius-md); background: radial-gradient(circle at 40% 35%, color-mix(in srgb, var(--pl-accent) 55%, transparent), var(--pl-bg-3) 72%); min-height: 96px; }
+.pl-recipe__meta { display: flex; gap: var(--pl-space-3); font-size: var(--pl-text-xs); color: var(--pl-fg-3); flex-wrap: wrap; }
+.pl-recipe__meta span { display: inline-flex; align-items: center; gap: 4px; }
+
+/* ---------- PLC-064 Çıkarım kartı (Leo Helper) ---------- */
+.pl-extract { padding: var(--pl-space-3); background: var(--pl-bg-2); border: 1px solid var(--pl-line); border-radius: var(--pl-radius-lg); display: flex; flex-direction: column; gap: 10px; }
+.pl-extract__code { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px 8px 8px 12px; border-radius: var(--pl-radius-sm); background: var(--pl-bg-0); border: 1px dashed var(--pl-accent-line); font-family: var(--pl-font-mono); font-size: var(--pl-text-lg); font-weight: 600; letter-spacing: .08em; color: var(--pl-accent); }
+
+/* ---------- PLC-065 Not kartı (Mind Palace) ---------- */
+.pl-note { padding: var(--pl-space-4); background: var(--pl-bg-2); border: 1px solid var(--pl-line); border-radius: var(--pl-radius-lg); display: flex; flex-direction: column; gap: 8px; position: relative; overflow: hidden; }
+.pl-note::before { content: ""; position: absolute; inset: 0 0 auto; height: 3px; background: var(--pl-accent); }
+.pl-note p { margin: 0; font-size: var(--pl-text-sm); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* ---------- PLC-066 Ayar satırı ---------- */
+.pl-setting { display: flex; align-items: center; gap: var(--pl-space-4); padding: var(--pl-space-3) 0; }
+.pl-setting + .pl-setting { border-top: 1px solid var(--pl-line); }
+.pl-setting__text { flex: 1; min-width: 0; } .pl-setting__text b { display: block; color: var(--pl-fg-1); font-size: var(--pl-text-sm); font-weight: 500; }
+
+/* ---------- PLC-067 Karşılama kahramanı ---------- */
+.pl-hero { position: relative; overflow: hidden; border-radius: var(--pl-radius-xl); padding: var(--pl-space-8) var(--pl-space-6); background: radial-gradient(600px 240px at 85% -20%, color-mix(in srgb, var(--pl-brand) 35%, transparent), transparent), radial-gradient(400px 200px at 0% 120%, color-mix(in srgb, var(--pl-brand-2) 22%, transparent), transparent), var(--pl-bg-1); border: 1px solid var(--pl-line); }
+.pl-hero__title { font-size: var(--pl-text-4xl); font-weight: 700; color: var(--pl-fg-1); line-height: 1.1; letter-spacing: -.02em; margin: 8px 0; }
+.pl-hero__title em { font-style: normal; background: var(--pl-brand-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+/* ---------- PLC-068 Plan kartı ---------- */
+.pl-plan { padding: var(--pl-space-5); border-radius: var(--pl-radius-xl); background: var(--pl-bg-2); border: 1px solid var(--pl-line); display: flex; flex-direction: column; gap: var(--pl-space-3); }
+.pl-plan.is-featured { border-color: color-mix(in srgb, var(--pl-gold) 45%, transparent); background: linear-gradient(170deg, color-mix(in srgb, var(--pl-gold) 10%, transparent), transparent 50%), var(--pl-bg-2); }
+.pl-plan__price { font-family: var(--pl-font-mono); font-size: var(--pl-text-3xl); font-weight: 700; color: var(--pl-fg-1); }
+.pl-plan ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: var(--pl-text-sm); }
+.pl-plan li { display: flex; gap: 8px; align-items: center; } .pl-plan li .pl-ico { color: var(--pl-success); }
+
+/* ---------- Yardımcı: ızgara ---------- */
+.pl-grid { display: grid; gap: var(--pl-space-4); grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr)); }
+
+/* ---------- Animasyonlar ---------- */
+@keyframes pl-spin { to { transform: rotate(360deg); } }
+@keyframes pl-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+@keyframes pl-shimmer { to { background-position: -200% 0; } }
+@keyframes pl-indeterminate { 0% { transform: translateX(-100%); } 100% { transform: translateX(300%); } }
+@keyframes pl-toast-in { from { opacity: 0; transform: translateY(8px) scale(.98); } }
+@keyframes pl-bounce { 0%, 60%, 100% { transform: translateY(0); opacity: .5; } 30% { transform: translateY(-4px); opacity: 1; } }
+
+} /* @layer pl */
+
+/* ==========================================================================
+   PluginLabs Advanced — Masaüstü Uygulama Komponentleri (pl-advanced.css) v2.0.0
+   Sıra: pl-tokens.css → pl-components.css → pl-advanced.css
+   Tüm sınıflar pl- önekli, @layer pl içinde, yalnız [data-pl] altında anlamlı.
+   Renkler yalnız var(--pl-…); geometri px serbesttir.
+   ========================================================================== */
+@layer pl {
+
+/* ---------- Ortak yardımcılar ---------- */
+.pl-glass { background: var(--pl-glass-bg); border: 1px solid var(--pl-glass-line); box-shadow: var(--pl-glass-highlight); backdrop-filter: blur(var(--pl-glass-blur)) saturate(1.4); -webkit-backdrop-filter: blur(var(--pl-glass-blur)) saturate(1.4); }
+.pl-panel { background: var(--pl-bg-2); border: 1px solid var(--pl-line); border-radius: var(--pl-radius-lg); padding: var(--pl-space-4); min-width: 0; }
+.pl-panel--xl { border-radius: var(--pl-radius-xl); padding: var(--pl-space-5); }
+.pl-panel__head { display: flex; align-items: center; gap: var(--pl-space-2); margin-bottom: var(--pl-space-3); }
+.pl-panel__title { font-size: var(--pl-text-md); font-weight: 600; color: var(--pl-fg-1); margin: 0; flex: 1; min-width: 0; }
+.pl-display { font-family: var(--pl-font-display); font-weight: 700; color: var(--pl-fg-1); letter-spacing: var(--pl-tracking-display); line-height: 1; font-variant-numeric: tabular-nums; }
+.pl-display--xl { font-size: var(--pl-text-6xl); } .pl-display--lg { font-size: var(--pl-text-5xl); } .pl-display--md { font-size: var(--pl-text-4xl); }
+.pl-unit { font-size: .42em; font-weight: 500; color: var(--pl-fg-3); letter-spacing: 0; margin-left: .15em; }
+.pl-media { position: relative; overflow: hidden; background: var(--pl-media-1); border-radius: var(--pl-radius-md); isolation: isolate; }
+.pl-media--2 { background: var(--pl-media-2); } .pl-media--3 { background: var(--pl-media-3); } .pl-media--4 { background: var(--pl-media-4); } .pl-media--5 { background: var(--pl-media-5); } .pl-media--6 { background: var(--pl-media-6); }
+.pl-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pl-chip { display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: var(--pl-radius-full); background: var(--pl-bg-3); border: 1px solid var(--pl-line); color: var(--pl-fg-2); font-size: var(--pl-text-xs); font-weight: 500; white-space: nowrap; }
+.pl-chip--solid { background: var(--pl-fg-1); color: var(--pl-bg-0); border-color: transparent; }
+.pl-chip--accent { background: var(--pl-accent-soft); color: var(--pl-accent); border-color: var(--pl-accent-line); }
+.pl-chip--ghost { background: rgb(0 0 0 / .28); border-color: rgb(255 255 255 / .18); color: var(--pl-on-media); backdrop-filter: blur(8px); }
+.pl-chip--mono { font-family: var(--pl-font-mono); letter-spacing: .04em; }
+.pl-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--pl-accent); flex: none; display: inline-block; }
+.pl-dot--live { background: var(--pl-live); box-shadow: 0 0 0 0 var(--pl-live); animation: pl-pulse 1.6s var(--pl-ease) infinite; }
+@keyframes pl-pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--pl-live) 60%, transparent); } 70% { box-shadow: 0 0 0 8px transparent; } 100% { box-shadow: 0 0 0 0 transparent; } }
+.pl-scroll-x { display: flex; gap: var(--pl-space-3); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 2px; }
+.pl-scroll-x > * { scroll-snap-align: start; flex: none; }
+.pl-scroll-x::-webkit-scrollbar { display: none; }
+.pl-spark { width: 100%; height: 40px; display: block; overflow: visible; }
+.pl-spark path, .pl-spark polyline { fill: none; stroke: var(--pl-accent); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.pl-spark .is-area { fill: var(--pl-accent-soft); stroke: none; }
+
+/* ==========================================================================
+   A. KABUK & PENCERE
+   ========================================================================== */
+/* PLA-001 Uygulama Penceresi */
+.pl-window { background: var(--pl-bg-1); border: 1px solid var(--pl-line); border-radius: var(--pl-window-radius); box-shadow: var(--pl-shadow-xl); overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
+.pl-window__bar { height: var(--pl-titlebar-h); display: flex; align-items: center; gap: var(--pl-space-3); padding: 0 var(--pl-space-3); border-bottom: 1px solid var(--pl-line); flex: none; }
+.pl-window__lights { display: flex; gap: 8px; }
+.pl-window__lights i { width: 12px; height: 12px; border-radius: 50%; display: block; background: var(--pl-danger); }
+.pl-window__lights i:nth-child(2) { background: var(--pl-warning); } .pl-window__lights i:nth-child(3) { background: var(--pl-success); }
+.pl-window__title { flex: 1; text-align: center; font-size: var(--pl-text-xs); color: var(--pl-fg-3); font-weight: 500; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pl-window__body { display: flex; min-height: 0; flex: 1; }
+.pl-window--floating { border-radius: var(--pl-radius-3xl); padding: var(--pl-window-pad); gap: var(--pl-window-pad); }
+.pl-window--floating > .pl-window__body { gap: var(--pl-window-pad); }
+
+/* PLA-002 İkon Rayı */
+.pl-rail { width: var(--pl-rail-w); flex: none; display: flex; flex-direction: column; align-items: center; gap: var(--pl-space-2); padding: var(--pl-space-4) 0; background: var(--pl-bg-1); border-right: 1px solid var(--pl-line); }
+.pl-rail__logo { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: var(--pl-grad-accent); color: var(--pl-fg-on-accent); font-weight: 800; font-size: var(--pl-text-sm); margin-bottom: var(--pl-space-3); }
+.pl-rail__item { position: relative; width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; color: var(--pl-fg-3); background: transparent; border: 0; cursor: pointer; transition: background var(--pl-dur-fast), color var(--pl-dur-fast); }
+.pl-rail__item:hover { background: var(--pl-bg-3); color: var(--pl-fg-1); }
+.pl-rail__item.is-active { background: var(--pl-accent-soft); color: var(--pl-accent); }
+.pl-rail__item.is-active::before { content: ""; position: absolute; left: -14px; top: 10px; bottom: 10px; width: 3px; border-radius: 0 3px 3px 0; background: var(--pl-accent); }
+.pl-rail__item .pl-badge--count { position: absolute; top: 4px; right: 4px; }
+.pl-rail__spacer { flex: 1; }
+.pl-rail__tip { position: absolute; left: calc(100% + 10px); top: 50%; transform: translateY(-50%); background: var(--pl-bg-4); color: var(--pl-fg-1); font-size: var(--pl-text-xs); padding: 4px 8px; border-radius: 6px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity var(--pl-dur); box-shadow: var(--pl-shadow-md); z-index: var(--pl-z-tooltip); }
+.pl-rail__item:hover .pl-rail__tip, .pl-rail__item:focus-visible .pl-rail__tip { opacity: 1; }
+
+/* PLA-003 Yüzen Hap Ray */
+.pl-pillrail { width: 64px; flex: none; display: flex; flex-direction: column; align-items: center; gap: var(--pl-space-2); padding: var(--pl-space-4) 0; border-radius: var(--pl-radius-2xl); background: var(--pl-accent); color: var(--pl-fg-on-accent); }
+.pl-pillrail__item { width: 42px; height: 42px; border-radius: 14px; display: grid; place-items: center; border: 0; background: transparent; color: color-mix(in srgb, var(--pl-fg-on-accent) 70%, transparent); cursor: pointer; }
+.pl-pillrail__item:hover { background: rgb(255 255 255 / .16); color: var(--pl-fg-on-accent); }
+.pl-pillrail__item.is-active { background: var(--pl-bg-1); color: var(--pl-accent); box-shadow: var(--pl-shadow-float); }
+
+/* PLA-004 Hap Üst Gezinme */
+.pl-pillnav { display: inline-flex; gap: 2px; padding: 4px; border-radius: var(--pl-radius-full); background: var(--pl-bg-3); border: 1px solid var(--pl-line); flex-wrap: wrap; }
+.pl-pillnav a, .pl-pillnav button { height: 32px; padding: 0 14px; display: inline-flex; align-items: center; gap: 6px; border-radius: var(--pl-radius-full); color: var(--pl-fg-2); font: inherit; font-size: var(--pl-text-sm); text-decoration: none; border: 0; background: transparent; cursor: pointer; }
+.pl-pillnav a:hover, .pl-pillnav button:hover { color: var(--pl-fg-1); }
+.pl-pillnav .is-active { background: var(--pl-fg-1); color: var(--pl-bg-1); font-weight: 600; }
+
+/* PLA-005 Cam Kenar Çubuğu */
+.pl-glassnav { width: 220px; flex: none; display: flex; flex-direction: column; gap: 2px; padding: var(--pl-space-5) var(--pl-space-3); border-radius: var(--pl-radius-xl); }
+.pl-glassnav__brand { font-weight: 800; font-size: var(--pl-text-xl); color: var(--pl-fg-1); padding: 0 var(--pl-space-3) var(--pl-space-4); letter-spacing: -.02em; }
+.pl-glassnav__item { display: flex; align-items: center; gap: var(--pl-space-3); height: 38px; padding: 0 var(--pl-space-3); border-radius: 10px; color: var(--pl-fg-2); text-decoration: none; font-size: var(--pl-text-sm); }
+.pl-glassnav__item:hover { background: rgb(255 255 255 / .06); color: var(--pl-fg-1); }
+.pl-glassnav__item.is-active { background: rgb(255 255 255 / .1); color: var(--pl-fg-1); font-weight: 600; box-shadow: inset 0 0 0 1px var(--pl-glass-line); }
+.pl-glassnav__sec { margin: var(--pl-space-4) var(--pl-space-3) var(--pl-space-2); }
+
+/* PLA-006 Proje Kenar Çubuğu */
+.pl-projnav { width: 236px; flex: none; display: flex; flex-direction: column; gap: var(--pl-space-1); padding: var(--pl-space-4); background: var(--pl-bg-1); border-radius: var(--pl-radius-xl); border: 1px solid var(--pl-line); }
+.pl-projnav__item { display: flex; align-items: center; gap: var(--pl-space-3); height: 36px; padding: 0 var(--pl-space-2); border-radius: 10px; color: var(--pl-fg-2); font-size: var(--pl-text-sm); text-decoration: none; }
+.pl-projnav__item:hover { background: var(--pl-bg-3); color: var(--pl-fg-1); }
+.pl-projnav__item.is-active { background: var(--pl-accent); color: var(--pl-fg-on-accent); font-weight: 600; }
+.pl-projnav__ic { width: 24px; height: 24px; border-radius: 7px; display: grid; place-items: center; background: var(--c, var(--pl-bg-4)); color: var(--pl-bg-0); flex: none; }
+.pl-projnav__ic .pl-ico { width: 14px; height: 14px; }
+.pl-projnav__count { margin-left: auto; font-family: var(--pl-font-mono); font-size: var(--pl-text-2xs); color: var(--pl-fg-3); }
+.pl-projnav__item.is-active .pl-projnav__count { color: inherit; }
+.pl-projnav__sec { display: flex; align-items: center; justify-content: space-between; margin: var(--pl-space-4) var(--pl-space-2) var(--pl-space-1); }
+.pl-projnav__user { margin-top: auto; display: flex; align-items: center; gap: var(--pl-space-2); padding: var(--pl-space-2); border-radius: 12px; background: var(--pl-bg-2); border: 1px solid var(--pl-line); }
+
+/* PLA-007 Özellik Denetçisi (Inspector) */
+.pl-inspector { width: var(--pl-inspector-w); flex: none; background: var(--pl-bg-1); border-left: 1px solid var(--pl-line); display: flex; flex-direction: column; font-size: var(--pl-text-xs); }
+.pl-inspector__tabs { display: flex; gap: var(--pl-space-4); padding: 0 var(--pl-space-4); border-bottom: 1px solid var(--pl-line); height: 40px; align-items: center; }
+.pl-inspector__tabs button { font: inherit; font-weight: 600; color: var(--pl-fg-3); background: none; border: 0; padding: 0; height: 100%; cursor: pointer; border-bottom: 2px solid transparent; }
+.pl-inspector__tabs .is-active { color: var(--pl-fg-1); border-color: var(--pl-accent); }
+.pl-inspector__sec { padding: var(--pl-space-3) var(--pl-space-4); border-bottom: 1px solid var(--pl-line); display: grid; gap: var(--pl-space-2); }
+.pl-inspector__sechead { display: flex; align-items: center; justify-content: space-between; color: var(--pl-fg-1); font-weight: 600; }
+.pl-inspector__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.pl-propfield { display: flex; align-items: center; gap: 6px; height: 28px; padding: 0 8px; border-radius: 6px; background: var(--pl-bg-3); border: 1px solid transparent; color: var(--pl-fg-1); font-family: var(--pl-font-mono); font-size: var(--pl-text-2xs); min-width: 0; }
+.pl-propfield:focus-within { border-color: var(--pl-accent); }
+.pl-propfield b { color: var(--pl-fg-3); font-weight: 500; flex: none; }
+.pl-propfield input { all: unset; width: 100%; min-width: 0; }
+.pl-propfield__sw { width: 14px; height: 14px; border-radius: 4px; background: var(--c, var(--pl-accent)); flex: none; box-shadow: inset 0 0 0 1px rgb(255 255 255 / .15); }
+.pl-alignbar { display: grid; grid-template-columns: repeat(6, 1fr); gap: 2px; background: var(--pl-bg-3); border-radius: 6px; padding: 2px; }
+.pl-alignbar button { height: 24px; border: 0; background: transparent; color: var(--pl-fg-3); border-radius: 4px; cursor: pointer; display: grid; place-items: center; }
+.pl-alignbar button.is-active, .pl-alignbar button:hover { background: var(--pl-bg-4); color: var(--pl-fg-1); }
+
+/* PLA-008 Görüntüleyici Araç Kümesi */
+.pl-viewtools { display: inline-flex; flex-direction: column; gap: 2px; padding: 4px; border-radius: 14px; background: var(--pl-glass-bg-strong); border: 1px solid var(--pl-glass-line); backdrop-filter: blur(12px); box-shadow: var(--pl-shadow-float); }
+.pl-viewtools--h { flex-direction: row; }
+.pl-viewtools button { width: 34px; height: 34px; border-radius: 10px; border: 0; background: transparent; color: var(--pl-fg-2); cursor: pointer; display: grid; place-items: center; font: inherit; font-size: var(--pl-text-2xs); font-weight: 700; }
+.pl-viewtools button:hover { background: var(--pl-bg-3); color: var(--pl-fg-1); }
+.pl-viewtools button.is-active { background: var(--pl-accent); color: var(--pl-fg-on-accent); }
+.pl-viewtools hr { border: 0; height: 1px; width: 100%; background: var(--pl-line); margin: 2px 0; }
+.pl-viewtools--h hr { width: 1px; height: auto; margin: 0 2px; }
+
+/* PLA-009 HUD Çerçeve Paneli */
+.pl-hudframe { position: relative; background: var(--pl-hud-panel); border: 1px solid var(--pl-hud-line); padding: var(--pl-space-4); padding-top: 36px; color: var(--pl-fg-2); clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px)); }
+.pl-hudframe::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(var(--pl-hud-grid) 1px, transparent 1px), linear-gradient(90deg, var(--pl-hud-grid) 1px, transparent 1px); background-size: 18px 18px; pointer-events: none; }
+.pl-hudframe__title { position: absolute; left: 0; top: 0; right: 0; height: 26px; display: flex; align-items: center; gap: 8px; padding: 0 var(--pl-space-3); background: linear-gradient(90deg, var(--pl-hud-soft), transparent 70%); border-bottom: 1px solid var(--pl-hud-line); font-family: var(--pl-font-hud); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; font-size: var(--pl-text-xs); color: var(--pl-hud); }
+.pl-hudframe__title::before { content: ""; width: 6px; height: 6px; background: var(--pl-hud); transform: rotate(45deg); box-shadow: 0 0 8px var(--pl-hud); }
+.pl-hudframe__title span { margin-left: auto; color: var(--pl-fg-3); letter-spacing: .06em; font-family: var(--pl-font-mono); font-weight: 500; font-size: var(--pl-text-2xs); }
+.pl-hudframe > :not(.pl-hudframe__title) { position: relative; }
+.pl-hudframe__corner { position: absolute; width: 10px; height: 10px; border: 2px solid var(--pl-hud); }
+.pl-hudframe__corner--tl { left: -1px; top: -1px; border-right: 0; border-bottom: 0; } .pl-hudframe__corner--br { right: -1px; bottom: -1px; border-left: 0; border-top: 0; }
+
+/* PLA-010 Durum Çubuğu */
+.pl-statusbar { height: var(--pl-statusbar-h); display: flex; align-items: center; gap: var(--pl-space-4); padding: 0 var(--pl-space-3); background: var(--pl-bg-1); border-top: 1px solid var(--pl-line); font-family: var(--pl-font-mono); font-size: var(--pl-text-2xs); color: var(--pl-fg-3); white-space: nowrap; overflow: hidden; }
+.pl-statusbar__item { display: inline-flex; align-items: center; gap: 6px; }
+.pl-statusbar__item .pl-ico { width: 12px; height: 12px; }
+.pl-statusbar__spacer { flex: 1; }
+.pl-statusbar__item.is-accent { color: var(--pl-accent); }
+
+/* ==========================================================================
+   B. MEDYA & EĞLENCE
+   ========================================================================== */
+/* PLA-011 Sinematik Kahraman */
+.pl-cinehero { position: relative; min-height: 300px; border-radius: var(--pl-radius-xl); overflow: hidden; display: flex; align-items: flex-end; padding: var(--pl-space-8); background: var(--pl-media-3); isolation: isolate; }
+.pl-cinehero::after { content: ""; position: absolute; inset: 0; background: var(--pl-scrim-left), var(--pl-scrim-bottom); z-index: -1; }
+.pl-cinehero__art { position: absolute; inset: 0; z-index: -2; }
+.pl-cinehero__body { max-width: 460px; display: grid; gap: var(--pl-space-3); }
+.pl-cinehero__kicker { font-family: var(--pl-font-mono); font-size: var(--pl-text-2xs); letter-spacing: .2em; text-transform: uppercase; color: var(--pl-accent); font-weight: 700; display: flex; align-items: center; gap: 8px; }
+.pl-cinehero__title { font-size: clamp(28px, 4vw, 44px); line-height: .98; font-weight: 800; color: var(--pl-on-media); letter-spacing: -.03em; margin: 0; text-transform: uppercase; }
+.pl-cinehero__meta { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.pl-cinehero__meta .is-new { color: var(--pl-success); font-weight: 700; font-size: var(--pl-text-xs); margin-right: 4px; }
+.pl-cinehero__desc { margin: 0; color: var(--pl-on-media-2); font-size: var(--pl-text-sm); }
+
+/* PLA-012 Poster Kartı */
+.pl-poster { position: relative; width: 140px; aspect-ratio: 2 / 3; border-radius: var(--pl-radius-md); overflow: hidden; background: var(--pl-media-1); display: flex; flex-direction: column; justify-content: flex-end; color: var(--pl-on-media); text-decoration: none; transition: transform var(--pl-dur) var(--pl-ease-out), box-shadow var(--pl-dur); isolation: isolate; }
+.pl-poster::after { content: ""; position: absolute; inset: 0; background: var(--pl-scrim-bottom); z-index: -1; }
+.pl-poster:hover { transform: translateY(-4px) scale(1.02); box-shadow: var(--pl-shadow-float), 0 0 0 2px var(--pl-accent); }
+.pl-poster__title { padding: var(--pl-space-3); font-weight: 800; font-size: var(--pl-text-md); line-height: 1.05; text-transform: uppercase; letter-spacing: -.01em; }
+.pl-poster__ribbon { position: relative; background: var(--pl-accent); color: var(--pl-fg-on-accent); font-size: var(--pl-text-2xs); font-weight: 700; text-align: center; padding: 3px 0; letter-spacing: .02em; }
+.pl-poster__tag { position: absolute; top: 8px; left: 8px; }
+.pl-poster--wide { width: 240px; aspect-ratio: 16 / 9; }
+
+/* PLA-013 Poster Rafı */
+.pl-shelf { display: grid; gap: var(--pl-space-3); min-width: 0; }
+.pl-shelf__head { display: flex; align-items: center; gap: var(--pl-space-2); }
+.pl-shelf__title { margin: 0; font-size: var(--pl-text-lg); font-weight: 700; color: var(--pl-fg-1); flex: 1; }
+
+/* PLA-014 İzlemeye Devam */
+.pl-resume { width: 240px; display: grid; gap: var(--pl-space-2); }
+.pl-resume__thumb { position: relative; aspect-ratio: 16 / 9; border-radius: var(--pl-radius-md); overflow: hidden; background: var(--pl-media-2); display: grid; place-items: center; }
+.pl-resume__play { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: rgb(0 0 0 / .45); color: var(--pl-on-media); border: 1px solid rgb(255 255 255 / .3); backdrop-filter: blur(6px); }
+.pl-resume__bar { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: rgb(255 255 255 / .2); }
+.pl-resume__bar span { display: block; height: 100%; width: var(--pl-val, 40%); background: var(--pl-accent); }
+.pl-resume__title { font-size: var(--pl-text-sm); font-weight: 600; color: var(--pl-fg-1); }
+
+/* PLA-015 Mağaza İndirim Kartı */
+.pl-deal { width: 180px; display: grid; gap: var(--pl-space-2); }
+.pl-deal__art { aspect-ratio: 4 / 3; border-radius: var(--pl-radius-md); background: var(--pl-media-5); position: relative; overflow: hidden; }
+.pl-deal__plat { font-family: var(--pl-font-mono); font-size: 10px; letter-spacing: .1em; color: var(--pl-fg-3); text-transform: uppercase; }
+.pl-deal__name { font-weight: 600; color: var(--pl-fg-1); font-size: var(--pl-text-sm); }
+.pl-deal__price { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; white-space: nowrap; font-family: var(--pl-font-mono); font-variant-numeric: tabular-nums; font-size: var(--pl-text-sm); }
+.pl-deal__off { background: var(--pl-accent); color: var(--pl-fg-on-accent); font-weight: 700; padding: 2px 6px; border-radius: 4px; font-size: var(--pl-text-2xs); }
+.pl-deal__old { color: var(--pl-fg-4); text-decoration: line-through; }
+.pl-deal__now { color: var(--pl-fg-1); font-weight: 700; }
+
+/* PLA-016 Öne Çıkan Yığın Karusel */
+.pl-stack3d { position: relative; height: 240px; display: flex; align-items: center; justify-content: center; perspective: 900px; }
+.pl-stack3d__card { position: absolute; width: 46%; height: 82%; border-radius: var(--pl-radius-lg); background: var(--pl-media-1); box-shadow: var(--pl-shadow-float); transition: transform var(--pl-dur-slow) var(--pl-ease-out); overflow: hidden; }
+.pl-stack3d__card:nth-child(1) { transform: translateX(-62%) scale(.78) rotateY(18deg); filter: brightness(.6); background: var(--pl-media-5); }
+.pl-stack3d__card:nth-child(2) { transform: translateX(-34%) scale(.88) rotateY(10deg); filter: brightness(.75); background: var(--pl-media-2); }
+.pl-stack3d__card:nth-child(4) { transform: translateX(34%) scale(.88) rotateY(-10deg); filter: brightness(.75); background: var(--pl-media-3); }
+.pl-stack3d__card:nth-child(5) { transform: translateX(62%) scale(.78) rotateY(-18deg); filter: brightness(.6); background: var(--pl-media-4); }
+.pl-stack3d__card.is-center { z-index: 2; width: 52%; height: 100%; background: var(--pl-media-6); display: flex; flex-direction: column; justify-content: flex-end; gap: var(--pl-space-2); padding: var(--pl-space-4); }
+.pl-stack3d__card.is-center::after { content: ""; position: absolute; inset: 0; background: var(--pl-scrim-bottom); z-index: -1; }
+.pl-stack3d__card.is-center { isolation: isolate; }
+.pl-stack3d__card:nth-child(2), .pl-stack3d__card:nth-child(4) { z-index: 1; }
+
+/* PLA-017 Trend Kartı */
+.pl-trend { width: 150px; border-radius: var(--pl-radius-lg); background: var(--pl-bg-2); border: 1px solid var(--pl-line); padding: 6px; display: grid; gap: 6px; }
+.pl-trend__art { aspect-ratio: 3 / 4; border-radius: 10px; background: var(--pl-media-6); }
+.pl-trend__row { display: flex; justify-content: space-between; align-items: center; padding: 0 4px 4px; font-size: var(--pl-text-2xs); color: var(--pl-fg-3); font-family: var(--pl-font-mono); }
+.pl-trend__row span { display: inline-flex; gap: 3px; align-items: center; }
+.pl-trend__row .pl-ico { width: 11px; height: 11px; }
+
+/* PLA-018 Kampanya Afişi */
+.pl-promo { position: relative; display: flex; align-items: center; gap: var(--pl-space-5); padding: var(--pl-space-6); border-radius: var(--pl-radius-xl); background: linear-gradient(110deg, var(--pl-bg-3) 0%, var(--pl-bg-2) 60%), var(--pl-bg-2); border: 1px solid var(--pl-line); overflow: hidden; isolation: isolate; }
+.pl-promo::before { content: ""; position: absolute; right: -10%; top: -40%; width: 60%; height: 180%; background: radial-gradient(closest-side, var(--pl-accent-soft), transparent); z-index: -1; }
+.pl-promo__title { margin: 0; font-size: var(--pl-text-3xl); font-weight: 800; color: var(--pl-fg-1); letter-spacing: -.02em; display: flex; align-items: center; gap: 10px; }
+.pl-promo__off { font-size: var(--pl-text-2xs); background: var(--pl-fg-1); color: var(--pl-bg-0); padding: 3px 8px; border-radius: var(--pl-radius-full); letter-spacing: .02em; }
+.pl-promo__art { margin-left: auto; width: 34%; min-width: 120px; aspect-ratio: 4 / 3; border-radius: var(--pl-radius-lg); background: var(--pl-media-1); flex: none; }
+
+/* PLA-019 Mini Oynatıcı */
+.pl-player { display: grid; grid-template-columns: auto 1fr auto; gap: var(--pl-space-3); align-items: center; padding: var(--pl-space-3); border-radius: var(--pl-radius-lg); background: var(--pl-bg-2); border: 1px solid var(--pl-line); min-width: 0; }
+.pl-player__art { width: 48px; height: 48px; border-radius: 10px; background: var(--pl-grad-sunset); }
+.pl-player__title { font-weight: 600; color: var(--pl-fg-1); font-size: var(--pl-text-sm); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pl-player__sub { font-size: var(--pl-text-xs); color: var(--pl-fg-3); }
+.pl-player__ctl { display: flex; align-items: center; gap: 4px; }
+.pl-player__btn { width: 32px; height: 32px; border-radius: 50%; border: 0; display: grid; place-items: center; background: transparent; color: var(--pl-fg-2); cursor: pointer; }
+.pl-player__btn:hover { background: var(--pl-bg-3); color: var(--pl-fg-1); }
+.pl-player__btn--main { width: 38px; height: 38px; background: var(--pl-fg-1); color: var(--pl-bg-0); }
+.pl-player__btn--main:hover { background: var(--pl-fg-1); color: var(--pl-bg-0); transform: scale(1.05); }
+.pl-player__seek { grid-column: 1 / -1; display: grid; grid-template-columns: auto 1fr auto; gap: 8px; align-items: center; font-family: var(--pl-font-mono); font-size: var(--pl-text-2xs); color: var(--pl-fg-3); }
+.pl-player__seek .pl-progress { height: 4px; }
+
+/* PLA-020 Dinamik Ada Oynatıcı */
+.pl-island { width: 340px; max-width: 100%; border-radius: 34px; background: var(--pl-hmi-bg); padding: var(--pl-space-4) var(--pl-space-5); display: grid; gap: var(--pl-space-3); box-shadow: var(--pl-shadow-float); color: var(--pl-on-media); }
+.pl-island__top { display: flex; align-items: center; gap: var(--pl-space-3); }
+.pl-island__art { width: 44px; height: 44px; border-radius: 10px; background: var(--pl-grad-ocean); flex: none; }
+.pl-island__eq { margin-left: auto; display: flex; gap: 2px; align-items: flex-end; height: 18px; }
+.pl-island__eq i { width: 3px; border-radius: 2px; background: var(--pl-accent); animation: pl-eq 1s var(--pl-ease) infinite alternate; height: 40%; }
+.pl-island__eq i:nth-child(2) { animation-delay: .2s; } .pl-island__eq i:nth-child(3) { animation-delay: .4s; } .pl-island__eq i:nth-child(4) { animation-delay: .1s; }
+@keyframes pl-eq { to { height: 100%; } }
+.pl-island__ctl { display: flex; justify-content: center; gap: var(--pl-space-6); }
+.pl-island__ctl button { background: none; border: 0; color: var(--pl-on-media); cursor: pointer; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; }
+.pl-island__ctl button:hover { background: rgb(255 255 255 / .1); }
+
+/* ==========================================================================
+   C. CANLI VERİ & SPOR
+   ========================================================================== */
+/* PLA-021 Canlı Maç Skor Kartı */
+.pl-score { background: var(--pl-bg-2); border: 1px solid var(--pl-line); border-radius: var(--pl-radius-lg); padding: var(--pl-space-4); display: grid; gap: var(--pl-space-3); }
+.pl-score__head { display: flex; align-items: center; gap: 8px; font-size: var(--pl-text-xs); color: var(--pl-fg-3); }
+.pl-score__live { display: inline-flex; align-items: center; gap: 6px; color: var(--pl-live); font-weight: 700; font-family: var(--pl-font-mono); font-size: var(--pl-text-2xs); letter-spacing: .1em; }
+.pl-score__teams { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: var(--pl-space-3); text-align: center; }
+.pl-score__team { display: grid; justify-items: center; gap: 6px; font-size: var(--pl-text-xs); color: var(--pl-fg-2); font-weight: 600; }
+.pl-score__crest { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: var(--pl-bg-4); color: var(--pl-fg-1); font-weight: 800; font-size: var(--pl-text-sm); }
+.pl-score__vs { font-family: var(--pl-font-mono); font-size: var(--pl-text-3xl); font-weight: 700; color: var(--pl-fg-1); font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
+.pl-score__vs small { display: block; font-size: var(--pl-text-2xs); color: var(--pl-fg-3); letter-spacing: .1em; font-weight: 500; }
+.pl-score__bar { display: flex; height: 4px; border-radius: 4px; overflow: hidden; gap: 2px; }
+.pl-score__bar span { background: var(--pl-accent); } .pl-score__bar span + span { background: var(--pl-bg-4); }
+
+/* PLA-022 Maç Satırı + Oran Çipleri */
+.pl-matchrow { display: grid; grid-template-columns: auto 1fr auto auto; align-items: center; gap: var(--pl-space-3); padding: 10px var(--pl-space-3); border-radius: 10px; background: var(--pl-bg-2); border: 1px solid var(--pl-line); font-size: var(--pl-text-xs); }
+.pl-matchrow + .pl-matchrow { margin-top: 6px; }
+.pl-matchrow__teams { display: grid; gap: 2px; color: var(--pl-fg-1); font-weight: 600; min-width: 0; }
+.pl-matchrow__teams span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pl-matchrow__score { font-family: var(--pl-font-mono); color: var(--pl-fg-1); font-weight: 700; text-align: right; display: grid; gap: 2px; }
+.pl-odds { display: flex; gap: 4px; }
+.pl-odds button { min-width: 46px; height: 30px; border-radius: 8px; border: 1px solid var(--pl-line); background: var(--pl-bg-3); color: var(--pl-fg-1); font-family: var(--pl-font-mono); font-size: var(--pl-text-2xs); font-weight: 600; cursor: pointer; display: grid; line-height: 1.1; place-content: center; }
+.pl-odds button small { color: var(--pl-fg-3); font-size: 9px; }
+.pl-odds button:hover { border-color: var(--pl-accent-line); }
+.pl-odds button.is-active { background: var(--pl-accent); color: var(--pl-fg-on-accent); border-color: var(--pl-accent); }
+.pl-odds button.is-active small { color: inherit; opacity: .7; }
+
+/* PLA-023 Neon Vurgu Kartı */
+.pl-neoncard { border-radius: var(--pl-radius-lg); padding: var(--pl-space-4); background: var(--pl-accent); color: var(--pl-fg-on-accent); display: grid; gap: var(--pl-space-2); position: relative; overflow: hidden; }
+.pl-neoncard::after { content: ""; position: absolute; right: -20px; top: -20px; width: 90px; height: 90px; border-radius: 50%; background: rgb(255 255 255 / .25); }
+.pl-neoncard .pl-label { color: inherit; opacity: .7; }
+.pl-neoncard__val { font-family: var(--pl-font-mono); font-size: var(--pl-text-2xl); font-weight: 800; font-variant-numeric: tabular-nums; }
+
+/* PLA-024 Canlı Akış Bandı */
+.pl-ticker { display: flex; align-items: center; gap: var(--pl-space-3); height: 36px; padding: 0 var(--pl-space-3); border-radius: var(--pl-radius-full); background: var(--pl-bg-2); border: 1px solid var(--pl-line); overflow: hidden; font-size: var(--pl-text-xs); }
+.pl-ticker__label { display: inline-flex; align-items: center; gap: 6px; font-family: var(--pl-font-mono); font-weight: 700; letter-spacing: .1em; color: var(--pl-live); flex: none; }
+.pl-ticker__track { display: flex; gap: var(--pl-space-6); white-space: nowrap; color: var(--pl-fg-2); animation: pl-marquee 22s linear infinite; }
+.pl-ticker__track b { color: var(--pl-fg-1); font-family: var(--pl-font-mono); }
+@keyframes pl-marquee { to { transform: translateX(-50%); } }
+.pl-ticker:hover .pl-ticker__track { animation-play-state: paused; }
+
+} /* @layer pl */
+
+@layer pl {
+/* ==========================================================================
+   D. AKILLI EV & IoT
+   ========================================================================== */
+/* PLA-025 Cihaz Anahtar Karosu */
+.pl-devtile { display: grid; grid-template-columns: auto 1fr auto; gap: var(--pl-space-3); align-items: center; padding: var(--pl-space-3); border-radius: var(--pl-radius-lg); background: var(--pl-bg-2); border: 1px solid var(--pl-line); transition: border-color var(--pl-dur), background var(--pl-dur); }
+.pl-devtile__ic { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: var(--pl-bg-4); color: var(--pl-fg-2); }
+.pl-devtile__name { font-weight: 600; color: var(--pl-fg-1); font-size: var(--pl-text-sm); }
+.pl-devtile__sub { font-size: var(--pl-text-2xs); color: var(--pl-fg-3); font-family: var(--pl-font-mono); }
+.pl-devtile.is-on { border-color: var(--pl-accent-line); background: linear-gradient(135deg, var(--pl-accent-soft), transparent 70%), var(--pl-bg-2); }
+.pl-devtile.is-on .pl-devtile__ic { background: var(--pl-accent); color: var(--pl-fg-on-accent); box-shadow: var(--pl-glow-accent); }
+.pl-devtile__meter { grid-column: 2 / -1; display: flex; gap: 3px; }
+.pl-devtile__meter i { flex: 1; height: 4px; border-radius: 2px; background: var(--pl-bg-4); }
+.pl-devtile__meter i.is-on { background: var(--pl-accent); }
+.pl-devtile--stack { grid-template-columns: 1fr auto; }
+.pl-devtile--stack .pl-devtile__ic { grid-column: 1; }
+
+/* PLA-026 Sensör Kaplama Kartı */
+.pl-sensor { display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; align-items: center; padding: 10px 12px; border-radius: 14px; min-width: 190px; }
+.pl-sensor__ic { grid-row: span 2; width: 32px; height: 32px; border-radius: 10px; display: grid; place-items: center; background: var(--pl-accent-soft); color: var(--pl-accent); }
+.pl-sensor__top { display: flex; justify-content: space-between; align-items: baseline; font-size: var(--pl-text-xs); color: var(--pl-fg-2); gap: 10px; }
+.pl-sensor__top b { font-family: var(--pl-font-mono); color: var(--pl-fg-1); font-size: var(--pl-text-sm); }
+.pl-sensor__dots { display: flex; gap: 3px; }
+.pl-sensor__dots i { width: 5px; height: 5px; border-radius: 50%; background: var(--pl-bg-4); }
+.pl-sensor__dots i.is-on { background: var(--pl-accent); }
+
+/* PLA-027 Oda Başlık Kartı */
+.pl-roomcard { border-radius: var(--pl-radius-xl); background: var(--pl-bg-2); border: 1px solid var(--pl-line); overflow: hidden; display: grid; }
+.pl-roomcard__head { display: flex; align-items: center; gap: var(--pl-space-3); padding: var(--pl-space-3) var(--pl-space-4); }
+.pl-roomcard__ic { width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center; background: var(--pl-accent); color: var(--pl-fg-on-accent); }
+.pl-roomcard__name { font-weight: 700; color: var(--pl-fg-1); font-size: var(--pl-text-lg); }
+.pl-roomcard__view { height: 130px; margin: 0 var(--pl-space-3) var(--pl-space-3); border-radius: var(--pl-radius-lg); background: var(--pl-media-5); position: relative; overflow: hidden; }
+
+/* PLA-028 İklim Çipleri */
+.pl-climate { display: inline-flex; align-items: center; gap: 2px; padding: 4px; border-radius: var(--pl-radius-full); background: var(--pl-bg-2); border: 1px solid var(--pl-line); }
+.pl-climate span { display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 12px; border-radius: var(--pl-radius-full); font-family: var(--pl-font-mono); font-size: var(--pl-text-xs); color: var(--pl-fg-1); }
+.pl-climate span + span { border-left: 1px solid var(--pl-line); border-radius: 0; }
+.pl-climate .pl-ico { color: var(--pl-fg-3); width: 14px; height: 14px; }
+
+/* PLA-029 Üye Varlık Şeridi */
+.pl-presence { display: flex; gap: var(--pl-space-2); flex-wrap: wrap; }
+.pl-presence__item { display: flex; align-items: center; gap: 8px; padding: 6px 12px 6px 6px; border-radius: var(--pl-radius-full); background: var(--pl-bg-2); border: 1px solid var(--pl-line); }
+.pl-presence__item b { display: block; color: var(--pl-fg-1); font-size: var(--pl-text-xs); font-weight: 600; line-height: 1.2; }
+.pl-presence__item small { display: block; color: var(--pl-fg-3); font-size: 10px; }
+.pl-presence__item.is-home .pl-avatar { box-shadow: 0 0 0 2px var(--pl-accent); }
+
+/* PLA-030 Kat Seçici Paneli */
+.pl-floorpanel { width: 290px; max-width: 100%; border-radius: var(--pl-radius-xl); padding: var(--pl-space-4); display: grid; gap: var(--pl-space-3); }
+.pl-floorpanel__head { display: flex; align-items: center; gap: 8px; color: var(--pl-fg-1); font-weight: 700; }
+.pl-floorpanel__list { display: grid; gap: 4px; }
+.pl-roomrow { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: center; padding: 8px; border-radius: 12px; font-size: var(--pl-text-xs); color: var(--pl-fg-2); cursor: pointer; border: 1px solid transparent; }
+.pl-roomrow:hover { background: var(--pl-bg-3); }
+.pl-roomrow.is-active { background: var(--pl-accent-soft); border-color: var(--pl-accent-line); color: var(--pl-fg-1); }
+.pl-roomrow__ic { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: var(--c, var(--pl-viz-1)); color: var(--pl-bg-0); }
+.pl-roomrow__ic .pl-ico { width: 13px; height: 13px; }
+.pl-roomrow__n { font-family: var(--pl-font-mono); font-size: 10px; padding: 2px 7px; border-radius: var(--pl-radius-full); background: var(--pl-bg-4); color: var(--pl-fg-1); }
+.pl-roomrow.is-active .pl-roomrow__n { background: var(--pl-accent); color: var(--pl-fg-on-accent); }
+
+/* PLA-031 Harita Sıcak Noktası */
+.pl-hotspot { position: absolute; transform: translate(-50%, -100%); display: grid; justify-items: center; gap: 4px; }
+.pl-hotspot__pin { width: 30px; height: 30px; border-radius: 50% 50% 50% 4px; transform: rotate(-45deg); display: grid; place-items: center; background: var(--c, var(--pl-accent)); box-shadow: 0 0 0 4px color-mix(in srgb, var(--c, var(--pl-accent)) 30%, transparent), var(--pl-shadow-float); }
+.pl-hotspot__pin .pl-ico { transform: rotate(45deg); color: var(--pl-bg-0); width: 14px; height: 14px; }
+.pl-hotspot__label { background: var(--pl-glass-bg-strong); border: 1px solid var(--pl-glass-line); color: var(--pl-fg-1); font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 6px; white-space: nowrap; backdrop-filter: blur(8px); }
+.pl-hotspot.is-pulse .pl-hotspot__pin { animation: pl-ping 2s var(--pl-ease) infinite; }
+@keyframes pl-ping { 50% { box-shadow: 0 0 0 10px transparent, var(--pl-shadow-float); } }
+
+/* PLA-032 Saat & Hava Widget'ı */
+.pl-weather { display: flex; align-items: stretch; gap: var(--pl-space-2); padding: var(--pl-space-3); border-radius: var(--pl-radius-xl); width: max-content; }
+.pl-weather__time { display: grid; align-content: center; padding: 0 var(--pl-space-2); }
+.pl-weather__day { font-weight: 700; color: var(--pl-fg-1); font-size: var(--pl-text-lg); }
+.pl-weather__clock { font-family: var(--pl-font-display); font-weight: 700; font-size: var(--pl-text-3xl); color: var(--pl-fg-1); letter-spacing: -.03em; line-height: 1; font-variant-numeric: tabular-nums; }
+.pl-weather__clock small { font-size: var(--pl-text-xs); color: var(--pl-fg-3); font-weight: 500; }
+.pl-weather__temp { width: 92px; border-radius: 16px; background: var(--pl-grad-sunset); display: grid; place-items: center; align-content: center; color: var(--pl-fg-on-accent); padding: 8px; gap: 2px; }
+.pl-weather__temp b { font-family: var(--pl-font-display); font-size: var(--pl-text-2xl); font-weight: 800; line-height: 1; }
+.pl-weather__temp small { font-size: 10px; font-weight: 600; }
+
+/* PLA-033 Ekipman Sayaç Karosu */
+.pl-equip { display: grid; gap: 8px; padding: var(--pl-space-3); border-radius: 12px; background: var(--pl-bg-2); border: 1px solid var(--pl-line); min-width: 130px; }
+.pl-equip__top { display: flex; align-items: center; gap: 8px; font-size: var(--pl-text-2xs); color: var(--pl-fg-3); }
+.pl-equip__ic { width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center; background: var(--c, var(--pl-accent)); color: var(--pl-bg-0); }
+.pl-equip__val { font-family: var(--pl-font-hud); font-size: var(--pl-text-3xl); font-weight: 700; color: var(--pl-fg-1); line-height: 1; font-variant-numeric: tabular-nums; }
+.pl-equip.is-active { background: var(--pl-accent); border-color: var(--pl-accent); }
+.pl-equip.is-active .pl-equip__val, .pl-equip.is-active .pl-equip__top { color: var(--pl-fg-on-accent); }
+.pl-equip.is-active .pl-equip__ic { background: rgb(255 255 255 / .25); color: var(--pl-fg-on-accent); }
+
+/* PLA-034 İzometrik Plan Görüntüleyici */
+.pl-isoplan { position: relative; height: 300px; border-radius: var(--pl-radius-xl); background: radial-gradient(80% 70% at 50% 45%, var(--pl-bg-3), var(--pl-bg-0)); overflow: hidden; display: grid; place-items: center; }
+.pl-isoplan__floor { position: relative; width: 340px; height: 230px; transform: rotateX(58deg) rotateZ(-42deg); transform-style: preserve-3d; display: grid; grid-template-columns: 1.3fr 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 6px; padding: 6px; background: var(--pl-bg-4); border-radius: 6px; box-shadow: 18px 18px 0 color-mix(in srgb, var(--pl-bg-0) 80%, transparent); }
+.pl-isoplan__room { border-radius: 3px; background: color-mix(in srgb, var(--c, var(--pl-viz-1)) 34%, var(--pl-bg-2)); box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--c, var(--pl-viz-1)) 70%, transparent); position: relative; }
+.pl-isoplan__room.is-active { background: color-mix(in srgb, var(--c, var(--pl-viz-1)) 60%, var(--pl-bg-2)); box-shadow: inset 0 0 0 2px var(--c, var(--pl-viz-1)), 0 0 24px color-mix(in srgb, var(--c) 60%, transparent); }
+.pl-isoplan__room--wide { grid-row: span 2; }
+.pl-isoplan .pl-viewtools { position: absolute; right: 12px; top: 12px; }
+.pl-isoplan__legend { position: absolute; left: 12px; bottom: 12px; display: flex; gap: 6px; flex-wrap: wrap; }
+
+/* ==========================================================================
+   E. HUD & ENDÜSTRİ
+   ========================================================================== */
+/* PLA-035 HUD Büyük Metrik */
+.pl-hudmetric { display: grid; grid-template-columns: auto 1fr; gap: 2px 12px; align-items: end; }
+.pl-hudmetric__ic { grid-row: span 2; width: 34px; height: 46px; display: grid; place-items: center; color: var(--pl-hud-green); }
+.pl-hudmetric__val { font-family: var(--pl-font-hud); font-size: var(--pl-text-5xl); font-weight: 700; color: var(--pl-hud-green); line-height: .9; font-variant-numeric: tabular-nums; text-shadow: 0 0 18px color-mix(in srgb, var(--pl-hud-green) 50%, transparent); }
+.pl-hudmetric__val small { font-size: .5em; }
+.pl-hudmetric__lbl { font-size: var(--pl-text-2xs); color: var(--pl-fg-3); letter-spacing: .12em; text-transform: uppercase; font-family: var(--pl-font-mono); }
+.pl-hudmetric--amber .pl-hudmetric__val, .pl-hudmetric--amber .pl-hudmetric__ic { color: var(--pl-hud-amber); text-shadow: 0 0 18px color-mix(in srgb, var(--pl-hud-amber) 50%, transparent); }
+.pl-hudmetric--cyan .pl-hudmetric__val, .pl-hudmetric--cyan .pl-hudmetric__ic { color: var(--pl-hud); text-shadow: 0 0 18px color-mix(in srgb, var(--pl-hud) 50%, transparent); }
+
+/* PLA-036 Dalga Formu Monitörü */
+.pl-wavemon { display: grid; gap: 6px; }
+.pl-wavemon__row { display: grid; grid-template-columns: 56px 1fr; gap: 10px; align-items: center; }
+.pl-wavemon__val { font-family: var(--pl-font-hud); font-size: var(--pl-text-3xl); font-weight: 700; line-height: 1; color: var(--c, var(--pl-hud-green)); font-variant-numeric: tabular-nums; }
+.pl-wavemon svg { width: 100%; height: 40px; display: block; }
+.pl-wavemon polyline { fill: none; stroke: var(--c, var(--pl-hud-green)); stroke-width: 1.6; vector-effect: non-scaling-stroke; filter: drop-shadow(0 0 4px var(--c, var(--pl-hud-green))); }
+.pl-wavemon__row:nth-child(1) { --c: var(--pl-hud-green); } .pl-wavemon__row:nth-child(2) { --c: var(--pl-hud-red); } .pl-wavemon__row:nth-child(3) { --c: var(--pl-hud-amber); }
+
+/* PLA-037 HUD Halka Göstergeleri */
+.pl-hudrings { display: flex; gap: var(--pl-space-4); justify-content: space-around; flex-wrap: wrap; }
+.pl-hudring { display: grid; justify-items: center; gap: 6px; font-size: var(--pl-text-2xs); color: var(--pl-fg-3); font-family: var(--pl-font-mono); letter-spacing: .06em; }
+.pl-hudring__dial { width: 70px; height: 70px; border-radius: 50%; position: relative; display: grid; place-items: center; background: conic-gradient(var(--c, var(--pl-hud)) calc(var(--v, 60) * 1%), var(--pl-hud-soft) 0); }
+.pl-hudring__dial::before { content: ""; position: absolute; inset: 5px; border-radius: 50%; background: var(--pl-bg-0); }
+.pl-hudring__dial::after { content: ""; position: absolute; inset: 11px; border-radius: 50%; border: 1px dashed var(--pl-hud-line); }
+.pl-hudring__dial b { position: relative; z-index: 1; font-family: var(--pl-font-hud); font-size: var(--pl-text-lg); color: var(--pl-fg-1); }
+
+/* PLA-038 HUD Veri Tablosu */
+.pl-hudtable { width: 100%; border-collapse: collapse; font-size: var(--pl-text-2xs); font-family: var(--pl-font-mono); }
+.pl-hudtable th { text-align: left; color: var(--pl-hud); font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 6px 8px; border-bottom: 1px solid var(--pl-hud-line); }
+.pl-hudtable td { padding: 7px 8px; color: var(--pl-fg-2); border-bottom: 1px solid var(--pl-hud-grid); }
+.pl-hudtable tr:nth-child(even) td { background: var(--pl-hud-grid); }
+.pl-hudtag { display: inline-block; padding: 1px 6px; font-size: 10px; border: 1px solid currentColor; color: var(--pl-hud-green); }
+.pl-hudtag--warn { color: var(--pl-hud-amber); } .pl-hudtag--err { color: var(--pl-hud-red); }
+
+/* PLA-039 Halka Yüzde Metriği */
+.pl-donut { display: flex; align-items: center; gap: var(--pl-space-3); }
+.pl-donut__ring { width: 56px; height: 56px; border-radius: 50%; flex: none; display: grid; place-items: center; background: conic-gradient(var(--c, var(--pl-accent)) calc(var(--v, 45) * 1%), var(--pl-bg-4) 0); position: relative; }
+.pl-donut__ring::before { content: ""; position: absolute; inset: 6px; border-radius: 50%; background: var(--pl-bg-2); }
+.pl-donut__ring b { position: relative; font-family: var(--pl-font-mono); font-size: var(--pl-text-xs); color: var(--pl-fg-1); }
+.pl-donut__txt b { display: block; color: var(--pl-fg-1); font-size: var(--pl-text-sm); }
+.pl-donut__txt small { color: var(--pl-fg-3); font-size: var(--pl-text-2xs); }
+
+/* PLA-040 Proses Akış Şeması (SCADA) */
+.pl-process { width: 100%; height: auto; display: block; }
+.pl-process .p-pipe { fill: none; stroke: var(--pl-fg-3); stroke-width: 4; stroke-linecap: round; }
+.pl-process .p-flow { fill: none; stroke: var(--pl-accent); stroke-width: 2; stroke-dasharray: 6 8; animation: pl-flow 1.2s linear infinite; }
+.pl-process .p-tank { fill: var(--pl-bg-3); stroke: var(--pl-line-strong); stroke-width: 1.5; }
+.pl-process .p-level { fill: var(--pl-accent-soft); stroke: none; }
+.pl-process .p-valve { fill: var(--pl-success); }
+.pl-process .p-valve.is-off { fill: var(--pl-danger); }
+.pl-process text { fill: var(--pl-fg-3); font-family: var(--pl-font-mono); font-size: 9px; }
+@keyframes pl-flow { to { stroke-dashoffset: -28; } }
+
+/* PLA-041 Segment Çubuk Grafik */
+.pl-segbars { display: flex; align-items: flex-end; gap: 4px; height: 90px; }
+.pl-segbars span { flex: 1; height: calc(var(--v, 50) * 1%); background: repeating-linear-gradient(0deg, var(--c, var(--pl-accent)) 0 4px, transparent 4px 6px); opacity: .9; border-radius: 1px; min-width: 4px; }
+.pl-segbars span.is-peak { --c: var(--pl-hud-amber); }
+
+/* PLA-042 Film Şeridi Zaman Ekseni */
+.pl-filmtick { display: flex; gap: 6px; overflow-x: auto; padding: 8px 0; scrollbar-width: none; position: relative; }
+.pl-filmtick__cell { flex: none; width: 46px; display: grid; gap: 4px; justify-items: center; font-family: var(--pl-font-mono); font-size: 9px; color: var(--pl-fg-3); }
+.pl-filmtick__cell i { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--pl-line-strong); background: var(--pl-bg-3); display: block; }
+.pl-filmtick__cell.is-active i { border-color: var(--pl-accent); box-shadow: var(--pl-glow-accent); background: var(--pl-accent-soft); }
+.pl-filmtick__cell.is-active { color: var(--pl-accent); }
+} /* @layer pl */
+
+@layer pl {
+/* ==========================================================================
+   F. ÜRETKENLİK & İK
+   ========================================================================== */
+/* PLA-043 Hafta Gün Şeridi */
+.pl-daystrip { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; }
+.pl-daystrip button { flex: none; width: 52px; height: 62px; border-radius: 14px; border: 1px solid var(--pl-line); background: var(--pl-bg-2); color: var(--pl-fg-3); font: inherit; font-size: var(--pl-text-2xs); cursor: pointer; display: grid; place-content: center; gap: 2px; }
+.pl-daystrip button b { font-size: var(--pl-text-lg); color: var(--pl-fg-1); font-family: var(--pl-font-mono); }
+.pl-daystrip button:hover { border-color: var(--pl-line-strong); }
+.pl-daystrip button.is-active { background: var(--pl-fg-1); color: var(--pl-bg-1); border-color: transparent; }
+.pl-daystrip button.is-active b { color: var(--pl-bg-1); }
+.pl-daystrip button.is-today::after { content: ""; width: 4px; height: 4px; border-radius: 50%; background: var(--pl-accent); justify-self: center; }
+
+/* PLA-044 Takvim Panosu */
+.pl-board { display: grid; grid-template-columns: 48px repeat(var(--cols, 3), minmax(150px, 1fr)); border: 1px solid var(--pl-line); border-radius: var(--pl-radius-lg); overflow: auto; background: var(--pl-bg-1); }
+.pl-board__colhead { padding: 10px 12px; font-size: var(--pl-text-xs); font-weight: 600; color: var(--pl-fg-1); border-bottom: 1px solid var(--pl-line); border-left: 1px solid var(--pl-line); display: flex; gap: 6px; align-items: center; position: sticky; top: 0; background: var(--pl-bg-1); }
+.pl-board__colhead small { color: var(--pl-fg-3); font-family: var(--pl-font-mono); }
+.pl-board__time { font-family: var(--pl-font-mono); font-size: 10px; color: var(--pl-fg-4); padding: 6px; text-align: right; height: 64px; border-bottom: 1px dashed var(--pl-line); }
+.pl-board__cell { border-left: 1px solid var(--pl-line); border-bottom: 1px dashed var(--pl-line); padding: 4px; height: 64px; position: relative; }
+.pl-evt { position: absolute; left: 4px; right: 4px; top: 4px; z-index: 1; border-radius: 10px; padding: 8px; background: color-mix(in srgb, var(--c, var(--pl-viz-1)) 22%, var(--pl-bg-2)); border: 1px solid color-mix(in srgb, var(--c, var(--pl-viz-1)) 45%, transparent); font-size: var(--pl-text-2xs); color: var(--pl-fg-2); display: grid; gap: 4px; height: calc(var(--h, 1) * 64px - 8px); overflow: hidden; }
+.pl-evt b { color: var(--pl-fg-1); font-size: var(--pl-text-xs); display: flex; align-items: center; gap: 6px; }
+.pl-evt b::before { content: ""; width: 8px; height: 8px; border-radius: 3px; background: var(--c, var(--pl-viz-1)); flex: none; }
+.pl-evt__foot { display: flex; align-items: center; gap: 6px; margin-top: auto; }
+
+/* PLA-045 Büyük Sayı Üçlüsü */
+.pl-bigstats { display: flex; gap: var(--pl-space-8); flex-wrap: wrap; align-items: flex-end; }
+.pl-bigstat { display: grid; gap: 2px; }
+.pl-bigstat__val { font-family: var(--pl-font-display); font-weight: 300; font-size: var(--pl-text-6xl); line-height: .9; color: var(--pl-fg-1); letter-spacing: -.05em; font-variant-numeric: tabular-nums; display: flex; align-items: flex-start; gap: 6px; }
+.pl-bigstat__val .pl-ico { width: 18px; height: 18px; color: var(--pl-fg-3); margin-top: 6px; }
+.pl-bigstat__lbl { font-size: var(--pl-text-xs); color: var(--pl-fg-3); }
+
+/* PLA-046 Bölümlü İlerleme Hapları */
+.pl-segpills { display: grid; grid-template-columns: var(--cols, 1fr 1fr 2fr 1fr); gap: 6px; align-items: end; }
+.pl-segpill { display: grid; gap: 6px; font-size: var(--pl-text-2xs); color: var(--pl-fg-3); min-width: 0; }
+.pl-segpill > span { height: 34px; border-radius: var(--pl-radius-full); display: flex; align-items: center; padding: 0 14px; font-family: var(--pl-font-mono); font-size: var(--pl-text-xs); font-weight: 600; background: var(--pl-bg-4); color: var(--pl-fg-1); white-space: nowrap; overflow: hidden; }
+.pl-segpill--dark > span { background: var(--pl-fg-1); color: var(--pl-bg-1); }
+.pl-segpill--accent > span { background: var(--pl-accent); color: var(--pl-fg-on-accent); }
+.pl-segpill--hatch > span { background: repeating-linear-gradient(-45deg, var(--pl-bg-4) 0 6px, transparent 6px 12px); border: 1px solid var(--pl-line-strong); color: var(--pl-fg-3); }
+
+/* PLA-047 Zaman Takip Kadranı */
+.pl-timer { display: grid; justify-items: center; gap: var(--pl-space-3); }
+.pl-timer__dial { width: 150px; height: 150px; border-radius: 50%; position: relative; display: grid; place-items: center; background: repeating-conic-gradient(from 0deg, var(--pl-accent) 0 1.2deg, transparent 1.2deg 6deg); -webkit-mask: radial-gradient(circle, transparent 54%, black 55%, black 70%, transparent 71%); mask: radial-gradient(circle, transparent 54%, black 55%, black 70%, transparent 71%); }
+.pl-timer__dial.is-partial { background: conic-gradient(var(--pl-accent) calc(var(--v, 65) * 1%), var(--pl-bg-4) 0); -webkit-mask: repeating-conic-gradient(black 0 2deg, transparent 2deg 6deg), radial-gradient(circle, transparent 54%, black 55%, black 72%, transparent 73%); -webkit-mask-composite: source-in; mask-composite: intersect; }
+.pl-timer__wrap { position: relative; width: 150px; height: 150px; display: grid; place-items: center; }
+.pl-timer__wrap > .pl-timer__dial { position: absolute; inset: 0; }
+.pl-timer__val { position: relative; text-align: center; }
+.pl-timer__val b { display: block; font-family: var(--pl-font-display); font-size: var(--pl-text-3xl); font-weight: 600; color: var(--pl-fg-1); letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+.pl-timer__val small { font-size: var(--pl-text-2xs); color: var(--pl-fg-3); }
+.pl-timer__ctl { display: flex; gap: var(--pl-space-2); }
+
+/* PLA-048 Karanlık Görev Kartı */
+.pl-taskcard { border-radius: var(--pl-radius-xl); background: var(--pl-fg-1); color: var(--pl-bg-1); padding: var(--pl-space-5); display: grid; gap: var(--pl-space-3); }
+.pl-taskcard__head { display: flex; align-items: baseline; justify-content: space-between; }
+.pl-taskcard__head b { font-size: var(--pl-text-lg); }
+.pl-taskcard__head span { font-family: var(--pl-font-display); font-size: var(--pl-text-3xl); font-weight: 300; letter-spacing: -.03em; }
+.pl-taskcard__item { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: center; font-size: var(--pl-text-xs); }
+.pl-taskcard__ic { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: color-mix(in srgb, var(--pl-bg-1) 14%, transparent); }
+.pl-taskcard__item small { display: block; opacity: .55; font-size: 10px; }
+.pl-taskcard__chk { width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; border: 1.5px solid color-mix(in srgb, var(--pl-bg-1) 35%, transparent); }
+.pl-taskcard__item.is-done .pl-taskcard__chk { background: var(--pl-accent); border-color: var(--pl-accent); color: var(--pl-fg-on-accent); }
+
+/* PLA-049 Profil Fotoğraf Kartı */
+.pl-photocard { position: relative; border-radius: var(--pl-radius-xl); overflow: hidden; aspect-ratio: 4 / 5; background: var(--pl-media-5); display: flex; align-items: flex-end; padding: var(--pl-space-4); isolation: isolate; min-width: 180px; }
+.pl-photocard::after { content: ""; position: absolute; inset: 0; background: var(--pl-scrim-bottom); z-index: -1; }
+.pl-photocard__name { color: var(--pl-on-media); font-weight: 700; display: block; }
+.pl-photocard__role { color: var(--pl-on-media-2); font-size: var(--pl-text-xs); }
+.pl-photocard__pill { margin-left: auto; align-self: flex-end; }
+
+/* PLA-050 İnce Çubuk İlerleme Grafiği */
+.pl-pinbars { display: flex; align-items: flex-end; justify-content: space-between; gap: 8px; height: 110px; padding-top: 22px; }
+.pl-pinbars__col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 6px; height: 100%; font-size: 10px; color: var(--pl-fg-3); font-family: var(--pl-font-mono); position: relative; }
+.pl-pinbars__col i { flex: none; width: 6px; height: calc(var(--v, 50) * .8%); border-radius: 6px; background: var(--pl-fg-1); display: block; position: relative; }
+.pl-pinbars__col i::before { content: ""; position: absolute; top: -4px; left: 50%; width: 10px; height: 10px; border-radius: 50%; transform: translateX(-50%); background: var(--pl-fg-1); }
+.pl-pinbars__col.is-peak i, .pl-pinbars__col.is-peak i::before { background: var(--pl-accent); }
+.pl-pinbars__tip { position: absolute; top: calc(100% - var(--v, 50) * .8% - 30px); left: 50%; transform: translate(-50%, -100%); background: var(--pl-accent); color: var(--pl-fg-on-accent); font-weight: 700; padding: 2px 6px; border-radius: 6px; white-space: nowrap; }
+
+/* PLA-051 Günlük Ajanda */
+.pl-agenda { display: grid; grid-template-columns: 54px 1fr; font-size: var(--pl-text-xs); position: relative; }
+.pl-agenda__t { font-family: var(--pl-font-mono); font-size: 10px; color: var(--pl-fg-4); height: 48px; border-top: 1px dashed var(--pl-line); padding-top: 4px; }
+.pl-agenda__s { border-top: 1px dashed var(--pl-line); height: 48px; position: relative; }
+.pl-agenda__evt { position: absolute; top: 6px; left: var(--x, 0%); width: var(--w, 50%); height: 36px; border-radius: 10px; background: var(--pl-fg-1); color: var(--pl-bg-1); display: flex; align-items: center; gap: 8px; padding: 0 10px; font-weight: 600; white-space: nowrap; overflow: hidden; box-shadow: var(--pl-shadow-float); }
+.pl-agenda__evt--soft { background: var(--pl-bg-3); color: var(--pl-fg-1); border: 1px solid var(--pl-line); box-shadow: none; }
+.pl-agenda__evt .pl-avatars { margin-left: auto; }
+
+/* PLA-052 Karşılama Başlığı */
+.pl-greet { display: flex; align-items: center; gap: var(--pl-space-4); flex-wrap: wrap; padding: var(--pl-space-5); border-radius: var(--pl-radius-xl); background: var(--pl-fg-1); color: var(--pl-bg-1); }
+.pl-greet__title { margin: 0; font-size: var(--pl-text-2xl); font-weight: 700; }
+.pl-greet__sub { opacity: .65; font-size: var(--pl-text-xs); margin-top: 2px; }
+.pl-greet__chips { margin-left: auto; display: flex; gap: 6px; flex-wrap: wrap; }
+.pl-greet__chips span { display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 12px; border-radius: var(--pl-radius-full); background: color-mix(in srgb, var(--pl-bg-1) 12%, transparent); font-size: var(--pl-text-xs); font-family: var(--pl-font-mono); }
+
+/* PLA-053 Renkli İkonlu İstatistik Kartı */
+.pl-statcard { display: grid; gap: 10px; padding: var(--pl-space-4); border-radius: var(--pl-radius-lg); background: var(--pl-bg-2); border: 1px solid var(--pl-line); min-width: 0; }
+.pl-statcard__ic { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; background: color-mix(in srgb, var(--c, var(--pl-accent)) 18%, transparent); color: var(--c, var(--pl-accent)); }
+.pl-statcard__lbl { font-size: var(--pl-text-xs); color: var(--pl-fg-3); }
+.pl-statcard__val { font-family: var(--pl-font-mono); font-size: var(--pl-text-2xl); font-weight: 700; color: var(--pl-fg-1); font-variant-numeric: tabular-nums; display: flex; align-items: baseline; gap: 8px; }
+.pl-statcard__val small { font-size: var(--pl-text-2xs); font-weight: 600; }
+.pl-statcard.is-hot { background: color-mix(in srgb, var(--c, var(--pl-accent)) 12%, var(--pl-bg-2)); border-color: color-mix(in srgb, var(--c, var(--pl-accent)) 40%, transparent); }
+
+/* PLA-054 Alan Grafiği + İpucu */
+.pl-areachart { position: relative; }
+.pl-areachart svg { width: 100%; height: 160px; display: block; overflow: visible; }
+.pl-areachart .a-grid { stroke: var(--pl-viz-grid); stroke-width: 1; }
+.pl-areachart .a-area { fill: url(#pl-area-grad); }
+.pl-areachart .a-line { fill: none; stroke: var(--pl-accent); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.pl-areachart .a-dot { fill: var(--pl-bg-1); stroke: var(--pl-accent); stroke-width: 3; }
+.pl-areachart .a-cursor { stroke: var(--pl-accent-line); stroke-dasharray: 3 3; }
+.pl-areachart__x { display: flex; justify-content: space-between; font-family: var(--pl-font-mono); font-size: 10px; color: var(--pl-fg-4); margin-top: 6px; }
+.pl-areachart__x .is-active { color: var(--pl-fg-on-accent); background: var(--pl-accent); padding: 1px 6px; border-radius: var(--pl-radius-full); }
+.pl-charttip { position: absolute; transform: translate(-50%, -110%); background: var(--pl-fg-1); color: var(--pl-bg-1); padding: 6px 10px; border-radius: 8px; font-size: var(--pl-text-2xs); font-family: var(--pl-font-mono); white-space: nowrap; box-shadow: var(--pl-shadow-float); pointer-events: none; }
+.pl-charttip b { display: block; font-size: var(--pl-text-sm); }
+
+/* PLA-055 Randevu Zaman Çizelgesi */
+.pl-apptl { display: grid; gap: 0; position: relative; }
+.pl-apptl__row { display: grid; grid-template-columns: 44px 14px 1fr; gap: 10px; align-items: start; min-height: 40px; font-size: var(--pl-text-xs); }
+.pl-apptl__time { font-family: var(--pl-font-mono); font-size: 10px; color: var(--pl-fg-3); padding-top: 2px; }
+.pl-apptl__rail { position: relative; height: 100%; display: grid; justify-items: center; }
+.pl-apptl__rail::before { content: ""; position: absolute; top: 0; bottom: 0; width: 1px; background: var(--pl-line); }
+.pl-apptl__rail i { position: relative; width: 9px; height: 9px; border-radius: 50%; margin-top: 4px; background: var(--pl-bg-1); border: 2px solid var(--pl-fg-4); }
+.pl-apptl__row.is-now .pl-apptl__rail i { border-color: var(--pl-accent); background: var(--pl-accent); box-shadow: var(--pl-glow); }
+.pl-apptl__body b { color: var(--pl-fg-1); font-weight: 600; display: block; }
+.pl-apptl__body small { color: var(--pl-fg-3); }
+.pl-apptl__card { margin-top: 6px; padding: 10px; border-radius: 12px; background: var(--pl-bg-2); border: 1px solid var(--pl-line); box-shadow: var(--pl-shadow-md); display: grid; gap: 4px; }
+
+/* ==========================================================================
+   G. CRM & İŞ
+   ========================================================================== */
+/* PLA-056 İş Süreci Adımlayıcı */
+.pl-bpf { display: flex; align-items: center; gap: 4px; padding: 6px; border-radius: var(--pl-radius-full); background: var(--pl-bg-2); border: 1px solid var(--pl-line); overflow-x: auto; scrollbar-width: none; }
+.pl-bpf__stage { flex: none; display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 14px; border-radius: var(--pl-radius-full); font-size: var(--pl-text-xs); color: var(--pl-fg-3); white-space: nowrap; }
+.pl-bpf__stage i { width: 18px; height: 18px; border-radius: 50%; display: grid; place-items: center; border: 1.5px solid currentColor; font-style: normal; font-size: 10px; }
+.pl-bpf__stage.is-done { color: var(--pl-fg-2); } .pl-bpf__stage.is-done i { background: var(--pl-success); border-color: var(--pl-success); color: var(--pl-bg-0); }
+.pl-bpf__stage.is-active { background: var(--pl-accent); color: var(--pl-fg-on-accent); font-weight: 600; }
+.pl-bpf__sep { flex: 1; min-width: 16px; height: 1px; background: var(--pl-line-strong); }
+.pl-bpf__time { font-family: var(--pl-font-mono); font-size: 10px; opacity: .7; }
+
+/* PLA-057 Skor Göstergesi */
+.pl-scoregauge { position: relative; width: 170px; aspect-ratio: 2 / 1.15; display: grid; place-items: end center; }
+.pl-scoregauge__arc { position: absolute; inset: 0 0 auto 0; aspect-ratio: 2 / 1; border-radius: 170px 170px 0 0; background: conic-gradient(from -90deg at 50% 100%, var(--pl-accent) 0deg calc(var(--v, 90) * 1.8deg), var(--pl-bg-4) 0 180deg, transparent 0); -webkit-mask: repeating-conic-gradient(from -90deg at 50% 100%, black 0 3deg, transparent 3deg 5deg), radial-gradient(circle at 50% 100%, transparent 58%, black 59%); -webkit-mask-composite: source-in; mask-composite: intersect; }
+.pl-scoregauge__val { position: relative; font-family: var(--pl-font-display); font-size: var(--pl-text-5xl); font-weight: 700; color: var(--pl-fg-1); line-height: 1; letter-spacing: -.04em; }
+.pl-scoregauge__lbl { position: relative; font-size: var(--pl-text-2xs); color: var(--pl-fg-3); text-align: center; }
+
+/* PLA-058 Kişi Ayrıntı Kartı */
+.pl-contact { display: grid; gap: var(--pl-space-3); }
+.pl-contact__head { display: flex; align-items: center; gap: var(--pl-space-3); }
+.pl-contact__photo { width: 54px; height: 54px; border-radius: 50%; background: var(--pl-grad-sunset); flex: none; display: grid; place-items: center; color: var(--pl-fg-on-accent); font-weight: 800; }
+.pl-contact__name { font-size: var(--pl-text-xl); font-weight: 700; color: var(--pl-fg-1); margin: 0; }
+.pl-contact__meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: var(--pl-space-3); }
+.pl-contact__meta div { display: grid; gap: 2px; font-size: var(--pl-text-xs); color: var(--pl-fg-1); }
+.pl-contact__meta small { color: var(--pl-fg-3); font-size: 10px; }
+.pl-contact__actions { display: flex; gap: 6px; flex-wrap: wrap; }
+
+/* PLA-059 İş Kuyruğu Listesi */
+.pl-queue { display: grid; gap: 6px; }
+.pl-queue__item { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: center; padding: 10px; border-radius: 14px; background: var(--pl-bg-2); border: 1px solid var(--pl-line); cursor: pointer; }
+.pl-queue__item:hover { border-color: var(--pl-line-strong); }
+.pl-queue__item.is-active { background: color-mix(in srgb, var(--pl-accent) 14%, var(--pl-bg-2)); border-color: var(--pl-accent-line); }
+.pl-queue__item b { display: block; font-size: var(--pl-text-sm); color: var(--pl-fg-1); }
+.pl-queue__item small { font-size: var(--pl-text-2xs); color: var(--pl-fg-3); }
+.pl-queue__go { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--pl-fg-1); color: var(--pl-bg-1); }
+
+/* PLA-060 Mülk Özellik Paneli */
+.pl-property { display: grid; gap: var(--pl-space-3); }
+.pl-property__price { font-family: var(--pl-font-display); font-size: var(--pl-text-3xl); font-weight: 700; color: var(--pl-fg-1); letter-spacing: -.02em; }
+.pl-property__addr { font-size: var(--pl-text-xs); color: var(--pl-fg-3); }
+.pl-property__specs { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--pl-line); border-radius: 12px; overflow: hidden; }
+.pl-property__specs div { padding: 10px; display: grid; gap: 2px; border-right: 1px solid var(--pl-line); }
+.pl-property__specs div:last-child { border-right: 0; }
+.pl-property__specs b { font-family: var(--pl-font-mono); font-size: var(--pl-text-lg); color: var(--pl-fg-1); }
+.pl-property__specs small { font-size: 10px; color: var(--pl-fg-3); }
+.pl-property__feats { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.pl-property__feats span { display: flex; align-items: center; gap: 6px; font-size: var(--pl-text-2xs); color: var(--pl-fg-2); padding: 6px 8px; border-radius: 8px; background: var(--pl-bg-3); }
+
+/* PLA-061 Değerleme Hesaplayıcı */
+.pl-calc { display: grid; gap: var(--pl-space-3); padding: var(--pl-space-4); border-radius: var(--pl-radius-lg); background: var(--pl-bg-2); border: 1px solid var(--pl-line); }
+.pl-calc__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--pl-space-2); }
+.pl-calc__grid div { display: grid; gap: 2px; font-size: var(--pl-text-2xs); color: var(--pl-fg-3); }
+.pl-calc__grid b { font-family: var(--pl-font-mono); color: var(--pl-fg-1); font-size: var(--pl-text-sm); }
+.pl-calc__result { display: grid; grid-template-columns: 1fr 1fr; gap: var(--pl-space-2); }
+.pl-calc__result b { display: block; font-family: var(--pl-font-mono); font-size: var(--pl-text-xl); color: var(--pl-fg-1); }
+
+/* PLA-062 Benzer Kayıt Satırı */
+.pl-simrow { display: grid; grid-template-columns: 76px 1fr; gap: var(--pl-space-3); align-items: center; padding: 8px; border-radius: 12px; border: 1px solid var(--pl-line); background: var(--pl-bg-2); text-decoration: none; }
+.pl-simrow:hover { border-color: var(--pl-accent-line); }
+.pl-simrow__img { aspect-ratio: 4 / 3; border-radius: 8px; background: var(--pl-media-2); }
+.pl-simrow b { color: var(--pl-fg-1); font-family: var(--pl-font-mono); }
+.pl-simrow small { display: block; color: var(--pl-fg-3); font-size: var(--pl-text-2xs); }
+
+/* ==========================================================================
+   H. YARATICI ARAÇLAR
+   ========================================================================== */
+/* PLA-063 Çok İzli Zaman Çizelgesi */
+.pl-tl { border: 1px solid var(--pl-line); border-radius: var(--pl-radius-lg); background: var(--pl-bg-1); overflow: hidden; font-size: var(--pl-text-2xs); }
+.pl-tl__ruler { display: grid; grid-template-columns: 96px 1fr; height: 26px; border-bottom: 1px solid var(--pl-line); }
+.pl-tl__ticks { position: relative; background-image: repeating-linear-gradient(90deg, var(--pl-line-strong) 0 1px, transparent 1px 40px), repeating-linear-gradient(90deg, var(--pl-line) 0 1px, transparent 1px 8px); background-size: auto 10px, auto 5px; background-repeat: repeat-x; background-position: bottom; font-family: var(--pl-font-mono); color: var(--pl-fg-4); }
+.pl-tl__ticks span { position: absolute; top: 4px; transform: translateX(3px); font-size: 9px; }
+.pl-tl__body { position: relative; }
+.pl-tl__track { display: grid; grid-template-columns: 96px 1fr; height: 44px; border-bottom: 1px solid var(--pl-line); }
+.pl-tl__head { display: flex; align-items: center; gap: 6px; padding: 0 8px; border-right: 1px solid var(--pl-line); color: var(--pl-fg-3); font-family: var(--pl-font-mono); }
+.pl-tl__head .pl-ico { width: 13px; height: 13px; }
+.pl-tl__lane { position: relative; }
+.pl-clip { position: absolute; top: 6px; bottom: 6px; left: var(--x, 0%); width: var(--w, 30%); border-radius: 8px; background: var(--c, var(--pl-track-video)); color: var(--pl-fg-1); display: flex; align-items: center; gap: 6px; padding: 0 8px; font-size: 10px; font-weight: 600; overflow: hidden; white-space: nowrap; box-shadow: inset 0 0 0 1px rgb(255 255 255 / .18); }
+.pl-clip--video { --c: var(--pl-track-video); }
+.pl-clip--audio { --c: color-mix(in srgb, var(--pl-track-audio) 22%, var(--pl-bg-2)); color: var(--pl-track-audio); background-image: repeating-linear-gradient(90deg, transparent 0 2px, color-mix(in srgb, var(--pl-track-audio) 70%, transparent) 2px 3px); background-size: 100% 60%; background-repeat: no-repeat; background-position: center; }
+.pl-clip--text { --c: var(--pl-track-text); color: var(--pl-bg-0); }
+.pl-clip--fx { --c: var(--pl-track-fx); color: var(--pl-bg-0); }
+.pl-clip.is-selected { box-shadow: 0 0 0 2px var(--pl-warning), inset 0 0 0 1px rgb(255 255 255 / .2); }
+.pl-clip__thumb { width: 26px; height: 18px; border-radius: 3px; background: rgb(0 0 0 / .3); flex: none; }
+.pl-playhead { position: absolute; top: 0; bottom: 0; left: calc(96px + (100% - 96px) * var(--p, .4)); width: 2px; background: var(--pl-playhead); z-index: 3; pointer-events: none; }
+.pl-playhead::before { content: ""; position: absolute; top: -26px; left: -6px; width: 14px; height: 14px; background: var(--pl-playhead); clip-path: polygon(0 0, 100% 0, 100% 60%, 50% 100%, 0 60%); }
+
+/* PLA-064 Oynatma Kontrolleri */
+.pl-transport { display: flex; align-items: center; gap: var(--pl-space-2); padding: 6px; border-radius: var(--pl-radius-full); background: var(--pl-bg-2); border: 1px solid var(--pl-line); width: max-content; max-width: 100%; flex-wrap: wrap; }
+.pl-transport__tc { font-family: var(--pl-font-mono); font-size: var(--pl-text-xs); color: var(--pl-fg-1); padding: 0 10px; font-variant-numeric: tabular-nums; }
+.pl-transport__tc small { color: var(--pl-fg-3); }
+.pl-transport button { width: 32px; height: 32px; border-radius: 50%; border: 0; background: transparent; color: var(--pl-fg-2); display: grid; place-items: center; cursor: pointer; }
+.pl-transport button:hover { background: var(--pl-bg-3); color: var(--pl-fg-1); }
+.pl-transport .is-main { width: 40px; height: 40px; background: var(--pl-accent); color: var(--pl-fg-on-accent); }
+.pl-transport .is-main:hover { background: var(--pl-accent); color: var(--pl-fg-on-accent); }
+
+/* PLA-065 Medya Kutusu Izgarası */
+.pl-bin { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 8px; }
+.pl-bin__item { display: grid; gap: 4px; font-size: 10px; color: var(--pl-fg-2); cursor: pointer; }
+.pl-bin__thumb { aspect-ratio: 16 / 10; border-radius: 6px; background: var(--pl-media-1); position: relative; border: 2px solid transparent; }
+.pl-bin__thumb span { position: absolute; right: 4px; bottom: 4px; font-family: var(--pl-font-mono); font-size: 9px; background: rgb(0 0 0 / .6); color: var(--pl-fg-1); padding: 0 4px; border-radius: 3px; }
+.pl-bin__item.is-selected .pl-bin__thumb { border-color: var(--pl-accent); }
+.pl-bin__item b { font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* PLA-066 Düğüm Grafiği */
+.pl-nodes { position: relative; height: 240px; border-radius: var(--pl-radius-lg); background: radial-gradient(120% 90% at 50% 0%, var(--pl-bg-2), var(--pl-bg-0)); overflow: hidden; border: 1px solid var(--pl-line); }
+.pl-nodes svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.pl-nodes path { fill: none; stroke: var(--pl-fg-4); stroke-width: 2; }
+.pl-nodes path.is-live { stroke: var(--pl-accent); filter: drop-shadow(0 0 4px var(--pl-accent)); }
+.pl-node { position: absolute; left: var(--x); top: var(--y); width: 150px; border-radius: 12px; background: var(--pl-bg-2); border: 1px solid var(--pl-line-strong); box-shadow: var(--pl-shadow-float); font-size: 10px; color: var(--pl-fg-2); }
+.pl-node__head { display: flex; align-items: center; gap: 6px; padding: 7px 10px; border-bottom: 1px solid var(--pl-line); font-family: var(--pl-font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--pl-fg-3); }
+.pl-node__head i { width: 6px; height: 6px; border-radius: 50%; background: var(--pl-success); }
+.pl-node__body { padding: 8px 10px; display: grid; gap: 5px; }
+.pl-node__port { display: flex; align-items: center; gap: 6px; }
+.pl-node__port::before { content: ""; width: 8px; height: 8px; border-radius: 50%; border: 2px solid var(--c, var(--pl-viz-2)); background: var(--pl-bg-2); margin-left: -15px; }
+.pl-node__port--out { justify-content: flex-end; }
+.pl-node__port--out::before { order: 2; margin-left: 0; margin-right: -15px; }
+.pl-node.is-selected { border-color: var(--pl-accent); box-shadow: var(--pl-glow-strong); }
+
+/* PLA-067 Ses Dalga Çubuğu */
+.pl-waveform { display: flex; align-items: center; gap: 2px; height: 48px; }
+.pl-waveform i { flex: 1; min-width: 2px; border-radius: 2px; background: var(--pl-fg-4); height: calc(var(--v, 40) * 1%); }
+.pl-waveform i.is-played { background: var(--pl-accent); }
+
+/* PLA-068 Katman Listesi */
+.pl-layers { display: grid; font-size: var(--pl-text-xs); }
+.pl-layer { display: flex; align-items: center; gap: 8px; height: 30px; padding: 0 8px 0 calc(8px + var(--d, 0) * 14px); border-radius: 6px; color: var(--pl-fg-2); cursor: pointer; }
+.pl-layer:hover { background: var(--pl-bg-3); }
+.pl-layer.is-selected { background: var(--pl-accent-soft); color: var(--pl-fg-1); box-shadow: inset 0 0 0 1px var(--pl-accent-line); }
+.pl-layer .pl-ico { width: 13px; height: 13px; color: var(--pl-fg-3); }
+.pl-layer__act { margin-left: auto; display: flex; gap: 4px; opacity: 0; }
+.pl-layer:hover .pl-layer__act, .pl-layer.is-selected .pl-layer__act { opacity: 1; }
+
+/* PLA-069 Sayfa Film Şeridi */
+.pl-pagestrip { display: flex; gap: 8px; padding: 8px; border-radius: 14px; background: var(--pl-bg-2); border: 1px solid var(--pl-line); width: max-content; max-width: 100%; overflow-x: auto; }
+.pl-pagestrip__p { width: 48px; aspect-ratio: 3 / 4; border-radius: 6px; background: var(--pl-media-3); border: 2px solid transparent; flex: none; position: relative; }
+.pl-pagestrip__p.is-active { border-color: var(--pl-accent); }
+.pl-pagestrip__p span { position: absolute; top: 2px; left: 2px; font-family: var(--pl-font-mono); font-size: 8px; background: rgb(0 0 0 / .55); color: var(--pl-fg-1); padding: 0 3px; border-radius: 3px; }
+.pl-pagestrip__add { width: 48px; aspect-ratio: 3 / 4; border-radius: 6px; border: 1px dashed var(--pl-line-strong); display: grid; place-items: center; color: var(--pl-fg-3); background: transparent; flex: none; cursor: pointer; }
+
+/* PLA-070 Alt Menülü Bağlam Menüsü */
+button.pl-menuitem { appearance: none; border: 0; background: transparent; width: 100%; font: inherit; font-size: var(--pl-text-sm); text-align: left; }
+.pl-ctxmenu { display: flex; align-items: flex-start; gap: 4px; }
+.pl-ctxmenu .pl-menu { min-width: 190px; }
+.pl-menuitem.is-open { background: var(--pl-accent); color: var(--pl-fg-on-accent); }
+.pl-menuitem.is-open .pl-menuitem__meta { color: inherit; }
+.pl-ctxmenu__sub { margin-top: 64px; }
+
+/* ==========================================================================
+   I. MOBİLİTE & CİHAZ
+   ========================================================================== */
+/* PLA-071 Gösterge Kümesi */
+.pl-cluster { display: grid; grid-template-columns: 1fr 1.3fr 1fr; align-items: center; gap: var(--pl-space-4); padding: var(--pl-space-5); border-radius: 80px; background: radial-gradient(ellipse at center, var(--pl-bg-2), var(--pl-bg-0) 70%); border: 1px solid var(--pl-line); }
+.pl-dial { position: relative; aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; background: conic-gradient(from 220deg, var(--pl-hmi-arc) 0deg calc(var(--v, 60) * 2.8deg), var(--pl-bg-3) 0 280deg, transparent 0); max-width: 170px; width: 100%; justify-self: center; }
+.pl-dial::before { content: ""; position: absolute; inset: 7px; border-radius: 50%; background: radial-gradient(circle, var(--pl-bg-1), var(--pl-bg-0)); box-shadow: inset 0 0 30px color-mix(in srgb, var(--pl-hmi-arc) 25%, transparent); }
+.pl-dial::after { content: ""; position: absolute; inset: 14px; border-radius: 50%; background: repeating-conic-gradient(from 220deg, var(--pl-fg-4) 0 .8deg, transparent .8deg 14deg); -webkit-mask: radial-gradient(circle, transparent 86%, black 87%); mask: radial-gradient(circle, transparent 86%, black 87%); }
+.pl-dial__val { position: relative; z-index: 1; text-align: center; }
+.pl-dial__val b { display: block; font-family: var(--pl-font-display); font-size: var(--pl-text-4xl); font-weight: 700; color: var(--pl-fg-1); line-height: 1; font-variant-numeric: tabular-nums; }
+.pl-dial__val small { font-size: 10px; color: var(--pl-fg-3); font-family: var(--pl-font-mono); letter-spacing: .08em; }
+.pl-dial--right { background: conic-gradient(from 220deg, var(--pl-hmi-arc-2) 0deg calc(var(--v, 30) * 2.8deg), var(--pl-bg-3) 0 280deg, transparent 0); }
+.pl-cluster__center { display: grid; justify-items: center; gap: var(--pl-space-2); text-align: center; }
+.pl-cluster__road { width: 100%; height: 90px; border-radius: 12px; background: linear-gradient(180deg, transparent, var(--pl-bg-3)); position: relative; overflow: hidden; -webkit-mask: linear-gradient(transparent, black 30%); mask: linear-gradient(transparent, black 30%); }
+.pl-cluster__road::before { content: ""; position: absolute; left: 50%; bottom: 0; width: 70%; height: 100%; transform: translateX(-50%) perspective(80px) rotateX(40deg); transform-origin: bottom; background: linear-gradient(90deg, transparent 0 46%, var(--pl-hmi-arc-2) 46% 54%, transparent 54%), var(--pl-bg-2); border-left: 2px solid var(--pl-hmi-arc); border-right: 2px solid var(--pl-hmi-arc); opacity: .7; }
+.pl-cluster__stats { display: flex; gap: var(--pl-space-3); font-family: var(--pl-font-mono); font-size: var(--pl-text-2xs); color: var(--pl-fg-2); }
+
+/* PLA-072 Vites Seçici */
+.pl-gear { display: inline-flex; gap: 2px; padding: 4px; border-radius: var(--pl-radius-full); background: var(--pl-bg-2); border: 1px solid var(--pl-line); font-family: var(--pl-font-display); font-weight: 700; }
+.pl-gear span { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 50%; color: var(--pl-fg-4); font-size: var(--pl-text-sm); }
+.pl-gear span.is-active { background: var(--pl-accent); color: var(--pl-fg-on-accent); box-shadow: var(--pl-glow-accent); }
+
+/* PLA-073 Yön Tarifi Kartı */
+.pl-turn { display: flex; align-items: center; gap: var(--pl-space-3); padding: var(--pl-space-3) var(--pl-space-4); border-radius: var(--pl-radius-lg); width: max-content; max-width: 100%; }
+.pl-turn__ic { width: 44px; height: 44px; display: grid; place-items: center; color: var(--pl-fg-1); }
+.pl-turn__ic .pl-ico { width: 32px; height: 32px; stroke-width: 2.5; }
+.pl-turn__dist { font-family: var(--pl-font-display); font-size: var(--pl-text-3xl); font-weight: 700; color: var(--pl-fg-1); line-height: 1; letter-spacing: -.02em; }
+.pl-turn__dist small { font-size: var(--pl-text-sm); color: var(--pl-fg-3); }
+.pl-turn__road { font-size: var(--pl-text-xs); color: var(--pl-fg-2); }
+
+/* PLA-074 Menzil / Batarya Çubuğu */
+.pl-range { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: center; font-family: var(--pl-font-mono); font-size: var(--pl-text-xs); color: var(--pl-fg-1); }
+.pl-range__bar { display: flex; gap: 3px; height: 12px; }
+.pl-range__bar i { flex: 1; border-radius: 2px; background: var(--pl-bg-4); }
+.pl-range__bar i.is-on { background: var(--pl-success); box-shadow: 0 0 6px color-mix(in srgb, var(--pl-success) 50%, transparent); }
+.pl-range.is-low .pl-range__bar i.is-on { background: var(--pl-warning); }
+
+/* PLA-075 Pusula Kadranı */
+.pl-compass { position: relative; width: 150px; aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; background: radial-gradient(circle, var(--pl-bg-2) 55%, var(--pl-bg-1) 56%); border: 1px solid var(--pl-line-strong); }
+.pl-compass::before { content: ""; position: absolute; inset: 6px; border-radius: 50%; background: repeating-conic-gradient(var(--pl-fg-4) 0 1deg, transparent 1deg 10deg); -webkit-mask: radial-gradient(circle, transparent 88%, black 89%); mask: radial-gradient(circle, transparent 88%, black 89%); }
+.pl-compass__rose { position: absolute; inset: 0; transform: rotate(calc(var(--deg, 280) * -1deg)); font-family: var(--pl-font-mono); font-size: 10px; color: var(--pl-fg-3); font-weight: 700; }
+.pl-compass__rose span { position: absolute; left: 50%; top: 14px; transform-origin: 50% 61px; translate: -50% 0; }
+.pl-compass__rose span:first-child { color: var(--pl-danger); }
+.pl-compass__needle { position: absolute; top: 4px; left: 50%; translate: -50% 0; width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 10px solid var(--pl-accent); }
+.pl-compass__val { position: relative; font-family: var(--pl-font-display); font-size: var(--pl-text-2xl); font-weight: 700; color: var(--pl-fg-1); }
+.pl-compass__val small { display: block; font-size: 9px; color: var(--pl-fg-3); text-align: center; font-family: var(--pl-font-mono); letter-spacing: .1em; }
+
+/* PLA-076 Kumanda Yön Pedi */
+.pl-dpad { position: relative; width: 132px; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, var(--pl-bg-3), var(--pl-bg-2)); border: 1px solid var(--pl-line-strong); display: grid; place-items: center; }
+.pl-dpad button { position: absolute; width: 36px; height: 36px; border-radius: 50%; border: 0; background: transparent; color: var(--pl-fg-2); display: grid; place-items: center; cursor: pointer; }
+.pl-dpad button:hover { color: var(--pl-fg-1); background: var(--pl-bg-4); }
+.pl-dpad__u { top: 6px; } .pl-dpad__d { bottom: 6px; } .pl-dpad__l { left: 6px; } .pl-dpad__r { right: 6px; }
+.pl-dpad__stick { width: 50px; height: 50px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, var(--pl-bg-4), var(--pl-bg-1)); box-shadow: var(--pl-shadow-float), inset 0 1px 0 rgb(255 255 255 / .1); border: 1px solid var(--pl-line-strong); }
+
+/* PLA-077 Kamera Akışı HUD */
+.pl-camfeed { position: relative; aspect-ratio: 16 / 9; border-radius: var(--pl-radius-xl); overflow: hidden; background: var(--pl-media-2); color: var(--pl-on-media); font-family: var(--pl-font-mono); font-size: var(--pl-text-2xs); isolation: isolate; }
+.pl-camfeed::before { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 49.8%, rgb(255 255 255 / .25) 50%, transparent 50.2%), linear-gradient(90deg, transparent 49.8%, rgb(255 255 255 / .25) 50%, transparent 50.2%); z-index: 1; -webkit-mask: radial-gradient(circle, black 0 26px, transparent 27px); mask: radial-gradient(circle, black 0 26px, transparent 27px); }
+.pl-camfeed__tl, .pl-camfeed__tr, .pl-camfeed__bl, .pl-camfeed__br { position: absolute; display: flex; gap: 6px; align-items: center; z-index: 2; }
+.pl-camfeed__tl { top: 12px; left: 12px; } .pl-camfeed__tr { top: 12px; right: 12px; } .pl-camfeed__bl { bottom: 12px; left: 12px; } .pl-camfeed__br { bottom: 12px; right: 12px; }
+.pl-camfeed__rec { display: inline-flex; align-items: center; gap: 6px; background: rgb(0 0 0 / .45); padding: 3px 8px; border-radius: 6px; }
+.pl-camfeed__rec::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--pl-live); animation: pl-pulse 1.4s infinite; }
+.pl-camfeed__hist { width: 90px; height: 40px; display: flex; align-items: flex-end; gap: 1px; background: rgb(0 0 0 / .4); padding: 4px; border-radius: 6px; }
+.pl-camfeed__hist i { flex: 1; background: rgb(255 255 255 / .7); height: calc(var(--v, 40) * 1%); }
+
+/* PLA-078 Telemetri Izgarası */
+.pl-telemetry { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--pl-line); border: 1px solid var(--pl-line); border-radius: 12px; overflow: hidden; }
+.pl-telemetry div { background: var(--pl-bg-2); padding: 10px; display: grid; gap: 2px; }
+.pl-telemetry small { font-family: var(--pl-font-mono); font-size: 9px; color: var(--pl-fg-3); letter-spacing: .1em; text-transform: uppercase; }
+.pl-telemetry b { font-family: var(--pl-font-mono); font-size: var(--pl-text-md); color: var(--pl-fg-1); font-variant-numeric: tabular-nums; }
+
+/* ==========================================================================
+   J. SAĞLIK, YAŞAM & TİCARET
+   ========================================================================== */
+/* PLA-079 Büyük Yaşamsal Değer Kartı */
+.pl-vital { display: grid; gap: var(--pl-space-2); padding: var(--pl-space-4); border-radius: var(--pl-radius-xl); background: var(--pl-bg-2); border: 1px solid var(--pl-line); }
+.pl-vital__val { font-family: var(--pl-font-display); font-size: var(--pl-text-6xl); font-weight: 600; color: var(--pl-fg-1); line-height: .9; letter-spacing: -.05em; }
+.pl-vital__val small { font-size: var(--pl-text-sm); font-weight: 500; color: var(--pl-fg-3); letter-spacing: 0; }
+
+/* PLA-080 Aktivite Karosu */
+.pl-activity { display: grid; justify-items: center; text-align: center; gap: 6px; padding: var(--pl-space-4); border-radius: var(--pl-radius-xl); background: var(--pl-bg-2); border: 1px solid var(--pl-line); position: relative; padding-top: 34px; margin-top: 22px; }
+.pl-activity__ic { position: absolute; top: -22px; width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; background: var(--pl-accent); color: var(--pl-fg-on-accent); box-shadow: var(--pl-glow-accent); }
+.pl-activity b { color: var(--pl-fg-1); font-size: var(--pl-text-sm); }
+.pl-activity small { color: var(--pl-fg-3); font-size: var(--pl-text-2xs); }
+.pl-activity__foot { width: 100%; display: flex; align-items: center; justify-content: space-between; font-size: var(--pl-text-2xs); color: var(--pl-fg-3); }
+.pl-activity .pl-progress { width: 100%; }
+
+/* PLA-081 Aksan Dolgulu Genel Bakış Kartı */
+.pl-overview { border-radius: var(--pl-radius-xl); background: var(--pl-accent); color: var(--pl-fg-on-accent); padding: var(--pl-space-5); display: grid; gap: var(--pl-space-3); position: relative; overflow: hidden; }
+.pl-overview svg { width: 100%; height: 90px; display: block; overflow: visible; }
+.pl-overview .o-line { fill: none; stroke: currentColor; stroke-width: 2.5; vector-effect: non-scaling-stroke; }
+.pl-overview .o-area { fill: color-mix(in srgb, currentColor 14%, transparent); }
+.pl-overview .o-grid { stroke: color-mix(in srgb, currentColor 14%, transparent); }
+.pl-overview__stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.pl-overview__stats div { padding: 10px; border-radius: 14px; background: color-mix(in srgb, currentColor 10%, transparent); display: grid; gap: 2px; text-align: center; }
+.pl-overview__stats div.is-hi { background: var(--pl-bg-1); color: var(--pl-fg-1); }
+.pl-overview__stats b { font-family: var(--pl-font-mono); font-size: var(--pl-text-lg); }
+.pl-overview__stats small { font-size: 10px; opacity: .7; }
+
+/* PLA-082 Arkadaş / Kişi Listesi */
+.pl-people { display: grid; gap: 2px; }
+.pl-people__row { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: center; padding: 8px; border-radius: 10px; }
+.pl-people__row:hover { background: var(--pl-bg-3); }
+.pl-people__row b { display: block; font-size: var(--pl-text-xs); color: var(--pl-fg-1); }
+.pl-people__row small { font-size: 10px; color: var(--pl-fg-3); }
+
+/* PLA-083 Küre İstatistik Paneli */
+.pl-globe { position: relative; width: 220px; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 35% 30%, color-mix(in srgb, var(--pl-accent) 30%, var(--pl-bg-2)), var(--pl-bg-1) 70%); box-shadow: 0 0 0 18px color-mix(in srgb, var(--pl-accent) 6%, transparent), 0 0 0 40px color-mix(in srgb, var(--pl-accent) 3%, transparent), var(--pl-glow-accent); overflow: hidden; justify-self: center; }
+.pl-globe::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(circle, color-mix(in srgb, var(--pl-accent) 80%, white) 1.4px, transparent 1.6px); background-size: 9px 9px; -webkit-mask: radial-gradient(ellipse 30% 22% at 30% 35%, black 70%, transparent 72%), radial-gradient(ellipse 22% 30% at 62% 55%, black 70%, transparent 72%), radial-gradient(ellipse 18% 14% at 70% 25%, black 70%, transparent 72%), radial-gradient(ellipse 12% 20% at 38% 72%, black 70%, transparent 72%); mask: radial-gradient(ellipse 30% 22% at 30% 35%, black 70%, transparent 72%), radial-gradient(ellipse 22% 30% at 62% 55%, black 70%, transparent 72%), radial-gradient(ellipse 18% 14% at 70% 25%, black 70%, transparent 72%), radial-gradient(ellipse 12% 20% at 38% 72%, black 70%, transparent 72%); }
+.pl-globe::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle at 70% 75%, transparent 40%, rgb(0 0 0 / .45)); }
+.pl-countries { display: grid; gap: 6px; font-size: var(--pl-text-xs); }
+.pl-countries div { display: grid; grid-template-columns: 8px 1fr auto auto; gap: 8px; align-items: center; color: var(--pl-fg-2); }
+.pl-countries i { width: 8px; height: 8px; border-radius: 50%; background: var(--c, var(--pl-viz-1)); }
+.pl-countries b { font-family: var(--pl-font-mono); color: var(--pl-fg-1); font-weight: 600; }
+.pl-countries small { font-family: var(--pl-font-mono); color: var(--pl-fg-3); }
+
+/* PLA-084 Kategori İkon Çipleri */
+.pl-catchips { display: flex; gap: var(--pl-space-3); overflow-x: auto; scrollbar-width: none; padding: 4px; }
+.pl-catchip { flex: none; display: grid; justify-items: center; gap: 6px; width: 64px; padding: 10px 0; border-radius: var(--pl-radius-full); background: var(--pl-bg-2); border: 1px solid var(--pl-line); font-size: var(--pl-text-2xs); color: var(--pl-fg-2); cursor: pointer; }
+.pl-catchip__ic { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--pl-bg-3); color: var(--pl-fg-1); }
+.pl-catchip.is-active { background: var(--pl-accent); color: var(--pl-fg-on-accent); border-color: var(--pl-accent); box-shadow: var(--pl-glow-accent); }
+.pl-catchip.is-active .pl-catchip__ic { background: var(--pl-bg-1); color: var(--pl-accent); }
+
+/* PLA-085 Ürün Vitrin Kartı */
+.pl-dish { display: grid; justify-items: center; text-align: center; gap: 6px; padding: var(--pl-space-4); padding-top: 58px; margin-top: 46px; border-radius: var(--pl-radius-xl); background: var(--pl-bg-2); border: 1px solid var(--pl-line); position: relative; }
+.pl-dish__img { position: absolute; top: -46px; width: 96px; height: 96px; border-radius: 50%; background: var(--pl-media-5); box-shadow: var(--pl-shadow-float); }
+.pl-dish b { color: var(--pl-fg-1); font-size: var(--pl-text-sm); }
+.pl-dish small { color: var(--pl-fg-3); font-size: var(--pl-text-2xs); }
+.pl-dish__foot { width: 100%; display: flex; align-items: center; justify-content: space-between; margin-top: 4px; }
+.pl-dish__price { font-family: var(--pl-font-mono); font-weight: 700; color: var(--pl-fg-1); }
+.pl-dish__add { width: 30px; height: 30px; border-radius: 50%; border: 0; background: var(--pl-fg-1); color: var(--pl-bg-1); display: grid; place-items: center; cursor: pointer; }
+.pl-dish.is-selected { border-color: var(--pl-accent); box-shadow: 0 0 0 1px var(--pl-accent); }
+.pl-dish.is-selected .pl-dish__add { background: var(--pl-accent); color: var(--pl-fg-on-accent); }
+
+/* PLA-086 Sipariş Özeti */
+.pl-order { display: grid; gap: var(--pl-space-3); }
+.pl-order__row { display: grid; grid-template-columns: 40px 1fr auto; gap: 10px; align-items: center; font-size: var(--pl-text-xs); }
+.pl-order__img { width: 40px; height: 40px; border-radius: 50%; background: var(--pl-media-5); }
+.pl-order__row b { display: block; color: var(--pl-fg-1); }
+.pl-order__row small { color: var(--pl-fg-3); font-family: var(--pl-font-mono); }
+.pl-order__sum { display: grid; gap: 6px; padding-top: var(--pl-space-3); border-top: 1px dashed var(--pl-line-strong); font-size: var(--pl-text-xs); }
+.pl-order__sum div { display: flex; justify-content: space-between; color: var(--pl-fg-3); }
+.pl-order__sum div b { font-family: var(--pl-font-mono); color: var(--pl-fg-1); }
+.pl-order__sum div.is-total b { font-size: var(--pl-text-lg); }
+
+/* PLA-087 İndirim Kartı */
+.pl-offer { position: relative; padding: var(--pl-space-5); border-radius: var(--pl-radius-xl); background: var(--pl-grad-iris); color: var(--pl-on-media); overflow: hidden; min-height: 120px; display: grid; align-content: end; isolation: isolate; }
+.pl-offer::after { content: ""; position: absolute; right: -24px; top: -24px; width: 120px; height: 120px; border-radius: 50%; background: rgb(255 255 255 / .16); z-index: -1; }
+.pl-offer b { font-family: var(--pl-font-display); font-size: var(--pl-text-4xl); font-weight: 800; line-height: 1; letter-spacing: -.03em; }
+.pl-offer small { font-size: var(--pl-text-xs); opacity: .85; }
+
+/* PLA-088 Oyun İstatistik Halkası */
+.pl-blobring { position: relative; width: 170px; aspect-ratio: 1; display: grid; place-items: center; justify-self: center; }
+.pl-blobring::before { content: ""; position: absolute; inset: 0; border-radius: 42% 58% 54% 46% / 48% 44% 56% 52%; background: conic-gradient(from 30deg, var(--pl-viz-3), var(--pl-viz-6), var(--pl-viz-4), var(--pl-viz-1), var(--pl-viz-3)); filter: blur(.5px); animation: pl-blob 8s ease-in-out infinite alternate; }
+.pl-blobring::after { content: ""; position: absolute; inset: 14px; border-radius: 50%; background: var(--pl-bg-1); box-shadow: inset 0 0 30px rgb(0 0 0 / .4); }
+@keyframes pl-blob { to { border-radius: 56% 44% 46% 54% / 42% 58% 42% 58%; transform: rotate(40deg); } }
+.pl-blobring__val { position: relative; z-index: 1; text-align: center; }
+.pl-blobring__val small { display: block; font-size: 10px; color: var(--pl-fg-3); }
+.pl-blobring__val b { font-family: var(--pl-font-display); font-size: var(--pl-text-3xl); font-weight: 700; color: var(--pl-fg-1); letter-spacing: -.03em; }
+
+/* PLA-089 Sosyal Profil Kartı */
+.pl-profile { border-radius: var(--pl-radius-xl); background: var(--pl-bg-2); border: 1px solid var(--pl-line); overflow: hidden; text-align: center; }
+.pl-profile__cover { height: 84px; background: var(--pl-grad-ocean); }
+.pl-profile__avatar { width: 76px; height: 76px; border-radius: 50%; margin: -38px auto 0; background: var(--pl-grad-sunset); border: 4px solid var(--pl-bg-2); display: grid; place-items: center; color: var(--pl-fg-on-accent); font-weight: 800; font-size: var(--pl-text-xl); }
+.pl-profile__body { padding: var(--pl-space-3) var(--pl-space-4) var(--pl-space-4); display: grid; gap: var(--pl-space-3); }
+.pl-profile__name { font-weight: 700; color: var(--pl-fg-1); font-size: var(--pl-text-lg); }
+.pl-profile__stats { display: grid; grid-template-columns: 1fr 1fr 1fr; }
+.pl-profile__stats div { display: grid; gap: 2px; }
+.pl-profile__stats b { font-family: var(--pl-font-mono); color: var(--pl-fg-1); }
+.pl-profile__stats small { font-size: 10px; color: var(--pl-fg-3); }
+
+/* PLA-090 Araştırma Gantt Şeridi */
+.pl-gantt { display: grid; gap: 8px; font-size: var(--pl-text-2xs); }
+.pl-gantt__head { display: grid; grid-template-columns: repeat(var(--n, 6), 1fr); font-family: var(--pl-font-mono); color: var(--pl-fg-4); padding-left: 0; }
+.pl-gantt__row { position: relative; height: 30px; background-image: repeating-linear-gradient(90deg, var(--pl-line) 0 1px, transparent 1px calc(100% / var(--n, 6))); }
+.pl-gantt__bar { position: absolute; top: 3px; bottom: 3px; left: var(--x, 0%); width: var(--w, 30%); border-radius: var(--pl-radius-full); background: var(--c, var(--pl-accent)); color: var(--pl-fg-on-accent); display: flex; align-items: center; padding: 0 10px; font-weight: 600; white-space: nowrap; overflow: hidden; gap: 6px; }
+.pl-gantt__bar--soft { background: var(--pl-bg-3); color: var(--pl-fg-2); border: 1px solid var(--pl-line); }
+
+/* ==========================================================================
+   K. EKRAN ŞABLONLARI — ortak iskelet
+   ========================================================================== */
+.pl-screen { border-radius: var(--pl-radius-2xl); overflow: hidden; background: var(--pl-bg-0); border: 1px solid var(--pl-line); box-shadow: var(--pl-shadow-xl); display: flex; min-height: 560px; color: var(--pl-fg-2); }
+.pl-screen__main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: var(--pl-space-4); padding: var(--pl-space-5); overflow: hidden; }
+.pl-screen__top { display: flex; align-items: center; gap: var(--pl-space-3); flex-wrap: wrap; }
+.pl-screen__title { margin: 0; font-size: var(--pl-text-2xl); font-weight: 700; color: var(--pl-fg-1); letter-spacing: -.02em; }
+.pl-screen__grid { display: grid; gap: var(--pl-space-4); min-width: 0; }
+.pl-screen__aside { width: 300px; flex: none; padding: var(--pl-space-5) var(--pl-space-5) var(--pl-space-5) 0; display: flex; flex-direction: column; gap: var(--pl-space-4); }
+.pl-screen--backdrop { background: var(--pl-grad-aurora); padding: var(--pl-space-6); border: 0; }
+.pl-screen--backdrop > .pl-window { flex: 1; }
+@media (max-width: 900px) {
+  .pl-screen { flex-direction: column; min-height: 0; }
+  .pl-screen__aside { width: auto; padding: 0 var(--pl-space-5) var(--pl-space-5); }
+  .pl-screen .pl-rail { width: auto; flex-direction: row; padding: var(--pl-space-2) var(--pl-space-3); border-right: 0; border-bottom: 1px solid var(--pl-line); overflow-x: auto; }
+  .pl-screen .pl-rail__item.is-active::before { display: none; }
+  .pl-screen .pl-rail__logo { margin: 0 var(--pl-space-2) 0 0; }
+  .pl-screen .pl-rail__spacer { display: none; }
+  .pl-screen .pl-projnav, .pl-screen .pl-glassnav { width: auto; }
+  .pl-screen .pl-inspector { width: auto; border-left: 0; border-top: 1px solid var(--pl-line); }
+  .pl-screen__grid { grid-template-columns: 1fr !important; }
+  .pl-screen .pl-isoplan { min-height: 480px; }
+  .pl-screen .pl-cluster { grid-template-columns: 1fr 1fr; border-radius: var(--pl-radius-2xl); }
+  .pl-screen .pl-cluster__center { grid-column: 1 / -1; grid-row: 2; }
+  .pl-screen__grid > * { grid-column: auto !important; grid-row: auto !important; }
+}
+} /* @layer pl */
+
+/* Önizleme çerçevesi: kök kapsayıcı tam genişlik */
+.pl-ds-root { padding: 16px; background: var(--pl-bg-0); min-height: 100%; box-sizing: border-box; }

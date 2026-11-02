@@ -1,0 +1,9 @@
+<!-- PLUGINLABS-ADVANCED-VARSAYILAN -->
+## Varsayılan tasarım sistemi: PluginLabs Advanced (Codex)
+
+- Herhangi bir UI/stil işinde önce `pluginlabs-advanced` skill'inin `SKILL.md` dosyasını oku ve uygula. Eski temel `pluginlabs-design` skill'inin yerine geçer.
+- Skill konumu: repoda `.agents/skills/pluginlabs-advanced/` varsa o, yoksa kişisel `~/.agents/skills/pluginlabs-advanced/`. Kanonik kaynak: `PluginLabs/design-system/pluginlabs-advanced/`; Claude Code aynı skill'i `.claude/skills/pluginlabs-advanced/` altından okur.
+- CSS sırası: `pl-tokens.css` → `pl-components.css` → `pl-advanced.css`; yalnız `[data-pl]`, `--pl-` tokenları ve `pl-` sınıfları.
+- Tam ekranlarda önce Ekran Şablonları (PLA-091…102) ve pin ekranları incelenir; yüzey `data-pl-surface` ile seçilir, ürün aksanı `data-pl-product` korunur.
+- Mevcut tasarıma dokunma; taşıma opt-in. Silme yok, `_arsiv/GG.AA.YYYY/`.
+<!-- /PLUGINLABS-ADVANCED-VARSAYILAN -->

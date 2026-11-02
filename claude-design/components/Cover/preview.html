@@ -1,0 +1,41 @@
+<!-- @dsCard height=300 -->
+<!doctype html>
+<html lang="tr">
+<head><meta charset="utf-8"><title>PluginLabs Advanced — kapak</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800&display=swap">
+<style>
+  body { margin: 0; }
+  .cv { position: relative; width: 960px; height: 300px; background: var(--pl-bg-0); overflow: hidden; font-family: "Inter", system-ui, sans-serif; }
+  .cv svg { position: absolute; left: 0; top: 0; }
+  .iris { fill: var(--pl-brand); } .cyan { fill: var(--pl-brand-2); } .gold { fill: var(--pl-gold); }
+  .slab { fill: var(--pl-bg-3); } .lime { fill: var(--pl-accent-tweakster); } .dot { fill: var(--pl-fg-3); }
+  .r-lg { rx: var(--pl-radius-lg); } .r-xl { rx: var(--pl-radius-xl); } .r-md { rx: var(--pl-radius-md); }
+  .name { position: absolute; left: 48px; bottom: 40px; max-width: 440px; }
+  .name h1 { margin: 0; font-size: 72px; line-height: .95; font-weight: 800; letter-spacing: -.035em; color: var(--pl-fg-1); }
+  .name p { margin: 14px 0 0; font-size: 14px; color: var(--pl-fg-3); }
+</style></head>
+<body>
+<div class="cv">
+<svg width="960" height="300" viewBox="0 0 960 300" aria-hidden="true">
+  <!-- blocks: pl-brand 200×300 (slab, bleeds top+bottom), pl-bg-3 160×180, pl-brand-2 120×120, pl-gold 88×56, pl-accent-tweakster 56×56 -->
+  <!-- arrangement: one tall Iris slab with satellites, flush on a 4px grid, right of x=480, Iris bleeding off top and bottom -->
+  <!-- pattern: dot grid at pl-space-4 (16px) — "Mono = makine dili", 4 px ızgara: precise, technical, mono → dot grid -->
+  <!-- scales: pl-space-4 pitch, pl-space-6 gaps; radii pl-radius-md / lg / xl -->
+  <rect class="iris r-xl" x="560" y="-24" width="200" height="348"/>
+  <rect class="slab r-lg" x="784" y="24" width="160" height="180"/>
+  <rect class="cyan r-xl" x="784" y="228" width="120" height="120"/>
+  <rect class="gold r-md" x="488" y="216" width="56" height="88"/>
+  <rect class="lime r-md" x="888" y="148" width="56" height="56"/>
+  <g class="dot" opacity=".55">
+    <circle cx="600" cy="40" r="2"/><circle cx="616" cy="40" r="2"/><circle cx="632" cy="40" r="2"/><circle cx="648" cy="40" r="2"/><circle cx="664" cy="40" r="2"/>
+    <circle cx="600" cy="56" r="2"/><circle cx="616" cy="56" r="2"/><circle cx="632" cy="56" r="2"/><circle cx="648" cy="56" r="2"/><circle cx="664" cy="56" r="2"/>
+    <circle cx="600" cy="72" r="2"/><circle cx="616" cy="72" r="2"/><circle cx="632" cy="72" r="2"/><circle cx="648" cy="72" r="2"/><circle cx="664" cy="72" r="2"/>
+    <circle cx="808" cy="48" r="2"/><circle cx="824" cy="48" r="2"/><circle cx="840" cy="48" r="2"/><circle cx="856" cy="48" r="2"/>
+    <circle cx="808" cy="64" r="2"/><circle cx="824" cy="64" r="2"/><circle cx="840" cy="64" r="2"/><circle cx="856" cy="64" r="2"/>
+    <circle cx="808" cy="80" r="2"/><circle cx="824" cy="80" r="2"/><circle cx="840" cy="80" r="2"/><circle cx="856" cy="80" r="2"/>
+  </g>
+</svg>
+<div class="name"><h1>PluginLabs Advanced</h1><p>Gece atölyesi, masaüstü ölçeğinde.</p></div>
+</div>
+</body>
+</html>
