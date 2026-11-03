@@ -46,5 +46,12 @@ powershell -ExecutionPolicy Bypass -File kurulum\repolara-kur.ps1 -Kok C:\Users\
 
 `pluginlabs-advanced/assets/pl-pin-ekranlari.html` dosyası Pinterest panosundaki ekranların 33 ayrıntılı HTML karşılığını gösterir; iki sayfa birbirine bağlantılıdır.
 
+### Canlı (GitHub Pages)
+- [Komponent galerisi](https://timdesigners-pixel.github.io/pluginlabs-advanced/pluginlabs-advanced/assets/pl-galeri.html)
+- [Pin ekranları](https://timdesigners-pixel.github.io/pluginlabs-advanced/pluginlabs-advanced/assets/pl-pin-ekranlari.html) (yer tutuculu, kanonik)
+- [Pin ekranları · görselli vitrin](https://timdesigners-pixel.github.io/pluginlabs-advanced/vitrin/): aynı ekranlar, yer tutucuların yerinde gerçek görsellerle
+
+`vitrin/` skill paketinin parçası değildir; kurulum betikleri onu kopyalamaz. Görseller `vitrin/img/` altında (WebP, en fazla 1600 px). Kanonik sayfa yeniden üretildiğinde vitrini de güncelle: `python -I vitrin/build_vitrin.py`. Görsel–ekran eşlemesi betikteki `ESLEME` sözlüğündedir.
+
 ## Güncelleme
 `pluginlabs-advanced/build/components.py` (temel) veya `build/advanced*.py` (advanced) düzenle → `python3 pluginlabs-advanced/build/build.py` → `kur.sh` ile eşitle.
