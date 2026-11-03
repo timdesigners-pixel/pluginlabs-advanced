@@ -86,7 +86,31 @@ SAHNE_CSS = """
 #pin-83 .pl-s83-thumbs > span:nth-child(2) .pl-sx-face{background:url(img/gorusme-y2.webp) 50% 40%/cover no-repeat!important}
 #pin-83 .pl-s83-thumbs > span:nth-child(3) .pl-sx-face{background:url(img/gorusme-y3.webp) 50% 40%/cover no-repeat!important}
 #pin-178 .pl-s178-big{background:linear-gradient(180deg,color-mix(in srgb,var(--pl-bg-0) 40%,transparent),color-mix(in srgb,var(--pl-bg-0) 72%,transparent)),url(img/hava-sehir.webp) 50% 40%/cover no-repeat}
+#pin-22 .pl-s22-poster{background:linear-gradient(180deg,color-mix(in srgb,var(--pl-bg-0) 30%,transparent),transparent 45%,color-mix(in srgb,var(--pl-bg-0) 35%,transparent)),url(img/poster-sahil.webp) 50% 60%/cover no-repeat}
+#pin-22 .pl-s22-poster svg > :not(text){visibility:hidden}
+#pin-23 .pl-s23-grid > .pl-s23-card .img{background:50% 50%/cover no-repeat;border-radius:var(--pl-radius-md);overflow:hidden}
+#pin-23 .pl-s23-grid > .pl-s23-card .img > svg{visibility:hidden}
+#pin-23 .pl-s23-grid > .pl-s23-card:nth-child(1) .img{background-image:url(img/burger.webp)}
+#pin-23 .pl-s23-grid > .pl-s23-card:nth-child(2) .img{background-image:url(img/yemek-poke.webp)}
+#pin-23 .pl-s23-grid > .pl-s23-card:nth-child(3) .img{background-image:url(img/yemek-sezar.webp)}
+#pin-23 .pl-s23-o > .pl-s23-it .img{background:50% 50%/cover no-repeat!important}
+#pin-23 .pl-s23-o > .pl-s23-it:nth-child(5) .img{background-image:url(img/yemek-poke.webp)!important}
+#pin-23 .pl-s23-o > .pl-s23-it:nth-child(6) .img,#pin-23 .pl-s23-o > .pl-s23-it:nth-child(7) .img{background-image:url(img/yemek-sezar.webp)!important}
+#pin-39 .pl-s39-photo{background:linear-gradient(0deg,color-mix(in srgb,var(--pl-bg-0) 70%,transparent),transparent 45%),url(img/avatar-buyuk.webp) 50% 20%/cover no-repeat}
+#pin-61 .pl-s61-house{background:url(img/villa.webp) 50% 55%/cover no-repeat;border-radius:var(--pl-radius-lg)}
+#pin-61 .pl-s61-house > svg{visibility:hidden}
+#pin-116 .pl-s116-hero{background:linear-gradient(90deg,color-mix(in srgb,var(--pl-bg-0) 92%,transparent) 30%,color-mix(in srgb,var(--pl-bg-0) 10%,transparent) 80%),url(img/sanat-holo-kure.webp) 85% 50%/cover no-repeat}
+#pin-116 .pl-s116-hero::after{display:none}
+#pin-116 .pl-s116-cards > .pl-s116-c .art{background-size:cover!important;background-position:50% 50%!important}
+#pin-116 .pl-s116-cards > .pl-s116-c:nth-child(1) .art{background-image:url(img/sanat-neon-geometri.webp)!important}
+#pin-116 .pl-s116-cards > .pl-s116-c:nth-child(2) .art{background-image:url(img/sanat-sivi-gradyan.webp)!important}
+#pin-116 .pl-s116-cards > .pl-s116-c:nth-child(3) .art{background-image:url(img/sanat-kristal-cicek.webp)!important}
 """
+
+# Soyut avatarlar (pl-sx-face): Gemini ile üretilmiş 16 portreden sırayla. Yalnız canlı
+# HTML değişir; kopyalanabilir kod bloklarındaki kaçışlı HTML soyut avatarla kalır.
+AVATARLAR = [f"avatar-{i:02d}" for i in range(1, 17)]
+FACE = re.compile(r'<span class="pl-sx-face" style="([^"]*?)background:')
 
 # Görsel değişince anlamı da değişen tek metin: pin 50'deki koyu kart artık kalp gösteriyor.
 METIN = [
@@ -124,6 +148,15 @@ def main():
         toplam += 1
     s = "".join(parcalar) + s[son:]
 
+    sayac_av = iter(range(10**6))
+    def _av(m):
+        ad = AVATARLAR[next(sayac_av) % len(AVATARLAR)]
+        return f'<span class="pl-sx-face" style="{m.group(1)}background:url(img/{ad}.webp) 50% 30%/cover no-repeat, '
+    s, n_av = FACE.subn(_av, s)
+    eksik = [a for a in AVATARLAR if not (IMG / f"{a}.webp").exists()]
+    if eksik:
+        raise SystemExit(f"Eksik avatar: {eksik}")
+
     s = re.sub(r'<section class="v-hero">.*?</section>', lambda _: HERO, s, count=1, flags=re.S)
     sahne_img = set(re.findall(r"img/([a-z0-9-]+)\.webp", SAHNE_CSS))
     eksik = sorted(n for n in sahne_img if not (IMG / f"{n}.webp").exists())
@@ -138,7 +171,7 @@ def main():
     s = re.sub(r"<title>[^<]*</title>", "<title>PluginLabs Pin Ekranları · Görselli</title>", s, count=1)
 
     CIKTI.write_text(s, encoding="utf-8")
-    print(f"{toplam} yer tutucuya görsel eklendi -> {CIKTI.relative_to(KOK)}")
+    print(f"{toplam} yer tutucuya görsel, {n_av} avatara portre eklendi -> {CIKTI.relative_to(KOK)}")
     for pid, n in sayac.items():
         print(f"  {pid}: {n}")
 
