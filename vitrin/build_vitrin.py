@@ -50,7 +50,7 @@ ESLEME = {
 PH = re.compile(r'<div class="pl-sx-ph([ "][^>]*)>')
 SEC = re.compile(r'<section class="v-sec" id="(pin-\d+)"')
 
-HERO = """<section class="v-hero v-hero--img"><span class="pl-badge pl-badge--accent">Görselli vitrin · v2.0.0</span><h1>Pin ekranları,<br>gerçek görsellerle</h1><p>Aynı 33 ekran; yer tutucuların yerinde bu kez gerçek görseller var. Yerleşim, ölçü ve komponentler kanonik sayfayla birebir aynıdır; kopyalanan HTML yine yer tutucuyu taşır. <a href="../pluginlabs-advanced/assets/pl-pin-ekranlari.html">Yer tutuculu sürüm</a> · <a href="../pluginlabs-advanced/assets/pl-galeri.html">Komponent galerisi</a></p></section>"""
+HERO = """<section class="v-hero v-hero--img"><span class="pl-badge pl-badge--accent">Görselli vitrin · v2.0.0</span><h1>Pin ekranları,<br>gerçek görsellerle</h1><p>Aynı 33 ekran; yer tutucuların ve çizim alanlarının yerinde bu kez gerçek görseller var. Yerleşim, ölçü ve komponentler kanonik sayfayla birebir aynıdır; kopyalanan HTML yine yer tutucuyu taşır. <a href="../pluginlabs-advanced/assets/pl-pin-ekranlari.html">Yer tutuculu sürüm</a> · <a href="../pluginlabs-advanced/assets/pl-galeri.html">Komponent galerisi</a></p></section>"""
 
 HERO_CSS = """
 .v-hero--img{position:relative;overflow:hidden;border-radius:28px;padding:56px 40px;min-height:300px;display:flex;flex-direction:column;justify-content:flex-end;gap:12px;background:linear-gradient(90deg,rgb(9 13 24 / .92) 0%,rgb(9 13 24 / .72) 45%,rgb(9 13 24 / .15) 100%),url(img/tasarim-izometrik.webp) center/cover no-repeat;box-shadow:var(--pl-shadow-xl)}
@@ -62,6 +62,37 @@ HERO_CSS = """
 .pl-s04-hero .v-img-ph::after{content:"";position:absolute;inset:0;background:var(--pl-scrim-left)}
 @media (max-width:900px){.v-hero--img{padding:32px 20px}}
 """
+
+# Yer tutucusu (pl-sx-ph) olmayan ekranlar: görsel, ekranın kendi çizim alanına
+# CSS ile konur ve o alandaki SVG çizim gizlenir. Seçiciler #pin-N ile sınırlıdır.
+SAHNE_CSS = """
+#pin-9 .pl-s09-dna{background:url(img/dna-sarmal.webp) 50% 50%/cover no-repeat}
+#pin-9 .pl-s09-dna svg[viewBox="0 0 420 560"]{visibility:hidden}
+#pin-10 .pl-s10-c{background:url(img/noral-tarama.webp) 50% 30%/cover no-repeat;border-radius:var(--pl-radius-lg)}
+#pin-10 .pl-s10-c > svg,#pin-10 .pl-s10-c > .pl-s10-lab{visibility:hidden}
+#pin-26 .pl-s26-head{position:relative;overflow:hidden}
+#pin-26 .pl-s26-head > *{position:relative;z-index:1}
+#pin-26 .pl-s26-head::before{content:"";position:absolute;inset:0 0 0 auto;width:46%;background:url(img/klinik-doktor.webp) 50% 28%/cover no-repeat;-webkit-mask-image:linear-gradient(90deg,transparent,var(--pl-bg-0) 55%);mask-image:linear-gradient(90deg,transparent,var(--pl-bg-0) 55%)}
+#pin-30 .pl-s30-nav{background:url(img/hmi-harita.webp) 50% 50%/cover no-repeat}
+#pin-30 .pl-s30-nav > svg{visibility:hidden}
+#pin-50 .pl-s50-viz{background:url(img/akciger.webp) 50% 50%/cover no-repeat;border-radius:var(--pl-radius-xl)}
+#pin-50 .pl-s50-viz > svg{visibility:hidden}
+#pin-50 .pl-s50-dark{background:linear-gradient(0deg,color-mix(in srgb,var(--pl-bg-0) 85%,transparent) 15%,transparent 75%),url(img/kalp.webp) 50% 40%/cover no-repeat}
+#pin-70 .pl-s70-3d{background:url(img/guvenlik-kesit.webp) 50% 58%/cover no-repeat;border-radius:var(--pl-radius-lg)}
+#pin-70 .pl-s70-3d > svg,#pin-70 .pl-s70-scene > .pl-hotspot{visibility:hidden}
+#pin-83 .pl-s83-video{background:url(img/gorusme-ana.webp) 50% 30%/cover no-repeat}
+#pin-83 .pl-s83-person,#pin-83 .pl-s83-hand{visibility:hidden}
+#pin-83 .pl-s83-thumbs > span:nth-child(1) .pl-sx-face{background:url(img/gorusme-y1.webp) 50% 40%/cover no-repeat!important}
+#pin-83 .pl-s83-thumbs > span:nth-child(2) .pl-sx-face{background:url(img/gorusme-y2.webp) 50% 40%/cover no-repeat!important}
+#pin-83 .pl-s83-thumbs > span:nth-child(3) .pl-sx-face{background:url(img/gorusme-y3.webp) 50% 40%/cover no-repeat!important}
+#pin-178 .pl-s178-big{background:linear-gradient(180deg,color-mix(in srgb,var(--pl-bg-0) 40%,transparent),color-mix(in srgb,var(--pl-bg-0) 72%,transparent)),url(img/hava-sehir.webp) 50% 40%/cover no-repeat}
+"""
+
+# Görsel değişince anlamı da değişen tek metin: pin 50'deki koyu kart artık kalp gösteriyor.
+METIN = [
+    ('<b>Osteoporoz</b><span style="opacity:.7">Kemik yoğunluğu taraması</span>',
+     '<b>Kalp Sağlığı</b><span style="opacity:.7">Koroner akış taraması</span>'),
+]
 
 
 def main():
@@ -94,7 +125,15 @@ def main():
     s = "".join(parcalar) + s[son:]
 
     s = re.sub(r'<section class="v-hero">.*?</section>', lambda _: HERO, s, count=1, flags=re.S)
-    s = s.replace("</style>", HERO_CSS + "</style>", 1)
+    sahne_img = set(re.findall(r"img/([a-z0-9-]+)\.webp", SAHNE_CSS))
+    eksik = sorted(n for n in sahne_img if not (IMG / f"{n}.webp").exists())
+    if eksik:
+        raise SystemExit(f"Eksik sahne görseli: {eksik}")
+    for eski, yeni in METIN:
+        if s.count(eski) != 1:
+            raise SystemExit(f"Metin bulunamadı ya da birden fazla: {eski[:40]}…")
+        s = s.replace(eski, yeni)
+    s = s.replace("</style>", HERO_CSS + SAHNE_CSS + "</style>", 1)
     s = s.replace('href="pl-galeri.html"', 'href="../pluginlabs-advanced/assets/pl-galeri.html"')
     s = re.sub(r"<title>[^<]*</title>", "<title>PluginLabs Pin Ekranları · Görselli</title>", s, count=1)
 
