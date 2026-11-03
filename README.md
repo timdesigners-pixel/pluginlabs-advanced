@@ -1,6 +1,6 @@
 # PluginLabs Advanced Tasarım Sistemi
 
-Claude Code ve Codex'in **ortak** kullandığı PluginLabs Advanced tasarım sistemi skill'i. Temel PluginLabs katmanını (79 komponent) ve masaüstü uygulama katmanını (102 komponent, 12 ekran şablonu, 6 yüzey teması) tek pakette toplar.
+Claude Code ve Codex'in **ortak** kullandığı PluginLabs Advanced tasarım sistemi skill'i. Temel PluginLabs katmanını (79 komponent) ve masaüstü uygulama katmanını (102 komponent, 12 ekran şablonu, 6 yüzey teması) tek pakette toplar. v2.1.0 ile 9 ek temel bileşen geldi (PLC-080…088); mevcut 181 bileşen değişmedi.
 
 | Klasör | Ne |
 |---|---|

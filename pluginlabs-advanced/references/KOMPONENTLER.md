@@ -1,6 +1,6 @@
 # PluginLabs Advanced — Komponent Kataloğu
 
-> **Sürüm:** 2.0.0 · **Tarih:** 01.11.2026 · **Adet:** 181 komponent (79 temel PLC + 102 advanced PLA) · **Kaynak:** `build/components.py` + `build/advanced*.py` (bu dosya otomatik üretilir — elle düzenlemeyin)
+> **Sürüm:** 2.1.0 · **Tarih:** 03.11.2026 · **Adet:** 190 komponent (88 temel PLC + 102 advanced PLA) · **Kaynak:** `build/components.py` + `build/advanced*.py` (bu dosya otomatik üretilir — elle düzenlemeyin)
 
 > Tüm örnekler `[data-pl]` kapsayıcısı içinde çalışır ve sırasıyla `assets/pl-tokens.css` + `assets/pl-components.css` + `assets/pl-advanced.css` gerektirir. Ürün aksanı `data-pl-product`, yüzey teması `data-pl-surface`, açık/koyu `data-pl-theme` ile verilir. Canlı önizleme: `assets/pl-galeri.html`.
 
@@ -111,6 +111,15 @@
 | PLC-077 | [Filtre Çubuğu](#plc-077) | Ürün Kalıpları | — |
 | PLC-078 | [Yan Panel İskeleti](#plc-078) | Ürün Kalıpları | Mind Palace |
 | PLC-079 | [Kategori Etiketli Liste](#plc-079) | Ürün Kalıpları | — |
+| PLC-080 | [Sistem Kadranı](#plc-080) | Ek Bileşenler | Tweakster |
+| PLC-081 | [Sesli Komut Çubuğu](#plc-081) | Ek Bileşenler | MyMind |
+| PLC-082 | [Sayısal Sürgü Kutusu](#plc-082) | Ek Bileşenler | Design Replicator |
+| PLC-083 | [Çoklu Mağaza Fiyat Matrisi](#plc-083) | Ek Bileşenler | MyWishlist |
+| PLC-084 | [Cam Başlık ve Sekme Çubuğu](#plc-084) | Ek Bileşenler | Mind Palace |
+| PLC-085 | [Kutu Modeli](#plc-085) | Ek Bileşenler | Design Replicator |
+| PLC-086 | [Bağlı Tokenlar](#plc-086) | Ek Bileşenler | Design Replicator |
+| PLC-087 | [Etkinlik Isı Haritası](#plc-087) | Ek Bileşenler | — |
+| PLC-088 | [Denetçi Paneli (Ek)](#plc-088) | Ek Bileşenler | Design Replicator |
 | PLA-001 | [Uygulama Penceresi](#pla-001) | Kabuk & Pencere | — |
 | PLA-002 | [İkon Rayı](#pla-002) | Kabuk & Pencere | — |
 | PLA-003 | [Yüzen Hap Ray](#pla-003) | Kabuk & Pencere | — |
@@ -3266,4 +3275,177 @@
 <div class="pl-screen__main" style="position:relative"><div class="pl-screen__top"><div class="pl-weather pl-glass" style="padding:8px"><div class="pl-weather__time"><span class="pl-weather__day" style="font-size:14px">Pazar</span><span class="pl-weather__clock" style="font-size:24px">20:25</span></div><div class="pl-weather__temp" style="width:72px"><svg class="pl-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg><b style="font-size:18px">18°</b></div></div><span style="flex:1"></span><button class="pl-btn pl-btn--primary"><svg class="pl-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 19-9-9 19-2-8z"/></svg>Rota oluştur</button></div>
 <div class="pl-isoplan" style="height:320px;background:transparent"><div class="pl-isoplan__floor"><span class="pl-isoplan__room pl-isoplan__room--wide" style="--c:var(--pl-viz-4)"></span><span class="pl-isoplan__room is-active" style="--c:var(--pl-viz-5)"></span><span class="pl-isoplan__room" style="--c:var(--pl-viz-3)"></span><span class="pl-isoplan__room" style="--c:var(--pl-viz-6)"></span><span class="pl-isoplan__room" style="--c:var(--pl-viz-2)"></span></div><span class="pl-hotspot is-pulse" style="left:56%;top:42%"><span class="pl-hotspot__pin" style="--c:var(--pl-viz-5)"><svg class="pl-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span class="pl-hotspot__label">Toplantı salonu</span></span><span class="pl-hotspot" style="left:36%;top:60%"><span class="pl-hotspot__pin" style="--c:var(--pl-viz-3)"><svg class="pl-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span></span></div></div>
 <div class="pl-screen__aside"><div class="pl-floorpanel pl-glass"><div class="pl-floorpanel__head"><svg class="pl-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 10 5-10 5L2 7z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg>Kat</div><select class="pl-select"><option>1. kat</option></select><div class="pl-floorpanel__list"><div class="pl-roomrow"><span class="pl-roomrow__ic" style="--c:var(--pl-viz-4)"><svg class="pl-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Eğitim odası<span class="pl-roomrow__n">3</span></div><div class="pl-roomrow is-active"><span class="pl-roomrow__ic" style="--c:var(--pl-viz-5)"><svg class="pl-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>Toplantı salonu<span class="pl-roomrow__n">Rota</span></div><div class="pl-roomrow"><span class="pl-roomrow__ic" style="--c:var(--pl-viz-3)"><svg class="pl-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span>Yönetim<span class="pl-roomrow__n">8</span></div><div class="pl-roomrow"><span class="pl-roomrow__ic" style="--c:var(--pl-viz-6)"><svg class="pl-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2"/></svg></span>Ar-Ge<span class="pl-roomrow__n">5</span></div><div class="pl-roomrow"><span class="pl-roomrow__ic" style="--c:var(--pl-viz-2)"><svg class="pl-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2M7 2v20M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg></span>Mutfak<span class="pl-roomrow__n">2</span></div></div></div></div></div></div>
+```
+
+
+---
+
+# EK BİLEŞENLER (PLC-080 …)
+
+
+---
+
+## Ek Bileşenler (9)
+
+### PLC-080
+
+**Sistem Kadranı** · `system-gauge` · Ürün: Tweakster (`data-pl-product="tweakster"`)
+
+- **Amaç:** Yüzde halkası + başlık + açıklama: CPU, bellek, disk gibi tek bir yükü özetler.
+- **Ne zaman:** Tweakster sistem optimizasyonu, Hub kaynak kullanımı; ekranda en fazla 3 kadran.
+- **Durumlar:** varsayılan, uyarı (is-warning), kritik (is-danger)
+- **Sınıflar:** `pl-gauge pl-gauge__ring pl-gauge__title pl-gauge__sub is-warning is-danger`
+- **Erişilebilirlik:** Halka role="meter" + aria-valuenow/min/max ve aria-label taşır; yüzde metin olarak da yazılıdır.
+
+```html
+<div class="pl-gauge"><div class="pl-gauge__ring" style="--v:78" role="meter" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100" aria-label="CPU ve bellek yükü">%78</div>
+<div><b class="pl-gauge__title">CPU &amp; Bellek Yükü</b><span class="pl-gauge__sub">3 arka plan görevi aktif</span></div></div>
+<div class="pl-gauge is-warning" style="margin-top:10px"><div class="pl-gauge__ring" style="--v:91" role="meter" aria-valuenow="91" aria-valuemin="0" aria-valuemax="100" aria-label="Disk doluluğu">%91</div>
+<div><b class="pl-gauge__title">Disk Doluluğu</b><span class="pl-gauge__sub">Uyarı · 12 GB boş alan kaldı</span></div></div>
+```
+
+### PLC-081
+
+**Sesli Komut Çubuğu** · `voice-hud` · Ürün: MyMind (`data-pl-product="mymind"`)
+
+- **Amaç:** Bas-konuş sesli komut HUD'u: yüzen AI küresi, canlı ses dalgası, durum metni ve iptal kısayolu.
+- **Ne zaman:** MyMind sesli komutu dinlerken; ekranın altında ya da odaklı alanın üstünde yüzer.
+- **Durumlar:** dinliyor (is-live), duraklatıldı (hover), işleniyor, sessiz
+- **Sınıflar:** `pl-voicehud pl-voicehud__orb pl-voicehud__wave pl-voicehud__label is-live`
+- **Erişilebilirlik:** role="status" + aria-live="polite" yalnız durum değişince duyurur; dalga aria-hidden. Esc ile iptal edilir; hareket azaltma açıkken dalga durur.
+
+```html
+<div class="pl-voicehud is-live" role="status" aria-live="polite"><span class="pl-voicehud__orb" aria-hidden="true"></span>
+<span class="pl-voicehud__wave" aria-hidden="true"><i style="--h:45;--d:0"></i><i style="--h:80;--d:1"></i><i style="--h:60;--d:2"></i><i style="--h:95;--d:3"></i><i style="--h:50;--d:4"></i></span>
+<span class="pl-voicehud__label">Dinleniyor…</span><kbd class="pl-kbd">Esc</kbd></div>
+```
+
+### PLC-082
+
+**Sayısal Sürgü Kutusu** · `scrub-input` · Ürün: Design Replicator (`data-pl-product="replicator"`)
+
+- **Amaç:** Etiketi sürükleyerek değeri değiştiren X/Y/W/H/R özellik kutuları.
+- **Ne zaman:** Design Replicator ve görsel denetçilerde konum, boyut, köşe ve açı alanları.
+- **Durumlar:** varsayılan, hover, odak, sürükleniyor, devre dışı
+- **Sınıflar:** `pl-scrubgrid pl-scrubinput pl-scrubinput__label`
+- **Erişilebilirlik:** Her kutu gerçek <input inputmode="decimal"> ve <label> taşır; ok tuşları ±1, Shift+ok ±10 değiştirir.
+
+```html
+<div class="pl-scrubgrid">
+<label class="pl-scrubinput"><span class="pl-scrubinput__label">W</span><input inputmode="decimal" value="1200" aria-label="Genişlik"></label>
+<label class="pl-scrubinput"><span class="pl-scrubinput__label">H</span><input inputmode="decimal" value="760" aria-label="Yükseklik"></label>
+<label class="pl-scrubinput"><span class="pl-scrubinput__label">R</span><input inputmode="decimal" value="14px" aria-label="Köşe yarıçapı"></label>
+<label class="pl-scrubinput"><span class="pl-scrubinput__label">∠</span><input inputmode="decimal" value="0°" aria-label="Açı"></label>
+</div>
+```
+
+### PLC-083
+
+**Çoklu Mağaza Fiyat Matrisi** · `price-matrix` · Ürün: MyWishlist (`data-pl-product="wishlist"`)
+
+- **Amaç:** Aynı ürünün mağazalar arası canlı fiyat karşılaştırması; en iyi fiyat altın vurguyla işaretlenir.
+- **Ne zaman:** MyWishlist ürün ayrıntısı, Leo Helper indirim karşılaştırması.
+- **Durumlar:** varsayılan, en iyi (is-best), stokta yok, yükleniyor
+- **Sınıflar:** `pl-pricematrix pl-pricematrix__row pl-pricematrix__store pl-pricematrix__best pl-pricematrix__price is-best`
+- **Erişilebilirlik:** <ul> listesi; en iyi satır renge ek olarak "En iyi" metnini taşır. Fiyatlar sağa hizalı ve tabular.
+
+```html
+<ul class="pl-pricematrix" aria-label="Mağaza fiyatları">
+<li class="pl-pricematrix__row is-best"><span class="pl-pricematrix__store">Trendyol</span><span class="pl-pricematrix__best">En iyi</span><span class="pl-pricematrix__price">1.249,90 ₺</span></li>
+<li class="pl-pricematrix__row"><span class="pl-pricematrix__store">Hepsiburada</span><span class="pl-pricematrix__price">1.389,00 ₺</span></li>
+<li class="pl-pricematrix__row"><span class="pl-pricematrix__store">Amazon</span><span class="pl-pricematrix__price">1.412,50 ₺</span></li>
+</ul>
+```
+
+### PLC-084
+
+**Cam Başlık ve Sekme Çubuğu** · `glass-titlebar` · Ürün: Mind Palace (`data-pl-product="mindpalace"`)
+
+- **Amaç:** Pencere ışıkları, sabitlenmiş uygulama sekmeleri ve kısayol ipucu taşıyan buzlu cam başlık çubuğu.
+- **Ne zaman:** Arkasında görsel ya da gradyan olan pencerelerde (Mind Palace tuvali, medya ekranları). Düz zeminde mevcut pl-titlebar kullanılır.
+- **Durumlar:** varsayılan, sekme hover, aktif sekme (is-active), odak
+- **Sınıflar:** `pl-glassbar pl-glassbar__lights pl-glassbar__tabs pl-glassbar__tab pl-glassbar__end is-active`
+- **Erişilebilirlik:** Sekmeler role="tablist"/"tab" + aria-selected; pencere ışıkları aria-hidden, gerçek pencere düğmeleri ayrıca etiketlenir.
+
+```html
+<div style="padding:16px;border-radius:var(--pl-radius-xl);background:var(--pl-grad-aurora)">
+<div class="pl-glassbar"><span class="pl-glassbar__lights" aria-hidden="true"><i></i><i></i><i></i></span>
+<div class="pl-glassbar__tabs" role="tablist" aria-label="Açık uygulamalar"><button class="pl-glassbar__tab is-active" role="tab" aria-selected="true">Mind Palace</button><button class="pl-glassbar__tab" role="tab" aria-selected="false">Leo Akışı</button><button class="pl-glassbar__tab" role="tab" aria-selected="false">Notlar</button></div>
+<span class="pl-glassbar__end"><kbd class="pl-kbd">Ctrl T</kbd></span></div></div>
+```
+
+### PLC-085
+
+**Kutu Modeli** · `box-model` · Ürün: Design Replicator (`data-pl-product="replicator"`)
+
+- **Amaç:** Seçili öğenin dış boşluk (margin), iç boşluk (padding) ve boyutunu iç içe kutularla gösterir.
+- **Ne zaman:** Görsel denetçi, Design Replicator öğe incelemesi.
+- **Durumlar:** varsayılan, hover (değer düzenlenebilir)
+- **Sınıflar:** `pl-boxmodel pl-boxmodel__pad pl-boxmodel__size`
+- **Erişilebilirlik:** role="img" + değerleri okuyan aria-label; aynı değerler denetçide sayısal alan olarak da bulunur.
+
+```html
+<div class="pl-boxmodel" role="img" aria-label="Dış boşluk 16, iç boşluk 14 ve 16, boyut 380 × 560">Margin · 16
+<div class="pl-boxmodel__pad">Padding · 14 × 16<span class="pl-boxmodel__size">380 × 560</span></div></div>
+```
+
+### PLC-086
+
+**Bağlı Tokenlar** · `token-list` · Ürün: Design Replicator (`data-pl-product="replicator"`)
+
+- **Amaç:** Seçili öğenin hangi tasarım tokenlarına bağlı olduğunu özellik → token çipi olarak listeler.
+- **Ne zaman:** Denetçi panelinde, sabit değer yerine token kullanımını görünür kılmak için.
+- **Durumlar:** varsayılan, aksan tokenı (is-accent), bağsız (sabit değer)
+- **Sınıflar:** `pl-tokenlist pl-tokenlist__row pl-tokenchip is-accent`
+- **Erişilebilirlik:** <dl> yapısı: özellik <dt>, token <dd>; çipler kopyalanabilir metin.
+
+```html
+<dl class="pl-tokenlist">
+<div class="pl-tokenlist__row"><dt>Zemin</dt><dd><code class="pl-tokenchip">--pl-bg-2</code></dd></div>
+<div class="pl-tokenlist__row"><dt>Vurgu</dt><dd><code class="pl-tokenchip is-accent">--pl-accent</code></dd></div>
+<div class="pl-tokenlist__row"><dt>Köşe</dt><dd><code class="pl-tokenchip">--pl-radius-lg</code></dd></div>
+</dl>
+```
+
+### PLC-087
+
+**Etkinlik Isı Haritası** · `activity-heatmap`
+
+- **Amaç:** Günlük/saatlik yoğunluğu aksan renginin tonlarıyla gösteren kare ızgara.
+- **Ne zaman:** Denetçide etkileşim yoğunluğu, eklenti kullanım geçmişi, katkı takvimi.
+- **Durumlar:** varsayılan, boş (veri yok), hover (değer ipucu)
+- **Sınıflar:** `pl-heatmap (--cols, hücrede --v: 0–100)`
+- **Erişilebilirlik:** role="img" + özet aria-label; ayrıntılı değerler tablo olarak da sunulur.
+
+```html
+<div class="pl-heatmap" style="--cols:14" role="img" aria-label="Son 28 günlük etkinlik: en yoğun günler hafta ortası"><i style="--v:20"></i><i style="--v:60"></i><i style="--v:85"></i><i style="--v:100"></i><i style="--v:30"></i><i style="--v:45"></i><i style="--v:90"></i><i style="--v:70"></i><i style="--v:25"></i><i style="--v:80"></i><i style="--v:95"></i><i style="--v:40"></i><i style="--v:65"></i><i style="--v:100"></i><i style="--v:35"></i><i style="--v:55"></i><i style="--v:88"></i><i style="--v:92"></i><i style="--v:60"></i><i style="--v:75"></i><i style="--v:30"></i><i style="--v:50"></i><i style="--v:100"></i><i style="--v:70"></i><i style="--v:20"></i><i style="--v:45"></i><i style="--v:85"></i><i style="--v:60"></i></div>
+```
+
+### PLC-088
+
+**Denetçi Paneli (Ek)** · `inspector-panel-ek` · Ürün: Design Replicator (`data-pl-product="replicator"`)
+
+- **Amaç:** Sayısal sürgü kutuları, kutu modeli, bağlı tokenlar ve ısı haritasını tek denetçi panelinde birleştirir.
+- **Ne zaman:** Design Replicator sağ paneli; mevcut pl-inspector'a dokunmadan hafif bir alternatif.
+- **Durumlar:** varsayılan, öğe seçili değil (boş), çoklu seçim
+- **Sınıflar:** `pl-inspectpanel pl-inspectpanel__head pl-inspectpanel__sec + PLC-082 · 085 · 086 · 087`
+- **Erişilebilirlik:** <aside aria-label>; bölüm başlıkları pl-label, her alan etiketli.
+
+```html
+<aside class="pl-inspectpanel" aria-label="Denetçi">
+<div class="pl-inspectpanel__head"><span class="pl-label">Denetçi · Inspector</span><span class="pl-badge pl-badge--accent">Kart</span></div>
+<div class="pl-scrubgrid">
+<label class="pl-scrubinput"><span class="pl-scrubinput__label">X</span><input inputmode="decimal" value="240" aria-label="X konumu"></label>
+<label class="pl-scrubinput"><span class="pl-scrubinput__label">Y</span><input inputmode="decimal" value="118" aria-label="Y konumu"></label>
+<label class="pl-scrubinput"><span class="pl-scrubinput__label">W</span><input inputmode="decimal" value="380" aria-label="Genişlik"></label>
+<label class="pl-scrubinput"><span class="pl-scrubinput__label">H</span><input inputmode="decimal" value="560" aria-label="Yükseklik"></label>
+<label class="pl-scrubinput"><span class="pl-scrubinput__label">R</span><input inputmode="decimal" value="14px" aria-label="Köşe yarıçapı"></label>
+<label class="pl-scrubinput"><span class="pl-scrubinput__label">%</span><input inputmode="decimal" value="100" aria-label="Opaklık"></label>
+</div>
+<div class="pl-boxmodel" role="img" aria-label="Dış boşluk 16, iç boşluk 14 ve 16, boyut 380 × 560">Margin · 16<div class="pl-boxmodel__pad">Padding · 14 × 16<span class="pl-boxmodel__size">380 × 560</span></div></div>
+<div class="pl-inspectpanel__sec"><span class="pl-label">Bağlı tokenlar</span>
+<dl class="pl-tokenlist"><div class="pl-tokenlist__row"><dt>Zemin</dt><dd><code class="pl-tokenchip">--pl-bg-2</code></dd></div><div class="pl-tokenlist__row"><dt>Vurgu</dt><dd><code class="pl-tokenchip is-accent">--pl-accent</code></dd></div><div class="pl-tokenlist__row"><dt>Köşe</dt><dd><code class="pl-tokenchip">--pl-radius-lg</code></dd></div></dl></div>
+<div class="pl-inspectpanel__sec"><span class="pl-label">Etkinlik ısı haritası</span>
+<div class="pl-heatmap" style="--cols:14" role="img" aria-label="Son 28 günlük etkinlik"><i style="--v:20"></i><i style="--v:60"></i><i style="--v:85"></i><i style="--v:100"></i><i style="--v:30"></i><i style="--v:45"></i><i style="--v:90"></i><i style="--v:70"></i><i style="--v:25"></i><i style="--v:80"></i><i style="--v:95"></i><i style="--v:40"></i><i style="--v:65"></i><i style="--v:100"></i><i style="--v:35"></i><i style="--v:55"></i><i style="--v:88"></i><i style="--v:92"></i><i style="--v:60"></i><i style="--v:75"></i><i style="--v:30"></i><i style="--v:50"></i><i style="--v:100"></i><i style="--v:70"></i><i style="--v:20"></i><i style="--v:45"></i><i style="--v:85"></i><i style="--v:60"></i></div></div>
+</aside>
 ```

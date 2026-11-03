@@ -2,8 +2,8 @@
   "$schema": "https://design-tokens.github.io/community-group/format/",
   "meta": {
     "sistem": "PluginLabs Advanced",
-    "surum": "2.0.0",
-    "tarih": "01.11.2026",
+    "surum": "2.1.0",
+    "tarih": "03.11.2026",
     "onek": "--pl-",
     "kapsam": "[data-pl]"
   },

@@ -724,6 +724,82 @@
 @keyframes pl-toast-in { from { opacity: 0; transform: translateY(8px) scale(.98); } }
 @keyframes pl-bounce { 0%, 60%, 100% { transform: translateY(0); opacity: .5; } 30% { transform: translateY(-4px); opacity: 1; } }
 
+/* ==========================================================================
+   EK BİLEŞENLER · PLC-080 … (v2.1.0)
+   Yalnız yeni sınıflar; yukarıdaki hiçbir kuralı ezmez. Noktalı/ızgara zemin yok.
+   ========================================================================== */
+
+/* ---------- PLC-080 Sistem kadranı ---------- */
+.pl-gauge { display: flex; align-items: center; gap: var(--pl-space-4); padding: var(--pl-space-4) var(--pl-space-5); background: var(--pl-bg-2); border: 1px solid var(--pl-line); border-radius: var(--pl-radius-lg); }
+.pl-gauge__ring { --v: 50; --g: var(--pl-accent); flex: none; width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; background: radial-gradient(closest-side, var(--pl-bg-2) 76%, transparent 78% 100%), conic-gradient(var(--g) calc(var(--v) * 1%), var(--pl-bg-4) 0); font-family: var(--pl-font-mono); font-size: var(--pl-text-sm); font-weight: 700; color: var(--pl-fg-1); font-variant-numeric: tabular-nums; }
+.pl-gauge.is-warning .pl-gauge__ring { --g: var(--pl-warning); }
+.pl-gauge.is-danger .pl-gauge__ring { --g: var(--pl-danger); }
+.pl-gauge__title { display: block; color: var(--pl-fg-1); font-weight: 600; font-size: var(--pl-text-md); }
+.pl-gauge__sub { color: var(--pl-fg-3); font-size: var(--pl-text-sm); }
+
+/* ---------- PLC-081 Sesli komut çubuğu ---------- */
+.pl-voicehud { display: inline-flex; align-items: center; gap: var(--pl-space-3); padding: 7px 8px 7px 7px; border-radius: var(--pl-radius-full); background: var(--pl-bg-2); border: 1px solid var(--pl-accent-line); box-shadow: var(--pl-shadow-float), var(--pl-glow-accent); }
+.pl-voicehud__orb { flex: none; width: 32px; height: 32px; border-radius: 50%; background: radial-gradient(circle at 34% 30%, color-mix(in srgb, var(--pl-accent) 35%, var(--pl-on-media)) 0 16%, var(--pl-accent) 56%, color-mix(in srgb, var(--pl-accent) 45%, var(--pl-bg-0)) 100%); box-shadow: var(--pl-glow-accent); }
+.pl-voicehud__wave { display: inline-flex; align-items: center; gap: 3px; height: 18px; }
+.pl-voicehud__wave i { width: 3px; height: calc(var(--h, 50) * 1%); border-radius: 2px; background: var(--pl-accent); transform-origin: center; }
+.pl-voicehud.is-live .pl-voicehud__wave i { animation: pl-voice calc(var(--pl-dur-xslow) * 2) var(--pl-ease) infinite alternate; animation-delay: calc(var(--d, 0) * -120ms); }
+.pl-voicehud:hover .pl-voicehud__wave i { animation-play-state: paused; }
+.pl-voicehud__label { color: var(--pl-fg-2); font-size: var(--pl-text-sm); }
+@media (prefers-reduced-motion: reduce) { .pl-voicehud.is-live .pl-voicehud__wave i { animation: none; } }
+@keyframes pl-voice { to { transform: scaleY(.35); } }
+
+/* ---------- PLC-082 Sayısal sürgü kutusu ---------- */
+.pl-scrubgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--pl-space-2); }
+.pl-scrubinput { display: flex; align-items: center; gap: 8px; height: 34px; padding: 0 10px; background: var(--pl-bg-1); border: 1px solid var(--pl-line); border-radius: var(--pl-radius-sm); font-family: var(--pl-font-mono); transition: border-color var(--pl-dur-fast) var(--pl-ease); }
+.pl-scrubinput:hover { border-color: var(--pl-line-strong); }
+.pl-scrubinput__label { min-width: 12px; color: var(--pl-fg-3); font-size: 11px; cursor: ew-resize; user-select: none; }
+.pl-scrubinput input { flex: 1; min-width: 0; height: 100%; background: none; border: 0; color: var(--pl-fg-1); font: inherit; font-size: var(--pl-text-sm); font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+.pl-scrubinput input:focus-visible { outline: 2px solid var(--pl-accent); outline-offset: 2px; border-radius: 2px; }
+
+/* ---------- PLC-083 Çoklu mağaza fiyat matrisi ---------- */
+.pl-pricematrix { display: flex; flex-direction: column; gap: var(--pl-space-2); margin: 0; padding: 0; list-style: none; }
+.pl-pricematrix__row { display: flex; align-items: center; gap: 10px; padding: 12px 14px; background: var(--pl-bg-2); border: 1px solid var(--pl-line); border-radius: var(--pl-radius-md); }
+.pl-pricematrix__store { color: var(--pl-fg-1); font-weight: 600; }
+.pl-pricematrix__price { margin-left: auto; font-family: var(--pl-font-mono); font-weight: 700; color: var(--pl-fg-2); font-variant-numeric: tabular-nums; }
+.pl-pricematrix__best { font-family: var(--pl-font-mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--pl-gold); border: 1px solid color-mix(in srgb, var(--pl-gold) 50%, transparent); border-radius: var(--pl-radius-xs); padding: 2px 6px; }
+.pl-pricematrix__row.is-best { border-color: color-mix(in srgb, var(--pl-gold) 55%, transparent); background: color-mix(in srgb, var(--pl-gold) 8%, var(--pl-bg-2)); }
+.pl-pricematrix__row.is-best .pl-pricematrix__price { color: var(--pl-gold); }
+
+/* ---------- PLC-084 Cam başlık ve sekme çubuğu ---------- */
+.pl-glassbar { display: flex; align-items: center; gap: var(--pl-space-3); height: 40px; padding: 0 8px 0 14px; border-radius: var(--pl-radius-lg); background: color-mix(in srgb, var(--pl-bg-1) 68%, transparent); border: 1px solid var(--pl-line); backdrop-filter: blur(16px) saturate(140%); -webkit-backdrop-filter: blur(16px) saturate(140%); }
+.pl-glassbar__lights { display: flex; gap: 7px; }
+.pl-glassbar__lights i { width: 11px; height: 11px; border-radius: 50%; background: var(--pl-danger); }
+.pl-glassbar__lights i:nth-child(2) { background: var(--pl-warning); }
+.pl-glassbar__lights i:nth-child(3) { background: var(--pl-success); }
+.pl-glassbar__tabs { display: flex; gap: 4px; }
+.pl-glassbar__tab { height: 28px; padding: 0 12px; border-radius: var(--pl-radius-sm); border: 1px solid transparent; background: none; color: var(--pl-fg-3); font: inherit; font-size: var(--pl-text-sm); cursor: pointer; transition: background var(--pl-dur-fast) var(--pl-ease), color var(--pl-dur-fast) var(--pl-ease); }
+.pl-glassbar__tab:hover { color: var(--pl-fg-1); }
+.pl-glassbar__tab.is-active { background: var(--pl-bg-3); border-color: var(--pl-line); color: var(--pl-fg-1); font-weight: 600; }
+.pl-glassbar__tab:focus-visible { outline: 2px solid var(--pl-accent); outline-offset: 2px; }
+.pl-glassbar__end { margin-left: auto; }
+
+/* ---------- PLC-085 Kutu modeli ---------- */
+.pl-boxmodel { padding: 10px 12px 12px; border: 1px dashed color-mix(in srgb, var(--pl-warning) 70%, transparent); border-radius: var(--pl-radius-md); background: color-mix(in srgb, var(--pl-warning) 8%, transparent); text-align: center; font-family: var(--pl-font-mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--pl-fg-3); }
+.pl-boxmodel__pad { margin-top: 8px; padding: 10px; border: 1px solid var(--pl-accent); border-radius: var(--pl-radius-sm); background: var(--pl-accent-soft); color: var(--pl-fg-1); }
+.pl-boxmodel__size { display: block; margin-top: 4px; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+/* ---------- PLC-086 Bağlı tokenlar ---------- */
+.pl-tokenlist { display: flex; flex-direction: column; gap: 8px; margin: 0; }
+.pl-tokenlist__row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.pl-tokenlist dt { color: var(--pl-fg-2); font-size: var(--pl-text-sm); }
+.pl-tokenlist dd { margin: 0; }
+.pl-tokenchip { display: inline-block; font-family: var(--pl-font-mono); font-size: 11px; padding: 3px 8px; border-radius: var(--pl-radius-sm); background: var(--pl-bg-3); border: 1px solid var(--pl-line); color: var(--pl-fg-2); }
+.pl-tokenchip.is-accent { color: var(--pl-accent); border-color: var(--pl-accent-line); background: var(--pl-accent-soft); }
+
+/* ---------- PLC-087 Etkinlik ısı haritası ---------- */
+.pl-heatmap { display: grid; grid-template-columns: repeat(var(--cols, 14), 14px); gap: 4px; }
+.pl-heatmap i { width: 14px; height: 14px; border-radius: 3px; background: color-mix(in srgb, var(--pl-accent) calc(var(--v, 0) * 1%), var(--pl-bg-3)); }
+
+/* ---------- PLC-088 Denetçi paneli (ek) ---------- */
+.pl-inspectpanel { width: 100%; max-width: 300px; display: flex; flex-direction: column; gap: var(--pl-space-4); padding: var(--pl-space-4); background: var(--pl-bg-1); border: 1px solid var(--pl-line); border-radius: var(--pl-radius-lg); }
+.pl-inspectpanel__head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.pl-inspectpanel__sec { display: flex; flex-direction: column; gap: var(--pl-space-2); }
+
 } /* @layer pl */
 
 /* ==========================================================================
@@ -1744,14 +1820,14 @@ html:has([data-pl-theme="light"]) body{background:#f4f6fb}
   <div class="pl-segment" role="tablist" aria-label="Katman"><button class="is-active" data-layer="all">Tümü</button><button data-layer="temel">Temel</button><button data-layer="advanced">Advanced</button></div>
   <a class="pl-btn pl-btn--secondary pl-btn--sm" style="text-decoration:none" href="pl-pin-ekranlari.html"><svg class="pl-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>Pin ekranları</a>
   <div class="pl-segment" role="tablist" aria-label="Tema"><button class="is-active" data-theme="dark">Karanlık</button><button data-theme="light">Açık</button></div>
-</div><nav class="g-nav"><a href="#tokenlar">Tokenlar</a><a href="#desen">Desen haritası</a><a href="pl-pin-ekranlari.html" class="g-nav--adv">Pin ekranları ↗</a><a href="#kat-1" class="">Temel</a><a href="#kat-2" class="">Form</a><a href="#kat-3" class="">Gezinme</a><a href="#kat-4" class="">Veri</a><a href="#kat-5" class="">Geri Bildirim</a><a href="#kat-6" class="">Katman</a><a href="#kat-7" class="">Ürün Kalıpları</a><a href="#kat-8" class="g-nav--adv">Kabuk & Pencere</a><a href="#kat-9" class="g-nav--adv">Medya & Eğlence</a><a href="#kat-10" class="g-nav--adv">Canlı Veri & Spor</a><a href="#kat-11" class="g-nav--adv">Akıllı Ev & IoT</a><a href="#kat-12" class="g-nav--adv">HUD & Endüstri</a><a href="#kat-13" class="g-nav--adv">Üretkenlik & İK</a><a href="#kat-14" class="g-nav--adv">CRM & İş</a><a href="#kat-15" class="g-nav--adv">Yaratıcı Araçlar</a><a href="#kat-16" class="g-nav--adv">Mobilite & Cihaz</a><a href="#kat-17" class="g-nav--adv">Sağlık, Yaşam & Ticaret</a><a href="#kat-18" class="g-nav--adv">Ekran Şablonları</a></nav></header>
+</div><nav class="g-nav"><a href="#tokenlar">Tokenlar</a><a href="#desen">Desen haritası</a><a href="pl-pin-ekranlari.html" class="g-nav--adv">Pin ekranları ↗</a><a href="#kat-1" class="">Temel</a><a href="#kat-2" class="">Form</a><a href="#kat-3" class="">Gezinme</a><a href="#kat-4" class="">Veri</a><a href="#kat-5" class="">Geri Bildirim</a><a href="#kat-6" class="">Katman</a><a href="#kat-7" class="">Ürün Kalıpları</a><a href="#kat-8" class="g-nav--adv">Kabuk & Pencere</a><a href="#kat-9" class="g-nav--adv">Medya & Eğlence</a><a href="#kat-10" class="g-nav--adv">Canlı Veri & Spor</a><a href="#kat-11" class="g-nav--adv">Akıllı Ev & IoT</a><a href="#kat-12" class="g-nav--adv">HUD & Endüstri</a><a href="#kat-13" class="g-nav--adv">Üretkenlik & İK</a><a href="#kat-14" class="g-nav--adv">CRM & İş</a><a href="#kat-15" class="g-nav--adv">Yaratıcı Araçlar</a><a href="#kat-16" class="g-nav--adv">Mobilite & Cihaz</a><a href="#kat-17" class="g-nav--adv">Sağlık, Yaşam & Ticaret</a><a href="#kat-18" class="g-nav--adv">Ekran Şablonları</a><a href="#kat-19" class="">Ek Bileşenler</a></nav></header>
 <main class="g-main">
   <section class="g-hero">
-    <div class="g-badges"><span class="pl-badge pl-badge--accent">v2.0.0</span><span class="pl-badge">01.11.2026</span><span class="pl-badge pl-badge--info">Claude Code + Codex ortak</span><span class="pl-badge pl-badge--pro">Desktop Application</span></div>
+    <div class="g-badges"><span class="pl-badge pl-badge--accent">v2.1.0</span><span class="pl-badge">03.11.2026</span><span class="pl-badge pl-badge--info">Claude Code + Codex ortak</span><span class="pl-badge pl-badge--pro">Desktop Application</span></div>
     <h1 class="g-title">PluginLabs <em>Advanced</em></h1>
     <p class="g-lead">Masaüstü uygulama dili: cam yüzeyler, komuta HUD'ları, medya vitrinleri, kurgu zaman çizelgeleri, kokpit göstergeleri ve tam ekran şablonları. Temel PluginLabs katmanının üzerine kapsüllü olarak oturur; yalnız <code class="pl-num">[data-pl]</code> içinde çalışır.</p>
     <div class="g-kpis">
-      <div class="pl-kpi pl-kpi--highlight"><span class="pl-label">Komponent</span><span class="pl-kpi__value">181</span><span class="pl-muted">79 temel · 102 advanced</span></div>
+      <div class="pl-kpi pl-kpi--highlight"><span class="pl-label">Komponent</span><span class="pl-kpi__value">190</span><span class="pl-muted">88 temel · 102 advanced</span></div>
       <div class="pl-kpi"><span class="pl-label">Ekran şablonu</span><span class="pl-kpi__value">12</span><span class="pl-muted">tam kompozisyon</span></div>
       <a class="pl-kpi" href="pl-pin-ekranlari.html" style="text-decoration:none"><span class="pl-label">Pin ekranı</span><span class="pl-kpi__value">33</span><span class="pl-muted">ayrı sayfada ↗</span></a>
       <div class="pl-kpi"><span class="pl-label">Yüzey teması</span><span class="pl-kpi__value">6</span><span class="pl-muted">data-pl-surface</span></div>
@@ -3825,9 +3901,145 @@ html:has([data-pl-theme="light"]) body{background:#f4f6fb}
 &lt;div class=&quot;pl-isoplan&quot; style=&quot;height:320px;background:transparent&quot;&gt;&lt;div class=&quot;pl-isoplan__floor&quot;&gt;&lt;span class=&quot;pl-isoplan__room pl-isoplan__room--wide&quot; style=&quot;--c:var(--pl-viz-4)&quot;&gt;&lt;/span&gt;&lt;span class=&quot;pl-isoplan__room is-active&quot; style=&quot;--c:var(--pl-viz-5)&quot;&gt;&lt;/span&gt;&lt;span class=&quot;pl-isoplan__room&quot; style=&quot;--c:var(--pl-viz-3)&quot;&gt;&lt;/span&gt;&lt;span class=&quot;pl-isoplan__room&quot; style=&quot;--c:var(--pl-viz-6)&quot;&gt;&lt;/span&gt;&lt;span class=&quot;pl-isoplan__room&quot; style=&quot;--c:var(--pl-viz-2)&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;pl-hotspot is-pulse&quot; style=&quot;left:56%;top:42%&quot;&gt;&lt;span class=&quot;pl-hotspot__pin&quot; style=&quot;--c:var(--pl-viz-5)&quot;&gt;&lt;svg class=&quot;pl-ico&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z&quot;/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;span class=&quot;pl-hotspot__label&quot;&gt;Toplantı salonu&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;pl-hotspot&quot; style=&quot;left:36%;top:60%&quot;&gt;&lt;span class=&quot;pl-hotspot__pin&quot; style=&quot;--c:var(--pl-viz-3)&quot;&gt;&lt;svg class=&quot;pl-ico&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;rect x=&quot;2&quot; y=&quot;7&quot; width=&quot;20&quot; height=&quot;14&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16&quot;/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;div class=&quot;pl-screen__aside&quot;&gt;&lt;div class=&quot;pl-floorpanel pl-glass&quot;&gt;&lt;div class=&quot;pl-floorpanel__head&quot;&gt;&lt;svg class=&quot;pl-ico&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;m12 2 10 5-10 5L2 7z&quot;/&gt;&lt;path d=&quot;m2 17 10 5 10-5M2 12l10 5 10-5&quot;/&gt;&lt;/svg&gt;Kat&lt;/div&gt;&lt;select class=&quot;pl-select&quot;&gt;&lt;option&gt;1. kat&lt;/option&gt;&lt;/select&gt;&lt;div class=&quot;pl-floorpanel__list&quot;&gt;&lt;div class=&quot;pl-roomrow&quot;&gt;&lt;span class=&quot;pl-roomrow__ic&quot; style=&quot;--c:var(--pl-viz-4)&quot;&gt;&lt;svg class=&quot;pl-ico&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2&quot;/&gt;&lt;circle cx=&quot;9&quot; cy=&quot;7&quot; r=&quot;4&quot;/&gt;&lt;path d=&quot;M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75&quot;/&gt;&lt;/svg&gt;&lt;/span&gt;Eğitim odası&lt;span class=&quot;pl-roomrow__n&quot;&gt;3&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;pl-roomrow is-active&quot;&gt;&lt;span class=&quot;pl-roomrow__ic&quot; style=&quot;--c:var(--pl-viz-5)&quot;&gt;&lt;svg class=&quot;pl-ico&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z&quot;/&gt;&lt;/svg&gt;&lt;/span&gt;Toplantı salonu&lt;span class=&quot;pl-roomrow__n&quot;&gt;Rota&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;pl-roomrow&quot;&gt;&lt;span class=&quot;pl-roomrow__ic&quot; style=&quot;--c:var(--pl-viz-3)&quot;&gt;&lt;svg class=&quot;pl-ico&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;rect x=&quot;2&quot; y=&quot;7&quot; width=&quot;20&quot; height=&quot;14&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16&quot;/&gt;&lt;/svg&gt;&lt;/span&gt;Yönetim&lt;span class=&quot;pl-roomrow__n&quot;&gt;8&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;pl-roomrow&quot;&gt;&lt;span class=&quot;pl-roomrow__ic&quot; style=&quot;--c:var(--pl-viz-6)&quot;&gt;&lt;svg class=&quot;pl-ico&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;rect x=&quot;4&quot; y=&quot;4&quot; width=&quot;16&quot; height=&quot;16&quot; rx=&quot;2&quot;/&gt;&lt;rect x=&quot;9&quot; y=&quot;9&quot; width=&quot;6&quot; height=&quot;6&quot;/&gt;&lt;path d=&quot;M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2&quot;/&gt;&lt;/svg&gt;&lt;/span&gt;Ar-Ge&lt;span class=&quot;pl-roomrow__n&quot;&gt;5&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;pl-roomrow&quot;&gt;&lt;span class=&quot;pl-roomrow__ic&quot; style=&quot;--c:var(--pl-viz-2)&quot;&gt;&lt;svg class=&quot;pl-ico&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2M7 2v20M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7&quot;/&gt;&lt;/svg&gt;&lt;/span&gt;Mutfak&lt;span class=&quot;pl-roomrow__n&quot;&gt;2&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</pre>
   <button class="g-copy" type="button">Kopyala</button></details>
+</article></div></section><section class="g-section" id="kat-19"><div class="g-sec-head"><span class="g-bar"></span><h2>Ek Bileşenler</h2><span class="g-layer g-layer--plc">PLC</span><span class="g-meta">9 KOMPONENT</span></div><div class="g-grid"><article class="g-card" data-search="plc-080 sistem kadranı system-gauge ek bileşenler tweakster  " data-layer="temel" id="plc-080">
+  <header class="g-card__head"><span class="g-id">PLC-080</span><h3>Sistem Kadranı</h3><span class="g-prod" style="--c:#a3e635">Tweakster</span></header>
+  <div class="g-preview" data-pl-product="tweakster"><div class="pl-gauge"><div class="pl-gauge__ring" style="--v:78" role="meter" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100" aria-label="CPU ve bellek yükü">%78</div>
+<div><b class="pl-gauge__title">CPU &amp; Bellek Yükü</b><span class="pl-gauge__sub">3 arka plan görevi aktif</span></div></div>
+<div class="pl-gauge is-warning" style="margin-top:10px"><div class="pl-gauge__ring" style="--v:91" role="meter" aria-valuenow="91" aria-valuemin="0" aria-valuemax="100" aria-label="Disk doluluğu">%91</div>
+<div><b class="pl-gauge__title">Disk Doluluğu</b><span class="pl-gauge__sub">Uyarı · 12 GB boş alan kaldı</span></div></div></div>
+  <p class="g-desc">Yüzde halkası + başlık + açıklama: CPU, bellek, disk gibi tek bir yükü özetler.</p>
+  <details class="g-code"><summary>Kod · <code>pl-gauge</code></summary><pre>&lt;div class=&quot;pl-gauge&quot;&gt;&lt;div class=&quot;pl-gauge__ring&quot; style=&quot;--v:78&quot; role=&quot;meter&quot; aria-valuenow=&quot;78&quot; aria-valuemin=&quot;0&quot; aria-valuemax=&quot;100&quot; aria-label=&quot;CPU ve bellek yükü&quot;&gt;%78&lt;/div&gt;
+&lt;div&gt;&lt;b class=&quot;pl-gauge__title&quot;&gt;CPU &amp;amp; Bellek Yükü&lt;/b&gt;&lt;span class=&quot;pl-gauge__sub&quot;&gt;3 arka plan görevi aktif&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;pl-gauge is-warning&quot; style=&quot;margin-top:10px&quot;&gt;&lt;div class=&quot;pl-gauge__ring&quot; style=&quot;--v:91&quot; role=&quot;meter&quot; aria-valuenow=&quot;91&quot; aria-valuemin=&quot;0&quot; aria-valuemax=&quot;100&quot; aria-label=&quot;Disk doluluğu&quot;&gt;%91&lt;/div&gt;
+&lt;div&gt;&lt;b class=&quot;pl-gauge__title&quot;&gt;Disk Doluluğu&lt;/b&gt;&lt;span class=&quot;pl-gauge__sub&quot;&gt;Uyarı · 12 GB boş alan kaldı&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;</pre>
+  <button class="g-copy" type="button">Kopyala</button></details>
+</article>
+<article class="g-card" data-search="plc-081 sesli komut çubuğu voice-hud ek bileşenler mymind  " data-layer="temel" id="plc-081">
+  <header class="g-card__head"><span class="g-id">PLC-081</span><h3>Sesli Komut Çubuğu</h3><span class="g-prod" style="--c:#f0b429">MyMind</span></header>
+  <div class="g-preview" data-pl-product="mymind"><div class="pl-voicehud is-live" role="status" aria-live="polite"><span class="pl-voicehud__orb" aria-hidden="true"></span>
+<span class="pl-voicehud__wave" aria-hidden="true"><i style="--h:45;--d:0"></i><i style="--h:80;--d:1"></i><i style="--h:60;--d:2"></i><i style="--h:95;--d:3"></i><i style="--h:50;--d:4"></i></span>
+<span class="pl-voicehud__label">Dinleniyor…</span><kbd class="pl-kbd">Esc</kbd></div></div>
+  <p class="g-desc">Bas-konuş sesli komut HUD&#x27;u: yüzen AI küresi, canlı ses dalgası, durum metni ve iptal kısayolu.</p>
+  <details class="g-code"><summary>Kod · <code>pl-voicehud</code></summary><pre>&lt;div class=&quot;pl-voicehud is-live&quot; role=&quot;status&quot; aria-live=&quot;polite&quot;&gt;&lt;span class=&quot;pl-voicehud__orb&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;pl-voicehud__wave&quot; aria-hidden=&quot;true&quot;&gt;&lt;i style=&quot;--h:45;--d:0&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--h:80;--d:1&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--h:60;--d:2&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--h:95;--d:3&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--h:50;--d:4&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+&lt;span class=&quot;pl-voicehud__label&quot;&gt;Dinleniyor…&lt;/span&gt;&lt;kbd class=&quot;pl-kbd&quot;&gt;Esc&lt;/kbd&gt;&lt;/div&gt;</pre>
+  <button class="g-copy" type="button">Kopyala</button></details>
+</article>
+<article class="g-card" data-search="plc-082 sayısal sürgü kutusu scrub-input ek bileşenler design replicator  " data-layer="temel" id="plc-082">
+  <header class="g-card__head"><span class="g-id">PLC-082</span><h3>Sayısal Sürgü Kutusu</h3><span class="g-prod" style="--c:#f472b6">Design Replicator</span></header>
+  <div class="g-preview" data-pl-product="replicator"><div class="pl-scrubgrid">
+<label class="pl-scrubinput"><span class="pl-scrubinput__label">W</span><input inputmode="decimal" value="1200" aria-label="Genişlik"></label>
+<label class="pl-scrubinput"><span class="pl-scrubinput__label">H</span><input inputmode="decimal" value="760" aria-label="Yükseklik"></label>
+<label class="pl-scrubinput"><span class="pl-scrubinput__label">R</span><input inputmode="decimal" value="14px" aria-label="Köşe yarıçapı"></label>
+<label class="pl-scrubinput"><span class="pl-scrubinput__label">∠</span><input inputmode="decimal" value="0°" aria-label="Açı"></label>
+</div></div>
+  <p class="g-desc">Etiketi sürükleyerek değeri değiştiren X/Y/W/H/R özellik kutuları.</p>
+  <details class="g-code"><summary>Kod · <code>pl-scrubgrid</code></summary><pre>&lt;div class=&quot;pl-scrubgrid&quot;&gt;
+&lt;label class=&quot;pl-scrubinput&quot;&gt;&lt;span class=&quot;pl-scrubinput__label&quot;&gt;W&lt;/span&gt;&lt;input inputmode=&quot;decimal&quot; value=&quot;1200&quot; aria-label=&quot;Genişlik&quot;&gt;&lt;/label&gt;
+&lt;label class=&quot;pl-scrubinput&quot;&gt;&lt;span class=&quot;pl-scrubinput__label&quot;&gt;H&lt;/span&gt;&lt;input inputmode=&quot;decimal&quot; value=&quot;760&quot; aria-label=&quot;Yükseklik&quot;&gt;&lt;/label&gt;
+&lt;label class=&quot;pl-scrubinput&quot;&gt;&lt;span class=&quot;pl-scrubinput__label&quot;&gt;R&lt;/span&gt;&lt;input inputmode=&quot;decimal&quot; value=&quot;14px&quot; aria-label=&quot;Köşe yarıçapı&quot;&gt;&lt;/label&gt;
+&lt;label class=&quot;pl-scrubinput&quot;&gt;&lt;span class=&quot;pl-scrubinput__label&quot;&gt;∠&lt;/span&gt;&lt;input inputmode=&quot;decimal&quot; value=&quot;0°&quot; aria-label=&quot;Açı&quot;&gt;&lt;/label&gt;
+&lt;/div&gt;</pre>
+  <button class="g-copy" type="button">Kopyala</button></details>
+</article>
+<article class="g-card" data-search="plc-083 çoklu mağaza fiyat matrisi price-matrix ek bileşenler mywishlist  " data-layer="temel" id="plc-083">
+  <header class="g-card__head"><span class="g-id">PLC-083</span><h3>Çoklu Mağaza Fiyat Matrisi</h3><span class="g-prod" style="--c:#fb7185">MyWishlist</span></header>
+  <div class="g-preview" data-pl-product="wishlist"><ul class="pl-pricematrix" aria-label="Mağaza fiyatları">
+<li class="pl-pricematrix__row is-best"><span class="pl-pricematrix__store">Trendyol</span><span class="pl-pricematrix__best">En iyi</span><span class="pl-pricematrix__price">1.249,90 ₺</span></li>
+<li class="pl-pricematrix__row"><span class="pl-pricematrix__store">Hepsiburada</span><span class="pl-pricematrix__price">1.389,00 ₺</span></li>
+<li class="pl-pricematrix__row"><span class="pl-pricematrix__store">Amazon</span><span class="pl-pricematrix__price">1.412,50 ₺</span></li>
+</ul></div>
+  <p class="g-desc">Aynı ürünün mağazalar arası canlı fiyat karşılaştırması; en iyi fiyat altın vurguyla işaretlenir.</p>
+  <details class="g-code"><summary>Kod · <code>pl-pricematrix</code></summary><pre>&lt;ul class=&quot;pl-pricematrix&quot; aria-label=&quot;Mağaza fiyatları&quot;&gt;
+&lt;li class=&quot;pl-pricematrix__row is-best&quot;&gt;&lt;span class=&quot;pl-pricematrix__store&quot;&gt;Trendyol&lt;/span&gt;&lt;span class=&quot;pl-pricematrix__best&quot;&gt;En iyi&lt;/span&gt;&lt;span class=&quot;pl-pricematrix__price&quot;&gt;1.249,90 ₺&lt;/span&gt;&lt;/li&gt;
+&lt;li class=&quot;pl-pricematrix__row&quot;&gt;&lt;span class=&quot;pl-pricematrix__store&quot;&gt;Hepsiburada&lt;/span&gt;&lt;span class=&quot;pl-pricematrix__price&quot;&gt;1.389,00 ₺&lt;/span&gt;&lt;/li&gt;
+&lt;li class=&quot;pl-pricematrix__row&quot;&gt;&lt;span class=&quot;pl-pricematrix__store&quot;&gt;Amazon&lt;/span&gt;&lt;span class=&quot;pl-pricematrix__price&quot;&gt;1.412,50 ₺&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;</pre>
+  <button class="g-copy" type="button">Kopyala</button></details>
+</article>
+<article class="g-card g-span2" data-search="plc-084 cam başlık ve sekme çubuğu glass-titlebar ek bileşenler mind palace  " data-layer="temel" id="plc-084">
+  <header class="g-card__head"><span class="g-id">PLC-084</span><h3>Cam Başlık ve Sekme Çubuğu</h3><span class="g-prod" style="--c:#a78bfa">Mind Palace</span></header>
+  <div class="g-preview" data-pl-product="mindpalace"><div style="padding:16px;border-radius:var(--pl-radius-xl);background:var(--pl-grad-aurora)">
+<div class="pl-glassbar"><span class="pl-glassbar__lights" aria-hidden="true"><i></i><i></i><i></i></span>
+<div class="pl-glassbar__tabs" role="tablist" aria-label="Açık uygulamalar"><button class="pl-glassbar__tab is-active" role="tab" aria-selected="true">Mind Palace</button><button class="pl-glassbar__tab" role="tab" aria-selected="false">Leo Akışı</button><button class="pl-glassbar__tab" role="tab" aria-selected="false">Notlar</button></div>
+<span class="pl-glassbar__end"><kbd class="pl-kbd">Ctrl T</kbd></span></div></div></div>
+  <p class="g-desc">Pencere ışıkları, sabitlenmiş uygulama sekmeleri ve kısayol ipucu taşıyan buzlu cam başlık çubuğu.</p>
+  <details class="g-code"><summary>Kod · <code>pl-glassbar</code></summary><pre>&lt;div style=&quot;padding:16px;border-radius:var(--pl-radius-xl);background:var(--pl-grad-aurora)&quot;&gt;
+&lt;div class=&quot;pl-glassbar&quot;&gt;&lt;span class=&quot;pl-glassbar__lights&quot; aria-hidden=&quot;true&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/span&gt;
+&lt;div class=&quot;pl-glassbar__tabs&quot; role=&quot;tablist&quot; aria-label=&quot;Açık uygulamalar&quot;&gt;&lt;button class=&quot;pl-glassbar__tab is-active&quot; role=&quot;tab&quot; aria-selected=&quot;true&quot;&gt;Mind Palace&lt;/button&gt;&lt;button class=&quot;pl-glassbar__tab&quot; role=&quot;tab&quot; aria-selected=&quot;false&quot;&gt;Leo Akışı&lt;/button&gt;&lt;button class=&quot;pl-glassbar__tab&quot; role=&quot;tab&quot; aria-selected=&quot;false&quot;&gt;Notlar&lt;/button&gt;&lt;/div&gt;
+&lt;span class=&quot;pl-glassbar__end&quot;&gt;&lt;kbd class=&quot;pl-kbd&quot;&gt;Ctrl T&lt;/kbd&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;</pre>
+  <button class="g-copy" type="button">Kopyala</button></details>
+</article>
+<article class="g-card" data-search="plc-085 kutu modeli box-model ek bileşenler design replicator  " data-layer="temel" id="plc-085">
+  <header class="g-card__head"><span class="g-id">PLC-085</span><h3>Kutu Modeli</h3><span class="g-prod" style="--c:#f472b6">Design Replicator</span></header>
+  <div class="g-preview" data-pl-product="replicator"><div class="pl-boxmodel" role="img" aria-label="Dış boşluk 16, iç boşluk 14 ve 16, boyut 380 × 560">Margin · 16
+<div class="pl-boxmodel__pad">Padding · 14 × 16<span class="pl-boxmodel__size">380 × 560</span></div></div></div>
+  <p class="g-desc">Seçili öğenin dış boşluk (margin), iç boşluk (padding) ve boyutunu iç içe kutularla gösterir.</p>
+  <details class="g-code"><summary>Kod · <code>pl-boxmodel</code></summary><pre>&lt;div class=&quot;pl-boxmodel&quot; role=&quot;img&quot; aria-label=&quot;Dış boşluk 16, iç boşluk 14 ve 16, boyut 380 × 560&quot;&gt;Margin · 16
+&lt;div class=&quot;pl-boxmodel__pad&quot;&gt;Padding · 14 × 16&lt;span class=&quot;pl-boxmodel__size&quot;&gt;380 × 560&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;</pre>
+  <button class="g-copy" type="button">Kopyala</button></details>
+</article>
+<article class="g-card" data-search="plc-086 bağlı tokenlar token-list ek bileşenler design replicator  " data-layer="temel" id="plc-086">
+  <header class="g-card__head"><span class="g-id">PLC-086</span><h3>Bağlı Tokenlar</h3><span class="g-prod" style="--c:#f472b6">Design Replicator</span></header>
+  <div class="g-preview" data-pl-product="replicator"><dl class="pl-tokenlist">
+<div class="pl-tokenlist__row"><dt>Zemin</dt><dd><code class="pl-tokenchip">--pl-bg-2</code></dd></div>
+<div class="pl-tokenlist__row"><dt>Vurgu</dt><dd><code class="pl-tokenchip is-accent">--pl-accent</code></dd></div>
+<div class="pl-tokenlist__row"><dt>Köşe</dt><dd><code class="pl-tokenchip">--pl-radius-lg</code></dd></div>
+</dl></div>
+  <p class="g-desc">Seçili öğenin hangi tasarım tokenlarına bağlı olduğunu özellik → token çipi olarak listeler.</p>
+  <details class="g-code"><summary>Kod · <code>pl-tokenlist</code></summary><pre>&lt;dl class=&quot;pl-tokenlist&quot;&gt;
+&lt;div class=&quot;pl-tokenlist__row&quot;&gt;&lt;dt&gt;Zemin&lt;/dt&gt;&lt;dd&gt;&lt;code class=&quot;pl-tokenchip&quot;&gt;--pl-bg-2&lt;/code&gt;&lt;/dd&gt;&lt;/div&gt;
+&lt;div class=&quot;pl-tokenlist__row&quot;&gt;&lt;dt&gt;Vurgu&lt;/dt&gt;&lt;dd&gt;&lt;code class=&quot;pl-tokenchip is-accent&quot;&gt;--pl-accent&lt;/code&gt;&lt;/dd&gt;&lt;/div&gt;
+&lt;div class=&quot;pl-tokenlist__row&quot;&gt;&lt;dt&gt;Köşe&lt;/dt&gt;&lt;dd&gt;&lt;code class=&quot;pl-tokenchip&quot;&gt;--pl-radius-lg&lt;/code&gt;&lt;/dd&gt;&lt;/div&gt;
+&lt;/dl&gt;</pre>
+  <button class="g-copy" type="button">Kopyala</button></details>
+</article>
+<article class="g-card" data-search="plc-087 etkinlik isı haritası activity-heatmap ek bileşenler   " data-layer="temel" id="plc-087">
+  <header class="g-card__head"><span class="g-id">PLC-087</span><h3>Etkinlik Isı Haritası</h3></header>
+  <div class="g-preview"><div class="pl-heatmap" style="--cols:14" role="img" aria-label="Son 28 günlük etkinlik: en yoğun günler hafta ortası"><i style="--v:20"></i><i style="--v:60"></i><i style="--v:85"></i><i style="--v:100"></i><i style="--v:30"></i><i style="--v:45"></i><i style="--v:90"></i><i style="--v:70"></i><i style="--v:25"></i><i style="--v:80"></i><i style="--v:95"></i><i style="--v:40"></i><i style="--v:65"></i><i style="--v:100"></i><i style="--v:35"></i><i style="--v:55"></i><i style="--v:88"></i><i style="--v:92"></i><i style="--v:60"></i><i style="--v:75"></i><i style="--v:30"></i><i style="--v:50"></i><i style="--v:100"></i><i style="--v:70"></i><i style="--v:20"></i><i style="--v:45"></i><i style="--v:85"></i><i style="--v:60"></i></div></div>
+  <p class="g-desc">Günlük/saatlik yoğunluğu aksan renginin tonlarıyla gösteren kare ızgara.</p>
+  <details class="g-code"><summary>Kod · <code>pl-heatmap</code></summary><pre>&lt;div class=&quot;pl-heatmap&quot; style=&quot;--cols:14&quot; role=&quot;img&quot; aria-label=&quot;Son 28 günlük etkinlik: en yoğun günler hafta ortası&quot;&gt;&lt;i style=&quot;--v:20&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:60&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:85&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:100&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:30&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:45&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:90&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:70&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:25&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:80&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:95&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:40&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:65&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:100&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:35&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:55&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:88&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:92&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:60&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:75&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:30&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:50&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:100&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:70&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:20&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:45&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:85&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:60&quot;&gt;&lt;/i&gt;&lt;/div&gt;</pre>
+  <button class="g-copy" type="button">Kopyala</button></details>
+</article>
+<article class="g-card" data-search="plc-088 denetçi paneli (ek) inspector-panel-ek ek bileşenler design replicator  " data-layer="temel" id="plc-088">
+  <header class="g-card__head"><span class="g-id">PLC-088</span><h3>Denetçi Paneli (Ek)</h3><span class="g-prod" style="--c:#f472b6">Design Replicator</span></header>
+  <div class="g-preview" data-pl-product="replicator"><aside class="pl-inspectpanel" aria-label="Denetçi">
+<div class="pl-inspectpanel__head"><span class="pl-label">Denetçi · Inspector</span><span class="pl-badge pl-badge--accent">Kart</span></div>
+<div class="pl-scrubgrid">
+<label class="pl-scrubinput"><span class="pl-scrubinput__label">X</span><input inputmode="decimal" value="240" aria-label="X konumu"></label>
+<label class="pl-scrubinput"><span class="pl-scrubinput__label">Y</span><input inputmode="decimal" value="118" aria-label="Y konumu"></label>
+<label class="pl-scrubinput"><span class="pl-scrubinput__label">W</span><input inputmode="decimal" value="380" aria-label="Genişlik"></label>
+<label class="pl-scrubinput"><span class="pl-scrubinput__label">H</span><input inputmode="decimal" value="560" aria-label="Yükseklik"></label>
+<label class="pl-scrubinput"><span class="pl-scrubinput__label">R</span><input inputmode="decimal" value="14px" aria-label="Köşe yarıçapı"></label>
+<label class="pl-scrubinput"><span class="pl-scrubinput__label">%</span><input inputmode="decimal" value="100" aria-label="Opaklık"></label>
+</div>
+<div class="pl-boxmodel" role="img" aria-label="Dış boşluk 16, iç boşluk 14 ve 16, boyut 380 × 560">Margin · 16<div class="pl-boxmodel__pad">Padding · 14 × 16<span class="pl-boxmodel__size">380 × 560</span></div></div>
+<div class="pl-inspectpanel__sec"><span class="pl-label">Bağlı tokenlar</span>
+<dl class="pl-tokenlist"><div class="pl-tokenlist__row"><dt>Zemin</dt><dd><code class="pl-tokenchip">--pl-bg-2</code></dd></div><div class="pl-tokenlist__row"><dt>Vurgu</dt><dd><code class="pl-tokenchip is-accent">--pl-accent</code></dd></div><div class="pl-tokenlist__row"><dt>Köşe</dt><dd><code class="pl-tokenchip">--pl-radius-lg</code></dd></div></dl></div>
+<div class="pl-inspectpanel__sec"><span class="pl-label">Etkinlik ısı haritası</span>
+<div class="pl-heatmap" style="--cols:14" role="img" aria-label="Son 28 günlük etkinlik"><i style="--v:20"></i><i style="--v:60"></i><i style="--v:85"></i><i style="--v:100"></i><i style="--v:30"></i><i style="--v:45"></i><i style="--v:90"></i><i style="--v:70"></i><i style="--v:25"></i><i style="--v:80"></i><i style="--v:95"></i><i style="--v:40"></i><i style="--v:65"></i><i style="--v:100"></i><i style="--v:35"></i><i style="--v:55"></i><i style="--v:88"></i><i style="--v:92"></i><i style="--v:60"></i><i style="--v:75"></i><i style="--v:30"></i><i style="--v:50"></i><i style="--v:100"></i><i style="--v:70"></i><i style="--v:20"></i><i style="--v:45"></i><i style="--v:85"></i><i style="--v:60"></i></div></div>
+</aside></div>
+  <p class="g-desc">Sayısal sürgü kutuları, kutu modeli, bağlı tokenlar ve ısı haritasını tek denetçi panelinde birleştirir.</p>
+  <details class="g-code"><summary>Kod · <code>pl-inspectpanel</code></summary><pre>&lt;aside class=&quot;pl-inspectpanel&quot; aria-label=&quot;Denetçi&quot;&gt;
+&lt;div class=&quot;pl-inspectpanel__head&quot;&gt;&lt;span class=&quot;pl-label&quot;&gt;Denetçi · Inspector&lt;/span&gt;&lt;span class=&quot;pl-badge pl-badge--accent&quot;&gt;Kart&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;pl-scrubgrid&quot;&gt;
+&lt;label class=&quot;pl-scrubinput&quot;&gt;&lt;span class=&quot;pl-scrubinput__label&quot;&gt;X&lt;/span&gt;&lt;input inputmode=&quot;decimal&quot; value=&quot;240&quot; aria-label=&quot;X konumu&quot;&gt;&lt;/label&gt;
+&lt;label class=&quot;pl-scrubinput&quot;&gt;&lt;span class=&quot;pl-scrubinput__label&quot;&gt;Y&lt;/span&gt;&lt;input inputmode=&quot;decimal&quot; value=&quot;118&quot; aria-label=&quot;Y konumu&quot;&gt;&lt;/label&gt;
+&lt;label class=&quot;pl-scrubinput&quot;&gt;&lt;span class=&quot;pl-scrubinput__label&quot;&gt;W&lt;/span&gt;&lt;input inputmode=&quot;decimal&quot; value=&quot;380&quot; aria-label=&quot;Genişlik&quot;&gt;&lt;/label&gt;
+&lt;label class=&quot;pl-scrubinput&quot;&gt;&lt;span class=&quot;pl-scrubinput__label&quot;&gt;H&lt;/span&gt;&lt;input inputmode=&quot;decimal&quot; value=&quot;560&quot; aria-label=&quot;Yükseklik&quot;&gt;&lt;/label&gt;
+&lt;label class=&quot;pl-scrubinput&quot;&gt;&lt;span class=&quot;pl-scrubinput__label&quot;&gt;R&lt;/span&gt;&lt;input inputmode=&quot;decimal&quot; value=&quot;14px&quot; aria-label=&quot;Köşe yarıçapı&quot;&gt;&lt;/label&gt;
+&lt;label class=&quot;pl-scrubinput&quot;&gt;&lt;span class=&quot;pl-scrubinput__label&quot;&gt;%&lt;/span&gt;&lt;input inputmode=&quot;decimal&quot; value=&quot;100&quot; aria-label=&quot;Opaklık&quot;&gt;&lt;/label&gt;
+&lt;/div&gt;
+&lt;div class=&quot;pl-boxmodel&quot; role=&quot;img&quot; aria-label=&quot;Dış boşluk 16, iç boşluk 14 ve 16, boyut 380 × 560&quot;&gt;Margin · 16&lt;div class=&quot;pl-boxmodel__pad&quot;&gt;Padding · 14 × 16&lt;span class=&quot;pl-boxmodel__size&quot;&gt;380 × 560&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;pl-inspectpanel__sec&quot;&gt;&lt;span class=&quot;pl-label&quot;&gt;Bağlı tokenlar&lt;/span&gt;
+&lt;dl class=&quot;pl-tokenlist&quot;&gt;&lt;div class=&quot;pl-tokenlist__row&quot;&gt;&lt;dt&gt;Zemin&lt;/dt&gt;&lt;dd&gt;&lt;code class=&quot;pl-tokenchip&quot;&gt;--pl-bg-2&lt;/code&gt;&lt;/dd&gt;&lt;/div&gt;&lt;div class=&quot;pl-tokenlist__row&quot;&gt;&lt;dt&gt;Vurgu&lt;/dt&gt;&lt;dd&gt;&lt;code class=&quot;pl-tokenchip is-accent&quot;&gt;--pl-accent&lt;/code&gt;&lt;/dd&gt;&lt;/div&gt;&lt;div class=&quot;pl-tokenlist__row&quot;&gt;&lt;dt&gt;Köşe&lt;/dt&gt;&lt;dd&gt;&lt;code class=&quot;pl-tokenchip&quot;&gt;--pl-radius-lg&lt;/code&gt;&lt;/dd&gt;&lt;/div&gt;&lt;/dl&gt;&lt;/div&gt;
+&lt;div class=&quot;pl-inspectpanel__sec&quot;&gt;&lt;span class=&quot;pl-label&quot;&gt;Etkinlik ısı haritası&lt;/span&gt;
+&lt;div class=&quot;pl-heatmap&quot; style=&quot;--cols:14&quot; role=&quot;img&quot; aria-label=&quot;Son 28 günlük etkinlik&quot;&gt;&lt;i style=&quot;--v:20&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:60&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:85&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:100&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:30&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:45&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:90&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:70&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:25&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:80&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:95&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:40&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:65&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:100&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:35&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:55&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:88&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:92&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:60&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:75&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:30&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:50&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:100&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:70&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:20&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:45&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:85&quot;&gt;&lt;/i&gt;&lt;i style=&quot;--v:60&quot;&gt;&lt;/i&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/aside&gt;</pre>
+  <button class="g-copy" type="button">Kopyala</button></details>
 </article></div></section>
 
-  <footer class="g-foot"><span class="pl-label">PluginLabs Advanced · v2.0.0</span><span class="pl-label">01.11.2026 · build/*.py kaynağından üretildi</span></footer>
+  <footer class="g-foot"><span class="pl-label">PluginLabs Advanced · v2.1.0</span><span class="pl-label">03.11.2026 · build/*.py kaynağından üretildi</span></footer>
 </main></div>
 <script>
 

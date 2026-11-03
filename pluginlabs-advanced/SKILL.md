@@ -2,7 +2,7 @@
 name: pluginlabs-advanced
 description: PluginLabs Advanced tasarım sistemi — temel PluginLabs katmanı + masaüstü uygulama katmanı. PluginLabs Hub, masaüstü uygulamaları (Flow Dock, Tweakster, Mind Palace) veya tarayıcı eklentileri (Leo Helper, Design Replicator, Mutfak Atölyesi, Extension Manager, Ultimate Scrapper, MyWishlist, MyMind) için herhangi bir UI, ekran, pano, editör, komuta ekranı, medya vitrini, kokpit/HMI, komponent, popup, yan panel, stil veya tema yazılırken/değiştirilirken kullan. Mevcut tasarıma dokunmadan --pl- tokenları, yüzey temaları ve pl- komponentleriyle çalışır.
 metadata:
-  short-description: PluginLabs Advanced — 181 komponent (79 PLC + 102 PLA), 6 yüzey teması, 12 ekran şablonu
+  short-description: PluginLabs Advanced — 190 komponent (88 PLC + 102 PLA), 6 yüzey teması, 12 ekran şablonu
   version: 2.0.0
   updated: 01.11.2026
 ---
@@ -25,7 +25,7 @@ Kullanılmaz: backend, veri modeli, build/CI işleri; PluginLabs dışı projele
 
 ## Önce oku (sırayla)
 1. `references/TASARIM-PRENSIPLERI.md` — altın kural, renk, yüzey temaları, tipografi, yerleşimler, desen aileleri, erişilebilirlik, ses. **Her görevde.**
-2. `references/KOMPONENTLER.md` — 181 komponent. İhtiyacın olanı ID veya adla ara (`grep -n "Zaman Çizelgesi"`, `grep -n "PLA-094"`), tamamını okumana gerek yok.
+2. `references/KOMPONENTLER.md` — 190 komponent (ek bileşenler PLC-080…088: kadran, sesli komut, sürgü kutusu, fiyat matrisi, cam başlık, kutu modeli, bağlı tokenlar, ısı haritası, denetçi paneli). İhtiyacın olanı ID veya adla ara (`grep -n "Zaman Çizelgesi"`, `grep -n "PLA-094"`), tamamını okumana gerek yok.
 3. Tam ekran isteniyorsa önce **Ekran Şablonları** (PLA-091…102) ve `assets/pl-pin-ekranlari.html` içindeki pin ekranlarına bak — en yakın ekrandan başla.
 4. Gerekirse `assets/pl-components.json` — aynı katalog, makine okunur (slug, katman, yüzey, sınıflar, html).
 
@@ -71,7 +71,7 @@ Kullanılmaz: backend, veri modeli, build/CI işleri; PluginLabs dışı projele
 | Yol | İçerik |
 |---|---|
 | `references/TASARIM-PRENSIPLERI.md` | Prensipler, yüzey temaları, desen aileleri, kontrol listesi |
-| `references/KOMPONENTLER.md` | 181 komponent: amaç, ne zaman, desen kaynağı, durumlar, sınıflar, a11y, HTML |
+| `references/KOMPONENTLER.md` | 190 komponent: amaç, ne zaman, desen kaynağı, durumlar, sınıflar, a11y, HTML |
 | `assets/pl-tokens.css` | Tokenlar (karanlık/açık tema, 6 yüzey, 11 ürün aksanı, yoğunluk, veri/HUD/medya paletleri) |
 | `assets/pl-tokens.json` | Tokenlar, W3C DTCG biçimi (AstraOS/API uyumlu) |
 | `assets/pl-components.css` | Temel komponent stilleri (PLC) |

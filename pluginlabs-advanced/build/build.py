@@ -6,6 +6,7 @@ Kaynak:    build/components.py (PLC temel) + build/advanced*.py (PLA advanced) +
 import html, json, re, sys, pathlib, datetime
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 from components import C as BASE
+import components_ek  # PLC-080… ek bileşenler: listenin sonuna eklenir, mevcut kimlikler değişmez
 import advanced, advanced_2, advanced_3, advanced_4, advanced_screens
 from advanced import A as ADV
 for _x in BASE:
@@ -16,14 +17,15 @@ C = BASE + ADV
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 A, R = ROOT / "assets", ROOT / "references"
-VERSION, DATE = "2.0.0", "01.11.2026"
+VERSION, DATE = "2.1.0", "03.11.2026"
 tokens_css = (A / "pl-tokens.css").read_text(encoding="utf-8")
 comp_css = (A / "pl-components.css").read_text(encoding="utf-8")
 adv_css = (A / "pl-advanced.css").read_text(encoding="utf-8")
 
 BASE_CATS = ["Temel", "Form", "Gezinme", "Veri", "Geri Bildirim", "Katman", "Ürün Kalıpları"]
 ADV_CATS = ["Kabuk & Pencere", "Medya & Eğlence", "Canlı Veri & Spor", "Akıllı Ev & IoT", "HUD & Endüstri", "Üretkenlik & İK", "CRM & İş", "Yaratıcı Araçlar", "Mobilite & Cihaz", "Sağlık, Yaşam & Ticaret", "Ekran Şablonları"]
-CATS = BASE_CATS + ADV_CATS
+EK_CATS = ["Ek Bileşenler"]  # temel katman (PLC), galeride en sonda: mevcut #kat-N bağlantıları kaymaz
+CATS = BASE_CATS + ADV_CATS + EK_CATS
 SURFACES = [("varsayilan","Varsayılan","Gece atölyesi koyu zemin"),("glass","Cam","Buzlu cam katmanlar, renkli zemin üstünde"),("hud","HUD","Komuta merkezi: siyah-mavi, camgöbeği çizgi"),("neon","Neon","Canlı skor / oyun: yüksek kontrast limon"),("soft","Soft","Açık pastel SaaS paneli, büyük köşeler"),("cockpit","Kokpit","Araç / drone HMI: saf siyah, mavi yaylar")]
 PRODUCTS = [("hub","PluginLabs Hub","#7c6cff","Masaüstü"),("leo","Leo Helper","#22d3ee","Eklenti"),
  ("mindpalace","Mind Palace","#a78bfa","Eklenti / Masaüstü"),("replicator","Design Replicator","#f472b6","Eklenti"),
@@ -69,7 +71,7 @@ for k, v in light.items():
 catalog = {"meta": {"sistem": "PluginLabs Advanced", "surum": VERSION, "tarih": DATE, "adet": len(C), "temel": len(BASE), "advanced": len(ADV),
                     "kaynak": "build/components.py + build/advanced*.py"},
            "yuzeyler": [{"kod": k, "ad": a, "aciklama": d} for k, a, d in SURFACES],
-           "kategoriler": [{"id": i+1, "ad": c, "katman": "temel" if c in BASE_CATS else "advanced", "adet": sum(1 for x in C if x["kategori"] == c)} for i, c in enumerate(CATS)],
+           "kategoriler": [{"id": i+1, "ad": c, "katman": "temel" if c in BASE_CATS + EK_CATS else "advanced", "adet": sum(1 for x in C if x["kategori"] == c)} for i, c in enumerate(CATS)],
            "urunler": [{"kod": p[0], "ad": p[1], "aksan": p[2], "platform": p[3]} for p in PRODUCTS],
            "komponentler": [{"id": x["id"], "slug": x["slug"], "ad": x["ad"], "kategori": x["kategori"],
                              "urun": x["urun"], "katman": x["katman"], "yuzey": x["yuzey"], "tema": x["tema"], "pinterest_kaynak": x["kaynak"] or None, "durum": x["durum"], "aciklama": x["aciklama"], "ne_zaman": x["ne_zaman"],
@@ -102,7 +104,7 @@ for x in C:
     tag = " · ".join(t for t in [x["yuzey"] and f"`{x['yuzey']}`", x["tema"] and f"`{x['tema']}`", PNAME.get(x["urun"])] if t) or "—"
     md.append(f"| {x['id']} | [{x['ad']}](#{x['id'].lower()}) | {x['kategori']} | {tag} |")
 md.append("")
-for part, cats in (("TEMEL KATMAN (PLC)", BASE_CATS), ("ADVANCED KATMAN (PLA)", ADV_CATS)):
+for part, cats in (("TEMEL KATMAN (PLC)", BASE_CATS), ("ADVANCED KATMAN (PLA)", ADV_CATS), ("EK BİLEŞENLER (PLC-080 …)", EK_CATS)):
     md.append(f"\n---\n\n# {part}\n")
     for cat in cats:
         items = [x for x in C if x["kategori"] == cat]
@@ -141,7 +143,7 @@ from icons import I
 sections = []
 for idx, cat in enumerate(CATS):
     items = [x for x in C if x["kategori"] == cat]
-    layer = "PLC" if cat in BASE_CATS else "PLA"
+    layer = "PLC" if cat in BASE_CATS + EK_CATS else "PLA"
     sections.append(f'<section class="g-section" id="kat-{idx+1}"><div class="g-sec-head"><span class="g-bar"></span><h2>{cat}</h2><span class="g-layer g-layer--{layer.lower()}">{layer}</span><span class="g-meta">{len(items)} KOMPONENT</span></div><div class="g-grid">' + "\n".join(card(x) for x in items) + "</div></section>")
 
 sw = lambda names: "".join(f'<div class="g-sw"><span style="background:var({v})"></span><b>{v[5:]}</b><code>{dark.get(v,"")[:28]}</code></div>' for v in names)

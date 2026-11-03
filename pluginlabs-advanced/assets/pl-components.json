@@ -1,10 +1,10 @@
 {
   "meta": {
     "sistem": "PluginLabs Advanced",
-    "surum": "2.0.0",
-    "tarih": "01.11.2026",
-    "adet": 181,
-    "temel": 79,
+    "surum": "2.1.0",
+    "tarih": "03.11.2026",
+    "adet": 190,
+    "temel": 88,
     "advanced": 102,
     "kaynak": "build/components.py + build/advanced*.py"
   },
@@ -148,6 +148,12 @@
       "ad": "Ekran Şablonları",
       "katman": "advanced",
       "adet": 12
+    },
+    {
+      "id": 19,
+      "ad": "Ek Bileşenler",
+      "katman": "temel",
+      "adet": 9
     }
   ],
   "urunler": [
@@ -1739,6 +1745,208 @@
       "siniflar": "pl-listrow + pl-badge--* + pl-num",
       "erisilebilirlik": "Tutarlar sağa hizalı ve tabular.",
       "html": "<div><div class=\"pl-listrow\"><label class=\"pl-check\"><input type=\"checkbox\" checked></label><div class=\"pl-listrow__main\"><div class=\"pl-listrow__title\">Mekanik klavye</div></div><span class=\"pl-badge pl-badge--info\">Elektronik</span><span class=\"pl-num\" style=\"color:var(--pl-fg-1);min-width:90px;text-align:right\">2.899 ₺</span></div>\n<div class=\"pl-listrow\"><label class=\"pl-check\"><input type=\"checkbox\"></label><div class=\"pl-listrow__main\"><div class=\"pl-listrow__title\">Döküm tava</div></div><span class=\"pl-badge pl-badge--warning\">Mutfak</span><span class=\"pl-num\" style=\"color:var(--pl-fg-1);min-width:90px;text-align:right\">1.150 ₺</span></div></div>"
+    },
+    {
+      "id": "PLC-080",
+      "slug": "system-gauge",
+      "ad": "Sistem Kadranı",
+      "kategori": "Ek Bileşenler",
+      "urun": "tweakster",
+      "katman": "temel",
+      "yuzey": null,
+      "tema": null,
+      "pinterest_kaynak": null,
+      "durum": "aktif",
+      "aciklama": "Yüzde halkası + başlık + açıklama: CPU, bellek, disk gibi tek bir yükü özetler.",
+      "ne_zaman": "Tweakster sistem optimizasyonu, Hub kaynak kullanımı; ekranda en fazla 3 kadran.",
+      "durumlar": [
+        "varsayılan",
+        "uyarı (is-warning)",
+        "kritik (is-danger)"
+      ],
+      "siniflar": "pl-gauge pl-gauge__ring pl-gauge__title pl-gauge__sub is-warning is-danger",
+      "erisilebilirlik": "Halka role=\"meter\" + aria-valuenow/min/max ve aria-label taşır; yüzde metin olarak da yazılıdır.",
+      "html": "<div class=\"pl-gauge\"><div class=\"pl-gauge__ring\" style=\"--v:78\" role=\"meter\" aria-valuenow=\"78\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-label=\"CPU ve bellek yükü\">%78</div>\n<div><b class=\"pl-gauge__title\">CPU &amp; Bellek Yükü</b><span class=\"pl-gauge__sub\">3 arka plan görevi aktif</span></div></div>\n<div class=\"pl-gauge is-warning\" style=\"margin-top:10px\"><div class=\"pl-gauge__ring\" style=\"--v:91\" role=\"meter\" aria-valuenow=\"91\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-label=\"Disk doluluğu\">%91</div>\n<div><b class=\"pl-gauge__title\">Disk Doluluğu</b><span class=\"pl-gauge__sub\">Uyarı · 12 GB boş alan kaldı</span></div></div>"
+    },
+    {
+      "id": "PLC-081",
+      "slug": "voice-hud",
+      "ad": "Sesli Komut Çubuğu",
+      "kategori": "Ek Bileşenler",
+      "urun": "mymind",
+      "katman": "temel",
+      "yuzey": null,
+      "tema": null,
+      "pinterest_kaynak": null,
+      "durum": "aktif",
+      "aciklama": "Bas-konuş sesli komut HUD'u: yüzen AI küresi, canlı ses dalgası, durum metni ve iptal kısayolu.",
+      "ne_zaman": "MyMind sesli komutu dinlerken; ekranın altında ya da odaklı alanın üstünde yüzer.",
+      "durumlar": [
+        "dinliyor (is-live)",
+        "duraklatıldı (hover)",
+        "işleniyor",
+        "sessiz"
+      ],
+      "siniflar": "pl-voicehud pl-voicehud__orb pl-voicehud__wave pl-voicehud__label is-live",
+      "erisilebilirlik": "role=\"status\" + aria-live=\"polite\" yalnız durum değişince duyurur; dalga aria-hidden. Esc ile iptal edilir; hareket azaltma açıkken dalga durur.",
+      "html": "<div class=\"pl-voicehud is-live\" role=\"status\" aria-live=\"polite\"><span class=\"pl-voicehud__orb\" aria-hidden=\"true\"></span>\n<span class=\"pl-voicehud__wave\" aria-hidden=\"true\"><i style=\"--h:45;--d:0\"></i><i style=\"--h:80;--d:1\"></i><i style=\"--h:60;--d:2\"></i><i style=\"--h:95;--d:3\"></i><i style=\"--h:50;--d:4\"></i></span>\n<span class=\"pl-voicehud__label\">Dinleniyor…</span><kbd class=\"pl-kbd\">Esc</kbd></div>"
+    },
+    {
+      "id": "PLC-082",
+      "slug": "scrub-input",
+      "ad": "Sayısal Sürgü Kutusu",
+      "kategori": "Ek Bileşenler",
+      "urun": "replicator",
+      "katman": "temel",
+      "yuzey": null,
+      "tema": null,
+      "pinterest_kaynak": null,
+      "durum": "aktif",
+      "aciklama": "Etiketi sürükleyerek değeri değiştiren X/Y/W/H/R özellik kutuları.",
+      "ne_zaman": "Design Replicator ve görsel denetçilerde konum, boyut, köşe ve açı alanları.",
+      "durumlar": [
+        "varsayılan",
+        "hover",
+        "odak",
+        "sürükleniyor",
+        "devre dışı"
+      ],
+      "siniflar": "pl-scrubgrid pl-scrubinput pl-scrubinput__label",
+      "erisilebilirlik": "Her kutu gerçek <input inputmode=\"decimal\"> ve <label> taşır; ok tuşları ±1, Shift+ok ±10 değiştirir.",
+      "html": "<div class=\"pl-scrubgrid\">\n<label class=\"pl-scrubinput\"><span class=\"pl-scrubinput__label\">W</span><input inputmode=\"decimal\" value=\"1200\" aria-label=\"Genişlik\"></label>\n<label class=\"pl-scrubinput\"><span class=\"pl-scrubinput__label\">H</span><input inputmode=\"decimal\" value=\"760\" aria-label=\"Yükseklik\"></label>\n<label class=\"pl-scrubinput\"><span class=\"pl-scrubinput__label\">R</span><input inputmode=\"decimal\" value=\"14px\" aria-label=\"Köşe yarıçapı\"></label>\n<label class=\"pl-scrubinput\"><span class=\"pl-scrubinput__label\">∠</span><input inputmode=\"decimal\" value=\"0°\" aria-label=\"Açı\"></label>\n</div>"
+    },
+    {
+      "id": "PLC-083",
+      "slug": "price-matrix",
+      "ad": "Çoklu Mağaza Fiyat Matrisi",
+      "kategori": "Ek Bileşenler",
+      "urun": "wishlist",
+      "katman": "temel",
+      "yuzey": null,
+      "tema": null,
+      "pinterest_kaynak": null,
+      "durum": "aktif",
+      "aciklama": "Aynı ürünün mağazalar arası canlı fiyat karşılaştırması; en iyi fiyat altın vurguyla işaretlenir.",
+      "ne_zaman": "MyWishlist ürün ayrıntısı, Leo Helper indirim karşılaştırması.",
+      "durumlar": [
+        "varsayılan",
+        "en iyi (is-best)",
+        "stokta yok",
+        "yükleniyor"
+      ],
+      "siniflar": "pl-pricematrix pl-pricematrix__row pl-pricematrix__store pl-pricematrix__best pl-pricematrix__price is-best",
+      "erisilebilirlik": "<ul> listesi; en iyi satır renge ek olarak \"En iyi\" metnini taşır. Fiyatlar sağa hizalı ve tabular.",
+      "html": "<ul class=\"pl-pricematrix\" aria-label=\"Mağaza fiyatları\">\n<li class=\"pl-pricematrix__row is-best\"><span class=\"pl-pricematrix__store\">Trendyol</span><span class=\"pl-pricematrix__best\">En iyi</span><span class=\"pl-pricematrix__price\">1.249,90 ₺</span></li>\n<li class=\"pl-pricematrix__row\"><span class=\"pl-pricematrix__store\">Hepsiburada</span><span class=\"pl-pricematrix__price\">1.389,00 ₺</span></li>\n<li class=\"pl-pricematrix__row\"><span class=\"pl-pricematrix__store\">Amazon</span><span class=\"pl-pricematrix__price\">1.412,50 ₺</span></li>\n</ul>"
+    },
+    {
+      "id": "PLC-084",
+      "slug": "glass-titlebar",
+      "ad": "Cam Başlık ve Sekme Çubuğu",
+      "kategori": "Ek Bileşenler",
+      "urun": "mindpalace",
+      "katman": "temel",
+      "yuzey": null,
+      "tema": null,
+      "pinterest_kaynak": null,
+      "durum": "aktif",
+      "aciklama": "Pencere ışıkları, sabitlenmiş uygulama sekmeleri ve kısayol ipucu taşıyan buzlu cam başlık çubuğu.",
+      "ne_zaman": "Arkasında görsel ya da gradyan olan pencerelerde (Mind Palace tuvali, medya ekranları). Düz zeminde mevcut pl-titlebar kullanılır.",
+      "durumlar": [
+        "varsayılan",
+        "sekme hover",
+        "aktif sekme (is-active)",
+        "odak"
+      ],
+      "siniflar": "pl-glassbar pl-glassbar__lights pl-glassbar__tabs pl-glassbar__tab pl-glassbar__end is-active",
+      "erisilebilirlik": "Sekmeler role=\"tablist\"/\"tab\" + aria-selected; pencere ışıkları aria-hidden, gerçek pencere düğmeleri ayrıca etiketlenir.",
+      "html": "<div style=\"padding:16px;border-radius:var(--pl-radius-xl);background:var(--pl-grad-aurora)\">\n<div class=\"pl-glassbar\"><span class=\"pl-glassbar__lights\" aria-hidden=\"true\"><i></i><i></i><i></i></span>\n<div class=\"pl-glassbar__tabs\" role=\"tablist\" aria-label=\"Açık uygulamalar\"><button class=\"pl-glassbar__tab is-active\" role=\"tab\" aria-selected=\"true\">Mind Palace</button><button class=\"pl-glassbar__tab\" role=\"tab\" aria-selected=\"false\">Leo Akışı</button><button class=\"pl-glassbar__tab\" role=\"tab\" aria-selected=\"false\">Notlar</button></div>\n<span class=\"pl-glassbar__end\"><kbd class=\"pl-kbd\">Ctrl T</kbd></span></div></div>"
+    },
+    {
+      "id": "PLC-085",
+      "slug": "box-model",
+      "ad": "Kutu Modeli",
+      "kategori": "Ek Bileşenler",
+      "urun": "replicator",
+      "katman": "temel",
+      "yuzey": null,
+      "tema": null,
+      "pinterest_kaynak": null,
+      "durum": "aktif",
+      "aciklama": "Seçili öğenin dış boşluk (margin), iç boşluk (padding) ve boyutunu iç içe kutularla gösterir.",
+      "ne_zaman": "Görsel denetçi, Design Replicator öğe incelemesi.",
+      "durumlar": [
+        "varsayılan",
+        "hover (değer düzenlenebilir)"
+      ],
+      "siniflar": "pl-boxmodel pl-boxmodel__pad pl-boxmodel__size",
+      "erisilebilirlik": "role=\"img\" + değerleri okuyan aria-label; aynı değerler denetçide sayısal alan olarak da bulunur.",
+      "html": "<div class=\"pl-boxmodel\" role=\"img\" aria-label=\"Dış boşluk 16, iç boşluk 14 ve 16, boyut 380 × 560\">Margin · 16\n<div class=\"pl-boxmodel__pad\">Padding · 14 × 16<span class=\"pl-boxmodel__size\">380 × 560</span></div></div>"
+    },
+    {
+      "id": "PLC-086",
+      "slug": "token-list",
+      "ad": "Bağlı Tokenlar",
+      "kategori": "Ek Bileşenler",
+      "urun": "replicator",
+      "katman": "temel",
+      "yuzey": null,
+      "tema": null,
+      "pinterest_kaynak": null,
+      "durum": "aktif",
+      "aciklama": "Seçili öğenin hangi tasarım tokenlarına bağlı olduğunu özellik → token çipi olarak listeler.",
+      "ne_zaman": "Denetçi panelinde, sabit değer yerine token kullanımını görünür kılmak için.",
+      "durumlar": [
+        "varsayılan",
+        "aksan tokenı (is-accent)",
+        "bağsız (sabit değer)"
+      ],
+      "siniflar": "pl-tokenlist pl-tokenlist__row pl-tokenchip is-accent",
+      "erisilebilirlik": "<dl> yapısı: özellik <dt>, token <dd>; çipler kopyalanabilir metin.",
+      "html": "<dl class=\"pl-tokenlist\">\n<div class=\"pl-tokenlist__row\"><dt>Zemin</dt><dd><code class=\"pl-tokenchip\">--pl-bg-2</code></dd></div>\n<div class=\"pl-tokenlist__row\"><dt>Vurgu</dt><dd><code class=\"pl-tokenchip is-accent\">--pl-accent</code></dd></div>\n<div class=\"pl-tokenlist__row\"><dt>Köşe</dt><dd><code class=\"pl-tokenchip\">--pl-radius-lg</code></dd></div>\n</dl>"
+    },
+    {
+      "id": "PLC-087",
+      "slug": "activity-heatmap",
+      "ad": "Etkinlik Isı Haritası",
+      "kategori": "Ek Bileşenler",
+      "urun": null,
+      "katman": "temel",
+      "yuzey": null,
+      "tema": null,
+      "pinterest_kaynak": null,
+      "durum": "aktif",
+      "aciklama": "Günlük/saatlik yoğunluğu aksan renginin tonlarıyla gösteren kare ızgara.",
+      "ne_zaman": "Denetçide etkileşim yoğunluğu, eklenti kullanım geçmişi, katkı takvimi.",
+      "durumlar": [
+        "varsayılan",
+        "boş (veri yok)",
+        "hover (değer ipucu)"
+      ],
+      "siniflar": "pl-heatmap (--cols, hücrede --v: 0–100)",
+      "erisilebilirlik": "role=\"img\" + özet aria-label; ayrıntılı değerler tablo olarak da sunulur.",
+      "html": "<div class=\"pl-heatmap\" style=\"--cols:14\" role=\"img\" aria-label=\"Son 28 günlük etkinlik: en yoğun günler hafta ortası\"><i style=\"--v:20\"></i><i style=\"--v:60\"></i><i style=\"--v:85\"></i><i style=\"--v:100\"></i><i style=\"--v:30\"></i><i style=\"--v:45\"></i><i style=\"--v:90\"></i><i style=\"--v:70\"></i><i style=\"--v:25\"></i><i style=\"--v:80\"></i><i style=\"--v:95\"></i><i style=\"--v:40\"></i><i style=\"--v:65\"></i><i style=\"--v:100\"></i><i style=\"--v:35\"></i><i style=\"--v:55\"></i><i style=\"--v:88\"></i><i style=\"--v:92\"></i><i style=\"--v:60\"></i><i style=\"--v:75\"></i><i style=\"--v:30\"></i><i style=\"--v:50\"></i><i style=\"--v:100\"></i><i style=\"--v:70\"></i><i style=\"--v:20\"></i><i style=\"--v:45\"></i><i style=\"--v:85\"></i><i style=\"--v:60\"></i></div>"
+    },
+    {
+      "id": "PLC-088",
+      "slug": "inspector-panel-ek",
+      "ad": "Denetçi Paneli (Ek)",
+      "kategori": "Ek Bileşenler",
+      "urun": "replicator",
+      "katman": "temel",
+      "yuzey": null,
+      "tema": null,
+      "pinterest_kaynak": null,
+      "durum": "aktif",
+      "aciklama": "Sayısal sürgü kutuları, kutu modeli, bağlı tokenlar ve ısı haritasını tek denetçi panelinde birleştirir.",
+      "ne_zaman": "Design Replicator sağ paneli; mevcut pl-inspector'a dokunmadan hafif bir alternatif.",
+      "durumlar": [
+        "varsayılan",
+        "öğe seçili değil (boş)",
+        "çoklu seçim"
+      ],
+      "siniflar": "pl-inspectpanel pl-inspectpanel__head pl-inspectpanel__sec + PLC-082 · 085 · 086 · 087",
+      "erisilebilirlik": "<aside aria-label>; bölüm başlıkları pl-label, her alan etiketli.",
+      "html": "<aside class=\"pl-inspectpanel\" aria-label=\"Denetçi\">\n<div class=\"pl-inspectpanel__head\"><span class=\"pl-label\">Denetçi · Inspector</span><span class=\"pl-badge pl-badge--accent\">Kart</span></div>\n<div class=\"pl-scrubgrid\">\n<label class=\"pl-scrubinput\"><span class=\"pl-scrubinput__label\">X</span><input inputmode=\"decimal\" value=\"240\" aria-label=\"X konumu\"></label>\n<label class=\"pl-scrubinput\"><span class=\"pl-scrubinput__label\">Y</span><input inputmode=\"decimal\" value=\"118\" aria-label=\"Y konumu\"></label>\n<label class=\"pl-scrubinput\"><span class=\"pl-scrubinput__label\">W</span><input inputmode=\"decimal\" value=\"380\" aria-label=\"Genişlik\"></label>\n<label class=\"pl-scrubinput\"><span class=\"pl-scrubinput__label\">H</span><input inputmode=\"decimal\" value=\"560\" aria-label=\"Yükseklik\"></label>\n<label class=\"pl-scrubinput\"><span class=\"pl-scrubinput__label\">R</span><input inputmode=\"decimal\" value=\"14px\" aria-label=\"Köşe yarıçapı\"></label>\n<label class=\"pl-scrubinput\"><span class=\"pl-scrubinput__label\">%</span><input inputmode=\"decimal\" value=\"100\" aria-label=\"Opaklık\"></label>\n</div>\n<div class=\"pl-boxmodel\" role=\"img\" aria-label=\"Dış boşluk 16, iç boşluk 14 ve 16, boyut 380 × 560\">Margin · 16<div class=\"pl-boxmodel__pad\">Padding · 14 × 16<span class=\"pl-boxmodel__size\">380 × 560</span></div></div>\n<div class=\"pl-inspectpanel__sec\"><span class=\"pl-label\">Bağlı tokenlar</span>\n<dl class=\"pl-tokenlist\"><div class=\"pl-tokenlist__row\"><dt>Zemin</dt><dd><code class=\"pl-tokenchip\">--pl-bg-2</code></dd></div><div class=\"pl-tokenlist__row\"><dt>Vurgu</dt><dd><code class=\"pl-tokenchip is-accent\">--pl-accent</code></dd></div><div class=\"pl-tokenlist__row\"><dt>Köşe</dt><dd><code class=\"pl-tokenchip\">--pl-radius-lg</code></dd></div></dl></div>\n<div class=\"pl-inspectpanel__sec\"><span class=\"pl-label\">Etkinlik ısı haritası</span>\n<div class=\"pl-heatmap\" style=\"--cols:14\" role=\"img\" aria-label=\"Son 28 günlük etkinlik\"><i style=\"--v:20\"></i><i style=\"--v:60\"></i><i style=\"--v:85\"></i><i style=\"--v:100\"></i><i style=\"--v:30\"></i><i style=\"--v:45\"></i><i style=\"--v:90\"></i><i style=\"--v:70\"></i><i style=\"--v:25\"></i><i style=\"--v:80\"></i><i style=\"--v:95\"></i><i style=\"--v:40\"></i><i style=\"--v:65\"></i><i style=\"--v:100\"></i><i style=\"--v:35\"></i><i style=\"--v:55\"></i><i style=\"--v:88\"></i><i style=\"--v:92\"></i><i style=\"--v:60\"></i><i style=\"--v:75\"></i><i style=\"--v:30\"></i><i style=\"--v:50\"></i><i style=\"--v:100\"></i><i style=\"--v:70\"></i><i style=\"--v:20\"></i><i style=\"--v:45\"></i><i style=\"--v:85\"></i><i style=\"--v:60\"></i></div></div>\n</aside>"
     },
     {
       "id": "PLA-001",
