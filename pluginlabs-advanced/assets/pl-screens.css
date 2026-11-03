@@ -770,7 +770,7 @@
 .pl-s61-nav { margin: 0 auto; display: flex; gap: 4px; } .pl-s61-nav span { padding: 6px 12px; border-radius: 14px; } .pl-s61-nav .is-active { background: rgb(255 255 255 / .1); color: white; }
 .pl-s61-g1 { display: grid; grid-template-columns: 1.1fr 1fr; gap: 14px; }
 .pl-s61-hero { position: relative; border-radius: 18px; overflow: hidden; min-height: 290px; padding: 16px; background: radial-gradient(60% 60% at 60% 70%, rgb(255 180 100 / .45), transparent 60%), linear-gradient(180deg, rgb(40 34 30), rgb(14 12 10)); }
-.pl-s61-hero h3 { margin: 0; color: white; font-size: 26px; font-weight: 500; } .pl-s61-hero p { margin: 4px 0; max-width: 260px; }
+.pl-s61-hero h3 { margin: 0; color: white; font-size: 26px; font-weight: 500; } .pl-s61-hero p { margin: 4px 0; white-space: nowrap; }
 .pl-s61-house { position: absolute; left: 20%; right: 6%; bottom: 0; height: 64%; }
 .pl-s61-house i { position: absolute; display: block; }
 .pl-s61-kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-content: start; }
