@@ -10,6 +10,7 @@ blokları değişmez, yani kopyalanan HTML hâlâ kanonik yer tutucuyu taşır.
 Çalıştırma:  python -I vitrin/build_vitrin.py
 """
 import re
+from html import escape
 from pathlib import Path
 
 KOK = Path(__file__).resolve().parent.parent
@@ -21,24 +22,25 @@ IMG = KOK / "vitrin" / "img"
 # başa dönerek) görsel alır.
 ESLEME = {
     "pin-1": ["rezidans"],
-    "pin-2": ["noir-sokak", "fener-orman", "kordon-yuruyus", "saat-kulesi",
-              "orman-otoyol", "siber-sokak", "sovalye-ejder", "viking"],
+    "pin-2": ["tv-saat-kulesi-v2", "noir-sokak", "fener-orman", "kordon-yuruyus",
+              "moda-duvar", "avatar-buyuk", "viking", "siber-sokak"],
     "pin-4": ["espor-yayin"],
     "pin-5": ["arena-duello", "viking", "siber-sokak", "orman-otoyol",
               "synth-lotus", "viking", "arena-duello", "sovalye-ejder",
               "siber-sokak", "orman-otoyol", "siber-portre", "cam-dugum",
               "noir-sokak", "fener-orman"],
     "pin-6": ["akilli-salon"],
-    "pin-7": ["arena-duello", "siber-sokak", "viking", "orman-otoyol", "sovalye-ejder"],
-    "pin-14": ["siber-portre"],
+    "pin-7": ["arena-duello", "siber-sokak", "viking", "orman-otoyol", "orman-otoyol"],
+    "pin-14": ["karakter-3b"],
     "pin-17": ["kurgu-sahil", "kordon-yuruyus", "drone-kordon", "kurgu-sahil", "saat-kulesi"],
     "pin-18": ["drone-kordon"],
     "pin-30": ["synth-lotus"],
     "pin-45": ["orman-otoyol", "viking", "sovalye-ejder", "arena-duello",
                "siber-sokak", "espor-yayin", "noir-sokak", "sovalye-ejder", "fener-orman"],
     "pin-70": ["rezidans", "noir-sokak", "akilli-salon", "saat-kulesi"],
-    "pin-100": ["synth-lotus", "cam-dugum", "noir-sokak", "kordon-yuruyus",
-                "siber-portre", "fener-orman", "synth-lotus", "cam-dugum"],
+    "pin-100": ["album-sicak-akiskan", "album-sicak-akiskan", "album-sisli-orman",
+                "album-gece-yolculugu", "album-lofi-oda", "album-yildizli-dag",
+                "album-gece-yolculugu", "album-gece-yolculugu"],
     "pin-140": ["kordon-yuruyus", "burger", "saat-kulesi", "moda-duvar",
                 "drone-kordon", "akilli-salon", "fener-orman"],
     "pin-155": ["espor-yayin", "arena-duello", "siber-sokak", "orman-otoyol", "viking",
@@ -104,7 +106,7 @@ SAHNE_CSS = """
 #pin-100 .pl-s100-cover{background:linear-gradient(0deg,color-mix(in srgb,var(--pl-bg-0) 55%,transparent),transparent 55%),url(img/album-sicak-akiskan.webp) 50% 50%/cover no-repeat}
 #pin-100 .pl-s100-hero{background:linear-gradient(180deg,color-mix(in srgb,var(--pl-bg-0) 35%,transparent),var(--pl-bg-0) 100%),url(img/album-sicak-akiskan.webp) 50% 40%/cover no-repeat}
 #pin-6 .pl-s06-disc{background:url(img/album-gece-yolculugu.webp) 50% 50%/cover no-repeat}
-#pin-7 .pl-s07-promo{background:linear-gradient(90deg,color-mix(in srgb,var(--pl-bg-0) 94%,transparent) 30%,color-mix(in srgb,var(--pl-bg-0) 20%,transparent) 70%),url(img/valoris-afis.webp) 70% 40%/cover no-repeat}
+#pin-7 .pl-s07-promo{background:linear-gradient(90deg,color-mix(in srgb,var(--pl-bg-0) 94%,transparent) 30%,color-mix(in srgb,var(--pl-bg-0) 20%,transparent) 70%),url(img/valoris-taktik-v2.webp) 70% 0%/cover no-repeat}
 #pin-7 .pl-s07-promo > .pl-s07-char{visibility:hidden}
 #pin-14 .pl-s14-char{background:url(img/karakter-3b.webp) 50% 30%/cover no-repeat;border-radius:var(--pl-radius-xl);box-shadow:var(--pl-shadow-float)}
 #pin-14 .pl-s14-char > svg{visibility:hidden}
@@ -113,6 +115,63 @@ SAHNE_CSS = """
 #pin-116 .pl-s116-cards > .pl-s116-c:nth-child(2) .art{background-image:url(img/sanat-sivi-gradyan.webp)!important}
 #pin-116 .pl-s116-cards > .pl-s116-c:nth-child(3) .art{background-image:url(img/sanat-kristal-cicek.webp)!important}
 """
+
+# Vitrin katmanı: kanonik ekranların çizimlerini/kod örneklerini değiştirmez.
+GELISTIRME_CSS = """
+@layer pl {
+[data-pl] .pl-vitrin-scene{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none}
+#pin-2 [data-pl] .pl-vitrin-scene{object-fit:cover;object-position:70% center}
+#pin-6 [data-pl] .pl-vitrin-scene,#pin-8 [data-pl] .pl-vitrin-scene{mask-image:linear-gradient(to right,transparent,var(--pl-bg-0) 8%,var(--pl-bg-0) 92%,transparent),linear-gradient(to bottom,transparent,var(--pl-bg-0) 8%,var(--pl-bg-0) 92%,transparent);mask-composite:intersect}
+#pin-2 [data-pl] .pl-s02-bg > svg,#pin-6 [data-pl] .pl-s06-scene > svg,#pin-8 [data-pl] .pl-s08-3d > svg{visibility:hidden}
+#pin-6 [data-pl] .pl-s06-sensor{z-index:1}
+#pin-8 [data-pl] .pl-s08-hex{z-index:1}
+#pin-7 [data-pl] .pl-s07-promo p{color:var(--pl-on-media)}
+#pin-45 [data-pl] .pl-s45-g{background-size:cover;background-position:center;color:var(--pl-on-media)}
+#pin-45 [data-pl] .pl-s45-g small{opacity:1}
+#pin-45 [data-pl] .pl-s45-g:nth-child(1){background-image:var(--pl-scrim-bottom),url(img/fener-orman.webp)}
+#pin-45 [data-pl] .pl-s45-g:nth-child(2){background-image:var(--pl-scrim-bottom),url(img/kategori-uzay-v2.webp)}
+#pin-45 [data-pl] .pl-s45-g:nth-child(3){background-image:var(--pl-scrim-bottom),url(img/cam-dugum.webp)}
+#pin-45 [data-pl] .pl-s45-g:nth-child(4){background-image:var(--pl-scrim-bottom),url(img/valoris-afis.webp)}
+#pin-100 [data-pl] .pl-vitrin-track{float:left;width:var(--pl-space-8);height:var(--pl-space-8);margin-right:var(--pl-space-2);border-radius:var(--pl-radius-sm);object-fit:cover}
+#pin-100 [data-pl] .pl-s100-now .v-img-ph{background-position:center!important}
+}
+"""
+
+SAHNELER = {
+    "pin-2": ("pl-s02-bg", "tv-saat-kulesi-v2", "İzmir Saat Kulesi çevresinde yağmurlu bir gecede geçen özgün film sahnesi", 1600, 900),
+    "pin-6": ("pl-s06-scene", "akilli-villa-izometrik-v2", "Odaları görünen izometrik akıllı villa; sıcaklık ve nem göstergeleri ayrı kontrollerdir", 1448, 1086),
+    "pin-8": ("pl-s08-3d", "iot-bina-izometrik-v2", "Katları ve cihaz odaları görünen izometrik ofis binası; cihaz durumları yan panelde listelenir", 1448, 1086),
+}
+
+
+def gelistir(s):
+    """Yalnız canlı bölüm HTML'ine ekle; kaçışlı kod örneklerini koru."""
+    for pid, (sinif, ad, alt, genislik, yukseklik) in SAHNELER.items():
+        if not (IMG / f"{ad}.webp").is_file():
+            raise SystemExit(f"Eksik sahne görseli: {ad}")
+        acilis = f'<div class="{sinif}">'
+        if s.count(acilis) != 1:
+            raise SystemExit(f"Sahne hedefi değişmiş: {pid}/{sinif}")
+        s = s.replace(acilis, acilis + f'<img class="pl-vitrin-scene" src="img/{ad}.webp" alt="{escape(alt, quote=True)}" loading="lazy" decoding="async" width="{genislik}" height="{yukseklik}">', 1)
+
+    # Eski sis/uçurum maketi kamera görüntüsünü kapatıyordu; HUD ve histogram kalır.
+    s, n = re.subn(r'(<div class="pl-s18-cam">.*?</div>)<div style="position:absolute;left:30%;top:40%;[^>]+></div>', r'\1', s, count=1, flags=re.S)
+    if n != 1:
+        raise SystemExit("Drone kamera yer tutucusu değişmiş")
+
+    kapaklar = iter(["album-okyanus", "album-gece-yolculugu", "album-yildizli-dag", "album-sisli-orman", "album-lofi-oda"])
+    def tablo(m):
+        def satir(t):
+            ad = next(kapaklar)
+            return f'<td><img class="pl-vitrin-track" src="img/{ad}.webp" alt="" loading="lazy" decoding="async" width="32" height="32">' + t.group(1)
+        yeni, adet = re.subn(r'<td>(<b>[^<]+</b>)', satir, m.group(0))
+        if adet != 5:
+            raise SystemExit(f"Müzik tablosu değişmiş: {adet} satır")
+        return yeni
+    s, n = re.subn(r'<table class="pl-s100-tb">.*?</table>', tablo, s, count=1, flags=re.S)
+    if n != 1:
+        raise SystemExit("Müzik tablosu bulunamadı")
+    return s
 
 # Soyut avatarlar (pl-sx-face): Gemini ile üretilmiş 16 portreden sırayla. Yalnız canlı
 # HTML değişir; kopyalanabilir kod bloklarındaki kaçışlı HTML soyut avatarla kalır.
@@ -173,10 +232,15 @@ def main():
         if s.count(eski) != 1:
             raise SystemExit(f"Metin bulunamadı ya da birden fazla: {eski[:40]}…")
         s = s.replace(eski, yeni)
-    s = s.replace("</style>", HERO_CSS + SAHNE_CSS + "</style>", 1)
+    s = gelistir(s)
+    s = s.replace("</style>", HERO_CSS + SAHNE_CSS + GELISTIRME_CSS + "</style>", 1)
     s = s.replace('href="pl-galeri.html"', 'href="../pluginlabs-advanced/assets/pl-galeri.html"')
     s = re.sub(r"<title>[^<]*</title>", "<title>PluginLabs Pin Ekranları · Görselli</title>", s, count=1)
 
+    # CSS, img ve sahne dahil tüm yerel görsel referanslarını doğrula.
+    eksik = sorted({n for n in re.findall(r'img/([a-z0-9-]+)\.webp', s) if not (IMG / f"{n}.webp").is_file()})
+    if eksik:
+        raise SystemExit(f"Eksik vitrin görselleri: {eksik}")
     CIKTI.write_text(s, encoding="utf-8")
     print(f"{toplam} yer tutucuya görsel, {n_av} avatara portre eklendi -> {CIKTI.relative_to(KOK)}")
     for pid, n in sayac.items():
