@@ -53,5 +53,20 @@ powershell -ExecutionPolicy Bypass -File kurulum\repolara-kur.ps1 -Kok C:\Users\
 
 `vitrin/` skill paketinin parçası değildir; kurulum betikleri onu kopyalamaz. Görseller `vitrin/img/` altında (WebP, en fazla 1600 px). Kanonik sayfa yeniden üretildiğinde vitrini de güncelle: `python -I vitrin/build_vitrin.py`. Görsel–ekran eşlemesi betikteki `ESLEME` sözlüğündedir.
 
+### Vitrin görsel güncellemesi · 04.11.2026
+
+TV ana filmi, akıllı villa, IoT bina sahnesi, Valoris taktik nişancı kampanyası ve uzay kategorisi için beş özgün görsel üretildi. Dört mevcut müzik kapağı tamamlandı; liste, kitaplık ve oynatıcı kapakları eşleştirildi. Karakter stüdyosunun referansı sonuç karakteriyle eşleşir. Drone kamera görüntüsünü kapatan eski maket kaldırıldı; histogram, telemetri ve IoT'nin altı durum işaretçisi korunur.
+
+**Gerçek tarayıcı ekran görüntüleri:** Windows, headless Chromium, 1440×1100; ayrıca 820×1100 dar görünüm kontrol edildi. Bunlar çalışan vitrinin statik arayüz örnekleridir; gerçek cihaz bağlantısı veya masaüstü uygulama derlemesi kanıtı değildir.
+
+![TV ekranı — yeni film sahnesi](vitrin/evidence/after/pin-2.png)
+![Akıllı ev — izometrik villa](vitrin/evidence/after/pin-6.png)
+![IoT — bina sahnesi ve korunan durum göstergeleri](vitrin/evidence/after/pin-8.png)
+![Müzik — tutarlı kapaklar](vitrin/evidence/after/pin-100.png)
+
+[Önce/sonra ve doğrulama kaydı](vitrin/REVIEW.md) · [Görsel kaynakları ve üretim istemleri](vitrin/IMAGE-SOURCES.md)
+
+Doğrulama: mevcut bir Playwright kurulumu ile `node vitrin/verify_vitrin.cjs`. Modül başka projede kuruluysa `PL_PLAYWRIGHT_MODULE` ortam değişkenine o modülün yolunu ver. Betik paket indirmez; yalnız loopback HTTP sunucusu ve görünmeyen tarayıcı açar.
+
 ## Güncelleme
 `pluginlabs-advanced/build/components.py` (temel) veya `build/advanced*.py` (advanced) düzenle → `python3 pluginlabs-advanced/build/build.py` → `kur.sh` ile eşitle.

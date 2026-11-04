@@ -1,0 +1,112 @@
+{
+  "platform": "win32",
+  "browser": "156.0.8078.4",
+  "viewport": [
+    1440,
+    1100
+  ],
+  "compactViewport": [
+    820,
+    1100
+  ],
+  "screenCount": 33,
+  "verifiedAssets": 70,
+  "copyableBlocksUnchanged": true,
+  "iotMarkers": 6,
+  "errors": [],
+  "missing": [],
+  "screens": [
+    {
+      "pin": "pin-2",
+      "width": 1120,
+      "height": 630,
+      "images": [
+        {
+          "src": "img/tv-saat-kulesi-v2.webp",
+          "alt": "İzmir Saat Kulesi çevresinde yağmurlu bir gecede geçen özgün film sahnesi",
+          "loaded": true
+        }
+      ]
+    },
+    {
+      "pin": "pin-6",
+      "width": 1120,
+      "height": 686,
+      "images": [
+        {
+          "src": "img/akilli-villa-izometrik-v2.webp",
+          "alt": "Odaları görünen izometrik akıllı villa; sıcaklık ve nem göstergeleri ayrı kontrollerdir",
+          "loaded": true
+        }
+      ]
+    },
+    {
+      "pin": "pin-7",
+      "width": 1040,
+      "height": 497,
+      "images": []
+    },
+    {
+      "pin": "pin-8",
+      "width": 1100,
+      "height": 600,
+      "images": [
+        {
+          "src": "img/iot-bina-izometrik-v2.webp",
+          "alt": "Katları ve cihaz odaları görünen izometrik ofis binası; cihaz durumları yan panelde listelenir",
+          "loaded": true
+        }
+      ]
+    },
+    {
+      "pin": "pin-14",
+      "width": 1080,
+      "height": 535,
+      "images": []
+    },
+    {
+      "pin": "pin-18",
+      "width": 1080,
+      "height": 602,
+      "images": []
+    },
+    {
+      "pin": "pin-45",
+      "width": 1040,
+      "height": 509,
+      "images": []
+    },
+    {
+      "pin": "pin-100",
+      "width": 1060,
+      "height": 600,
+      "images": [
+        {
+          "src": "img/album-okyanus.webp",
+          "alt": "",
+          "loaded": true
+        },
+        {
+          "src": "img/album-gece-yolculugu.webp",
+          "alt": "",
+          "loaded": true
+        },
+        {
+          "src": "img/album-yildizli-dag.webp",
+          "alt": "",
+          "loaded": true
+        },
+        {
+          "src": "img/album-sisli-orman.webp",
+          "alt": "",
+          "loaded": true
+        },
+        {
+          "src": "img/album-lofi-oda.webp",
+          "alt": "",
+          "loaded": true
+        }
+      ]
+    }
+  ]
+}
